@@ -1,0 +1,34 @@
+.container
+  .page-header.align-center
+    h1 Auburn Football Recruiting 
+    <div class="dropdown rec-year-dropdown"><button class="btn btn-au btn-lg dropdown-toggle" type="button" id="yearDropdown" data-toggle="dropdown">{{currentClass}}<span class="caret"></span></button><ul class="dropdown-menu" role="menu" aria-labelledby="yearDropdown"><li role="presentation"><a role="menuitem" tabindex="-1" href="#">2011</a></li><li role="presentation" class="divider"></li><li role="presentation"><a role="menuitem" tabindex="-1" href="#">2012</a></li><li role="presentation" class="divider"></li><li role="presentation"><a role="menuitem" tabindex="-1" href="#">2013</a></li><li role="presentation" class="divider"></li><li role="presentation"><a role="menuitem" tabindex="-1" href="#"> 2014</a></li></ul></div>
+
+  table.table.table-responsive.table-hover
+    thead
+      tr
+        th Name
+        th Pos
+        th Hometown
+        th.hidden-xs High School
+        th.hidden-xs Rivals
+        th.hidden-xs Scout
+        th.hidden-xs Rivals Rank
+        th.hidden-xs Scout Rank
+        th.visible-xs Stars
+        th.visible-xs Rank
+    tbody
+      tr(ng-repeat='rec in recruits')
+        td {{rec.forename}} {{rec.surname}}
+        td {{rec.pos}}
+        td {{rec.city}}, {{rec.state}}
+        td.hidden-xs {{rec.hs}}
+        td.hidden-xs {{rec.rivalsstars}}*
+        td.hidden-xs {{rec.scoutstars}}*
+        td.hidden-xs {{rec.rivalsrank}}
+        td.hidden-xs {{rec.scoutrank}}
+        td.visible-xs {{(rec.scoutstars + rec.rivalsstars) / 2.0 | number:1}}
+        td.visible-xs {{(rec.rivalsrank + rec.scoutrank) / 2.0 | number:1}}
+
+.footer.align-center
+    img(src='images/eagle-2.png', height='50px', width='auto')
+    h3 WAR EAGLE

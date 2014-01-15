@@ -1,0 +1,27 @@
+.container  
+  .page-header.align-center
+    h1 {{year}} Auburn Football Results
+
+  table.table.table-responsive.table-hover#yearly-table
+    thead
+      tr
+        th Date
+        th W/L
+        th Opponent
+        th Score
+        th.hidden-xs Location
+        th.hidden-xs Attended?
+        th.visible-xs Loc
+    tbody
+      tr(ng-repeat='game in games')
+        td {{game.Date.split('-')[1] + '/' + game.Date.split('-')[2]}}
+        td {{game.Result}}
+        td {{game.Opponent}}
+        td {{game.auscore}} - {{game.opscore}}
+        td.hidden-xs {{game.Location}}
+        td.hidden-xs Yes / No
+        td.visible-xs {{game.Location === 'Auburn, AL' ? 'H' : 'A'}}
+
+.footer.align-center
+    img(src='images/eagle-2.png', height='50px', width='auto')
+    h3 WAR EAGLE

@@ -1,0 +1,7 @@
+When creating a new controller/view, you need to update:
+- app.js routeProvider
+- api.js api function
+- [controllerName].js
+- [controllerName].jade
+- [model].js
+- routes.js

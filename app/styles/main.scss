@@ -1,0 +1,241 @@
+@import 'mixins';
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+/* Space out content a bit */
+body {
+    padding-bottom: 20px;
+    font-family: $mainfont;
+    color: $navy;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: $headerfont;
+    color: $orange;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Custom page header */
+.header {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px;
+    padding-bottom: 19px;
+}
+
+/* Custom page footer */
+.footer {
+    padding-top: 19px;
+    color: #777;
+    border-top: 1px solid #e5e5e5;
+}
+
+.container-narrow > hr {
+    margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+    text-align: center;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+}
+
+/* Supporting marketing content */
+.marketing {
+    margin: 40px 0;
+}
+
+.marketing p + h4 {
+    margin-top: 28px;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+    .container {
+        max-width: 980px;
+    }
+
+    /* Remove the padding we set earlier */
+    .header,
+    .marketing,
+    .footer {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    /* Space out the masthead */
+    .header {
+        margin-bottom: 30px;
+    }
+    /* Remove the bottom border on the jumbotron for visual effect */
+    .jumbotron {
+        border-bottom: 0;
+    }
+}
+
+/************* USER STYLES *****************/
+
+@media (min-width: 768px) {
+    .navbar {
+        border-radius: 0;
+    }
+}
+
+.navbar-default {
+    background-color: $navy;
+    border-color: $navy;
+    .navbar-header {
+        .navbar-toggle {
+            background-color: $orange;
+            border-color: $navy;
+            .icon-bar {
+                background-color: $navy;
+            }
+            &:focus, &:hover {
+                background-color: $orange;
+            }
+        }
+        .navbar-brand {
+            color: $orange;
+            font-family: $aufont;
+            font-size: 2em;
+            font-weight: 900;
+        }
+    }
+    .navbar-nav {
+        & > li > a {
+            color: $orange;
+            font-size: 1.15em;
+            &:hover, &:focus {
+                color: #f8f8f8;
+            }
+        }
+        & > .active > a {
+            background-color: $orange;
+            color: white;
+            &:hover, &:focus {
+                background-color: $orange;
+            }
+        }
+    }
+}
+
+.container.main-container {
+    width: 95%;
+    max-width: none;
+    .container {
+        width: auto;
+        max-width: 1100px;
+    }
+}
+
+.rec-year-dropdown {
+    max-width: 165px;
+    margin: 0 auto;
+}
+
+.btn.btn-au {
+    background-color: $orange;
+    color: $navy;
+}
+
+.jumbotron {
+    p {
+        text-align: left;
+        &.align-center {
+            text-align: center;
+        }
+    }
+}
+
+.player-group {
+    max-width: 15em;
+    min-height: 8em;
+    background-color: #F0F0F0;
+    margin: 0 auto 1em auto;
+    padding: 0.25em 0;
+    border-radius: 0.5em;
+    h4 {
+        border-bottom: 1px solid #CCC;
+        width: auto;
+        max-width: 2em;
+        margin: 0 auto 0.4em auto;
+        padding-bottom: 0.25em;
+        padding-top: 0.25em;
+    }
+    p {
+        margin-bottom: 0.15em;
+    }
+    &.player-group-d {
+        h4 {
+            color: $navy;
+        }
+        p {
+            color: $orange;
+        }
+    }
+    @include breakpoint(pequeno) {
+        max-width: none;
+        background: none;
+    }
+}
+
+.row.depth {
+    // .col-
+}
+
+@include breakpoint(tablebreakdown) {
+    .jumbotron {
+        padding: 1em 1em 2em 1em;
+        background: none;
+        h1 {
+            margin-top: 0;
+        }
+    }
+    .container {
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .container.main-container { width: 100%; }
+    .page-header { margin-top: 0; }
+}
+
+// HELPER CLASSES
+.font-small {
+    font-size: 0.5em;
+}
+
+.bold {
+    font-weight: bolder;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.upper {
+    text-transform: uppercase;
+}

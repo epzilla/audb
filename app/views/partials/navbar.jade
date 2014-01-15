@@ -1,0 +1,17 @@
+nav(role='navigation', ng-controller='NavbarCtrl').navbar.navbar-default
+  div.navbar-header
+    button(type='button', class='navbar-toggle', data-toggle='collapse', data-target='#nav-menu-collapse')
+      span.sr-only Toggle navigation
+      span.icon-bar
+      span.icon-bar
+      span.icon-bar
+    a(href='#').navbar-brand AUDB
+  div.collapse.navbar-collapse#nav-menu-collapse
+    ul.nav.navbar-nav
+      li(ng-repeat='item in menu', ng-class='{active: isActive(item.link)}')
+        a(ng-href='{{item.link}}') {{item.title}}
+    ul.nav.navbar-nav.pull-right
+      li(ng-hide='currentUser', ng-class="{active: isActive('/login')}")
+        a(href='/login') Login
+      li(ng-show='currentUser', ng-class="{active: isActive('/logout')}")
+        a(href='#', ng-click='logout()') Logout {{currentUser}}

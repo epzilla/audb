@@ -1,0 +1,30 @@
+// @import url(http://fonts.googleapis.com/css?family=Roboto:400,700|Oswald:400,700);
+
+$icon-font-path: "/bower_components/sass-bootstrap/fonts/";
+$mainfont: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$headerfont: "museo-slab", serif;
+$aufont: "Copperplate Gothic Bold", "Copperplate Bold Gothic", "Copperplate Gothic", "Copperplate Bold", "Copperplate", "museo-slab", $headerfont;
+$modal-back: #333;
+$navy: #002649;
+$orange: #F46507;
+
+@mixin breakpoint($point) {
+  @if $point == grande {
+    @media (max-width: 1600px) { @content; }
+  }
+  @else if $point == medio {
+    @media (max-width: 1250px) { @content; }
+  }
+  @else if $point == pequeno {
+    @media (max-width: 650px)  { @content; }
+  }
+  @else if $point == muypequeno {
+    @media (max-width: 350px)  { @content; }
+  }
+  @else if $point == tablebreakdown {
+    @media (max-width: 420px)  { @content; }
+  }
+  @else if $point == muygrande {
+    @media only screen and (min-width: 1601px)  { @content; }
+  }
+}

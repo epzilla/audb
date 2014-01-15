@@ -1,0 +1,104 @@
+doctype html
+// [if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]
+// [if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]
+// [if IE 8]>         <html class="no-js lt-ie9"> <![endif]
+// [if gt IE 8]><!
+html.no-js
+  //<![endif]
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
+    base(href="/")
+    title
+    meta(name="description", content="")
+    meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1.0")
+    meta(name="apple-mobile-web-app-capable", content="yes")
+    // Place favicon.ico and apple-touch-icon.png in the root directory
+    <!-- build:css(app) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css({.tmp,app}) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  body(ng-app="audbApp")
+    //[if lt IE 7]>
+      <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+      <![endif]
+    //[if lt IE 9]>
+      <script src="bower_components/es5-shim/es5-shim.js"></script>
+      <script src="bower_components/json3/lib/json3.min.js"></script>
+      <![endif]
+
+    // Add your site or application content here
+    nav(role='navigation', ng-controller='NavbarCtrl').navbar.navbar-default
+      div.navbar-header
+        button(type='button', class='navbar-toggle', data-toggle='collapse', data-target='#nav-menu-collapse')
+          span.sr-only Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a(href='#').navbar-brand AUDB
+      div.collapse.navbar-collapse#nav-menu-collapse
+        ul.nav.navbar-nav
+          li(ng-repeat='item in menu', ng-class='{active: isActive(item.link)}')
+            a(ng-href='{{item.link}}') {{item.title}}
+        ul.nav.navbar-nav.pull-right
+          li(ng-hide='currentUser', ng-class="{active: isActive('/login')}")
+            a(href='/login') Login
+          li(ng-show='currentUser', ng-class="{active: isActive('/logout')}")
+            a(href='#', ng-click='logout()') Logout {{currentUser.name}}
+
+            
+    div(ng-view).container.main-container
+    
+    // Google Analytics: change UA-XXXXX-X to be your site's ID.
+    script.
+      var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+      g.src='//www.google-analytics.com/ga.js';
+      s.parentNode.insertBefore(g,s)}(document,'script'));
+
+    // Typekit
+    script.
+      (function() {
+        var config = {
+          kitId: 'imv1jti',
+          scriptTimeout: 3000
+        };
+        var h=document.getElementsByTagName("html")[0];h.className+=" wf-loading";var t=setTimeout(function(){h.className=h.className.replace(/(\s|^)wf-loading(\s|$)/g," ");h.className+=" wf-inactive"},config.scriptTimeout);var tk=document.createElement("script"),d=false;tk.src='//use.typekit.net/'+config.kitId+'.js';tk.type="text/javascript";tk.async="true";tk.onload=tk.onreadystatechange=function(){var a=this.readyState;if(d||a&&a!="complete"&&a!="loaded")return;d=true;clearTimeout(t);try{Typekit.load(config)}catch(b){}};var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(tk,s)
+      })();
+
+    script.
+      window.addEventListener('load', function () {
+        FastClick.attach(document.body);
+      }, false);
+    <!-- build:js(app) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/sass-bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/fastclick/lib/fastclick.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/navbar.js"></script>
+    <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/controllers/signup.js"></script>
+    <script src="scripts/services/auth.js"></script>
+    <script src="scripts/services/session.js"></script>
+    <script src="scripts/services/user.js"></script>
+    <script src="scripts/directives/mongooseError.js"></script>
+    <script src="scripts/controllers/yearly.js"></script>
+    <script src="scripts/controllers/depth.js"></script>
+    <script src="scripts/controllers/recruits.js"></script>
+    <!-- endbuild -->
+    

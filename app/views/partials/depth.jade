@@ -1,0 +1,217 @@
+.page-header.align-center
+  h1 {{year}} Auburn Football Depth Chart
+
+.row
+  .col-md-12.align-center
+    h2.upper Offense
+.row.depth
+  .col-md-4.align-center
+    #fb
+      //- h4 FB
+      //- div(ng-repeat='player in players.FB', id='{{player._id}}')
+      //-   p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+      //-   p(ng-if='player.retstart === 1')
+      //-     strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+  .col-md-4.align-center
+    #qb.player-group.player-group-o
+      h4 QB
+      div(ng-repeat='player in players.QB', id='{{player._id}}')
+        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 1')
+          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+  .col-md-4.align-center
+    #rb.player-group.player-group-o
+      h4 RB
+      div(ng-repeat='player in players.RB', id='{{player._id}}')
+        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 1')
+          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+
+.row.depth
+  .col-md-2.align-center
+    #wr-9.player-group.player-group-o
+      h4 WR
+      div(ng-repeat='player in players.9', id='{{player._id}}')
+        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 1')
+          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+  .col-md-2.align-center
+    #wr-slot.player-group.player-group-o
+      h4 WR
+      div(ng-repeat='player in players.Slot', id='{{player._id}}')
+        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 1')
+          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+  .col-md-2
+  .col-md-2
+  .col-md-2.align-center
+    #te.player-group.player-group-o
+      h4 TE
+      div(ng-repeat='player in players.TE', id='{{player._id}}')
+        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 1')
+          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+  .col-md-2.align-center
+    #wr-2.player-group.player-group-o
+      h4 WR
+      div(ng-repeat='player in players.2', id='{{player._id}}')
+        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 1')
+          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+
+.row.depth
+  .col-md-3.align-center
+    #rt.player-group.player-group-o
+      h4 RT
+      div(ng-repeat='player in players.RT', id='{{player._id}}')
+        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 1')
+          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+  .col-md-2.align-center
+    #rg.player-group.player-group-o
+      h4 RG
+      div(ng-repeat='player in players.RG', id='{{player._id}}')
+        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 1')
+          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+  .col-md-2.align-center
+    #c.player-group.player-group-o
+      h4 C
+      div(ng-repeat='player in players.C', id='{{player._id}}')
+        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 1')
+          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+  .col-md-2.align-center
+    #lg.player-group.player-group-o
+      h4 LG
+      div(ng-repeat='player in players.LG', id='{{player._id}}')
+        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 1')
+          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+  .col-md-3.align-center
+    #lt.player-group.player-group-o
+      h4 LT
+      div(ng-repeat='player in players.LT', id='{{player._id}}')
+        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 1')
+          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+
+.row
+  .col-md-12.align-center
+    h2.upper Defense
+.row.depth
+  .col-md-3.align-center
+    #wde.player-group.player-group-d
+      h4 DE
+      div(ng-repeat='player in players.WDE', id='{{player._id}}')
+        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 1')
+          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+  .col-md-3.align-center
+    #dt.player-group.player-group-d
+      h4 DT
+      div(ng-repeat='player in players.DT', id='{{player._id}}')
+        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 1')
+          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+  .col-md-3.align-center
+    #ng.player-group.player-group-d
+      h4 DT
+      div(ng-repeat='player in players.NG', id='{{player._id}}')
+        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 1')
+          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+  .col-md-3.align-center
+    #sde.player-group.player-group-d
+      h4 DE
+      div(ng-repeat='player in players.SDE', id='{{player._id}}')
+        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 1')
+          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+
+.row.depth
+  .col-md-4.align-center
+    #wlb.player-group.player-group-d
+      h4 LB
+      div(ng-repeat='player in players.WLB', id='{{player._id}}')
+        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 1')
+          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+  .col-md-4.align-center
+    #mlb.player-group.player-group-d
+      h4 LB
+      div(ng-repeat='player in players.MLB', id='{{player._id}}')
+        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 1')
+          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+  .col-md-4.align-center
+    #star.player-group.player-group-d
+      h4 Star
+      div(ng-repeat='player in players.STAR', id='{{player._id}}')
+        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 1')
+          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+
+.row.depth
+  .col-md-3.align-center
+    #lcb.player-group.player-group-d
+      h4 CB
+      div(ng-repeat='player in players.LCB', id='{{player._id}}')
+        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 1')
+          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+  .col-md-3.align-center
+    #fs.player-group.player-group-d
+      h4 S
+      div(ng-repeat='player in players.FS', id='{{player._id}}')
+        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 1')
+          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+  .col-md-3.align-center
+    #ss.player-group.player-group-d
+      h4 S
+      div(ng-repeat='player in players.SS', id='{{player._id}}')
+        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 1')
+          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+  .col-md-3.align-center
+    #rcb.player-group.player-group-d
+      h4 CB
+      div(ng-repeat='player in players.RCB', id='{{player._id}}')
+        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 1')
+          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+
+.footer.align-center
+    img(src='images/eagle-2.png', height='50px', width='auto')
+    h3 WAR EAGLE
+
+//- table.table.table-responsive.table-hover
+//-   thead
+//-     tr
+//-       th Pos
+//-       th No.
+//-       th Name
+//-       th Year
+//-       th Ht.
+//-       th Wt.
+//-       th Hometown
+//-   tbody(ng-repeat='posgroup in players')
+//-     tr
+//-       th(colspan='7') {{posgroup[0].trupos}}
+//-     tr(ng-repeat='player in posgroup')
+//-       td(ng-if='player.retstart === 0') {{player.pos}}
+//-       td(ng-if='player.retstart === 0') {{player.num}}
+//-       td(ng-if='player.retstart === 0') {{player.forename}} {{player.surname}}
+//-       td(ng-if='player.retstart === 0') {{player.year}}
+//-       td(ng-if='player.retstart === 0') {{player.height}}
+//-       td(ng-if='player.retstart === 0') {{player.weight}}
+//-       td(ng-if='player.retstart === 0') {{player.city}}, {{player.state}}
+
+//-       td(ng-if='player.retstart === 1').bold {{player.pos}}
+//-       td(ng-if='player.retstart === 1').bold {{player.num}}
+//-       td(ng-if='player.retstart === 1').bold {{player.forename}} {{player.surname}}
+//-       td(ng-if='player.retstart === 1').bold {{player.year}}
+//-       td(ng-if='player.retstart === 1').bold {{player.height}}
+//-       td(ng-if='player.retstart === 1').bold {{player.weight}}
+//-       td(ng-if='player.retstart === 1').bold {{player.city}}, {{player.state}}
