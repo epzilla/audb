@@ -11,8 +11,7 @@ angular.module('audbApp')
       angular.element('.navbar-toggle').click();
     }
     $scope.setYear = function(yr) {
-      $scope.year = yr;
-      $http.get('/api/year/'+$scope.year).success(function(data) {
+      $http.get('/api/year/'+yr).success(function(data) {
         $scope.games = data;
       });
     };

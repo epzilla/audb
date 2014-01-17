@@ -42,10 +42,10 @@
         td(ng-if='game.Result === "T"').tie.hidden-xs Yes / No
         td(ng-if='game.Result === "T"').tie.visible-xs {{game.Location === 'Auburn, AL' ? 'H' : 'A'}}
   
-  h2(ng-if='year === 1997 || year === 2000').align-center SEC West Champions
-  h2(ng-if='year === 2013 || year === 2010 || year === 2004').align-center SEC Champions
-  h1(ng-if='year === 1957').align-center National Champions
-  h1(ng-if='year === 2010').align-center BCS National Champions
+  h2(ng-show='year == 1997 || year == 2000').align-center SEC West Champions
+  h2(ng-show='year == 2013 || year == 2010 || year == 2004').align-center SEC Champions
+  h1(ng-show='year == 1957').align-center National Champions
+  h1(ng-show='year == 2010').align-center BCS National Champions
 
 .footer.align-center
     img(src='images/eagle-2.png', height='50px', width='auto')
