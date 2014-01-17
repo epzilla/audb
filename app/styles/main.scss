@@ -205,6 +205,18 @@ h1, h2, h3, h4, h5, h6 {
     // .col-
 }
 
+.win {
+    color: $navy;
+}
+
+.loss {
+    color: $orange;
+}
+
+.tie {
+    color: #777;
+}
+
 @include breakpoint(tablebreakdown) {
     .jumbotron {
         padding: 1em 1em 2em 1em;
@@ -234,6 +246,18 @@ h1, h2, h3, h4, h5, h6 {
 
 .align-center {
     text-align: center;
+}
+
+.center {
+    margin: 0 auto;
+}
+
+.no-float {
+    float: none;
+}
+
+.pad-bottom-1em {
+    padding-bottom: 1em;
 }
 
 .upper {

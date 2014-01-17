@@ -7,6 +7,7 @@ $aufont: "Copperplate Gothic Bold", "Copperplate Bold Gothic", "Copperplate Goth
 $modal-back: #333;
 $navy: #002649;
 $orange: #F46507;
+@import 'sass-bootstrap/lib/bootstrap';
 
 @mixin breakpoint($point) {
   @if $point == grande {

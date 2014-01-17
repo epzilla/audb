@@ -2,11 +2,19 @@
 
 angular.module('audbApp')
   .controller('YearlyCtrl', function ($scope, $http) {
-    $scope.year = 2013;
+    $scope.year = 2014;
+    $scope.years = [];
+    for (var i = $scope.year; i >= 1892; i--) {
+      $scope.years.push(i);
+    }
     if (angular.element('#nav-menu-collapse').hasClass('in')) {
       angular.element('.navbar-toggle').click();
     }
-    $http.get('/api/year/'+$scope.year).success(function(data) {
-      $scope.games = data;
-    });
+    $scope.setYear = function(yr) {
+      $scope.year = yr;
+      $http.get('/api/year/'+$scope.year).success(function(data) {
+        $scope.games = data;
+      });
+    };
+    $scope.setYear($scope.year);
   });

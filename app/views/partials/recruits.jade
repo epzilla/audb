@@ -1,7 +1,14 @@
 .container
   .page-header.align-center
     h1 Auburn Football Recruiting 
-    <div class="dropdown rec-year-dropdown"><button class="btn btn-au btn-lg dropdown-toggle" type="button" id="yearDropdown" data-toggle="dropdown">{{currentClass}}<span class="caret"></span></button><ul class="dropdown-menu" role="menu" aria-labelledby="yearDropdown"><li role="presentation"><a role="menuitem" tabindex="-1" href="#">2011</a></li><li role="presentation" class="divider"></li><li role="presentation"><a role="menuitem" tabindex="-1" href="#">2012</a></li><li role="presentation" class="divider"></li><li role="presentation"><a role="menuitem" tabindex="-1" href="#">2013</a></li><li role="presentation" class="divider"></li><li role="presentation"><a role="menuitem" tabindex="-1" href="#"> 2014</a></li></ul></div>
+    div(class="dropdown rec-year-dropdown").
+      <button class="btn btn-au btn-lg dropdown-toggle" type="button" id="yearDropdown" data-toggle="dropdown">{{currentClass}}<span class="caret"></span></button>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="yearDropdown">
+        <li role="presentation"><a role="menuitem" tabindex="-1" ng-click="getRecruits(2011)">2011</a></li>
+        <li role="presentation" class="divider"></li><li role="presentation"><a role="menuitem" tabindex="-1" ng-click="getRecruits(2012)">2012</a></li>
+        <li role="presentation" class="divider"></li><li role="presentation"><a role="menuitem" tabindex="-1" ng-click="getRecruits(2013)">2013</a></li>
+        <li role="presentation" class="divider"></li><li role="presentation"><a role="menuitem" tabindex="-1" ng-click="getRecruits(2014)">2014</a></li>
+      </ul>
 
   table.table.table-responsive.table-hover
     thead
@@ -10,10 +17,10 @@
         th Pos
         th Hometown
         th.hidden-xs High School
-        th.hidden-xs Rivals
-        th.hidden-xs Scout
-        th.hidden-xs Rivals Rank
-        th.hidden-xs Scout Rank
+        th.hidden-xs.align-center Rivals
+        th.hidden-xs.align-center Scout
+        th.hidden-xs.align-center Rivals Rank
+        th.hidden-xs.align-center Scout Rank
         th.visible-xs Stars
         th.visible-xs Rank
     tbody
@@ -22,10 +29,10 @@
         td {{rec.pos}}
         td {{rec.city}}, {{rec.state}}
         td.hidden-xs {{rec.hs}}
-        td.hidden-xs {{rec.rivalsstars}}*
-        td.hidden-xs {{rec.scoutstars}}*
-        td.hidden-xs {{rec.rivalsrank}}
-        td.hidden-xs {{rec.scoutrank}}
+        td.hidden-xs.align-center {{rec.rivalsstars}} <span class="glyphicon glyphicon-star"></span>
+        td.hidden-xs.align-center {{rec.scoutstars}} <span class="glyphicon glyphicon-star"></span>
+        td.hidden-xs.align-center {{rec.rivalsrank}}
+        td.hidden-xs.align-center {{rec.scoutrank}}
         td.visible-xs {{(rec.scoutstars + rec.rivalsstars) / 2.0 | number:1}}
         td.visible-xs {{(rec.rivalsrank + rec.scoutrank) / 2.0 | number:1}}
 

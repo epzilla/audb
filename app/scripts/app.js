@@ -5,7 +5,8 @@ angular.module('audbApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'ngTouch'
+  'ngTouch',
+  'ui.select2'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
