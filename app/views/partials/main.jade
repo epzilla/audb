@@ -1,4 +1,4 @@
-.container
+div(ng-if='!currentUser').container
   .jumbotron
     h1 Welcome to AUDB!
 
@@ -18,6 +18,9 @@
 
     p.align-center
       buttn.btn.btn-lg.btn-success Sign Up
+
+div(ng-if='currentUser').container
+  h3 You are {{currentUser}}
 
 .footer.align-center
     img(src='/images/eagle-2.png', height='50px', width='auto')

@@ -10,21 +10,48 @@
         <li role="presentation" class="divider"></li><li role="presentation"><a role="menuitem" tabindex="-1" ng-click="getRecruits(2014)">2014</a></li>
       </ul>
 
-  table.table.table-responsive.table-hover
+  table.table.table-responsive.table-hover#recruit-table
     thead
       tr
-        th Name
-        th Pos
-        th Hometown
-        th.hidden-xs High School
-        th.hidden-xs.align-center Rivals
-        th.hidden-xs.align-center Scout
-        th.hidden-xs.align-center Rivals Rank
-        th.hidden-xs.align-center Scout Rank
-        th.visible-xs Stars
+        th
+          a(ng-click='predicate = "surname"; reverse=!reverse;') Name
+          span(ng-show='predicate == "surname" && !reverse').glyphicon.glyphicon-chevron-up
+          span(ng-show='predicate == "surname" && reverse').glyphicon.glyphicon-chevron-down
+        th
+          a(ng-click='predicate = "pos"; reverse=!reverse;') Pos
+          span(ng-show='predicate == "pos" && !reverse').glyphicon.glyphicon-chevron-up
+          span(ng-show='predicate == "pos" && reverse').glyphicon.glyphicon-chevron-down
+        th
+          a(ng-click='predicate = "state"; reverse=!reverse;') Hometown
+          span(ng-show='predicate == "state" && !reverse').glyphicon.glyphicon-chevron-up
+          span(ng-show='predicate == "state" && reverse').glyphicon.glyphicon-chevron-down
+        th.hidden-xs
+          a(ng-click='predicate = "hs"; reverse=!reverse;') High School
+          span(ng-show='predicate == "hs" && !reverse').glyphicon.glyphicon-chevron-up
+          span(ng-show='predicate == "hs" && reverse').glyphicon.glyphicon-chevron-down
+        th.hidden-xs.align-center
+          a(ng-click='predicate = "rivalsstars"; reverse=!reverse;') Rivals
+          span(ng-show='predicate == "rivalsstars" && !reverse').glyphicon.glyphicon-chevron-up
+          span(ng-show='predicate == "rivalsstars" && reverse').glyphicon.glyphicon-chevron-down
+        th.hidden-xs.align-center
+          a(ng-click='predicate = "scoutstars"; reverse=!reverse;') Scout
+          span(ng-show='predicate == "scoutstars" && !reverse').glyphicon.glyphicon-chevron-up
+          span(ng-show='predicate == "scoutstars" && reverse').glyphicon.glyphicon-chevron-down
+        th.hidden-xs.align-center
+          a(ng-click='predicate = "rivalsrank"; reverse=!reverse;') Rivals Rank
+          span(ng-show='predicate == "rivalsrank" && !reverse').glyphicon.glyphicon-chevron-up
+          span(ng-show='predicate == "rivalsrank" && reverse').glyphicon.glyphicon-chevron-down
+        th.hidden-xs.align-center
+          a(ng-click='predicate = "scoutrank"; reverse=!reverse;') Scout Rank
+          span(ng-show='predicate == "scoutrank" && !reverse').glyphicon.glyphicon-chevron-up
+          span(ng-show='predicate == "scoutrank" && reverse').glyphicon.glyphicon-chevron-down
+        th.visible-xs
+          a(ng-click='predicate = "avgstars"; reverse=!reverse;') Stars
+          span(ng-show='predicate == "avgstars" && !reverse').glyphicon.glyphicon-chevron-up
+          span(ng-show='predicate == "avgstars" && reverse').glyphicon.glyphicon-chevron-down
         th.visible-xs Rank
     tbody
-      tr(ng-repeat='rec in recruits')
+      tr(ng-repeat='rec in recruits | orderBy:predicate:reverse')
         td {{rec.forename}} {{rec.surname}}
         td {{rec.pos}}
         td {{rec.city}}, {{rec.state}}

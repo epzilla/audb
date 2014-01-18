@@ -7,8 +7,13 @@
       select(ng-model='year', data-placeholder='Select Year', ui-select2, ng-change='setYear(year)')#yearpicker
         option(value="")
         option(ng-repeat='y in years' value='{{y}}') {{y}}
+  
+  div(ng-if='year == 1943').jumbotron
+    h1 Allies 1 - Axis 0
+    div(style='max-width: 500px;').center
+      img(src='images/Uncle-Sam.jpg').img.img-responsive.center
 
-  table.table.table-responsive.table-hover#yearly-table
+  table(ng-hide='year == 1943').table.table-responsive.table-hover#yearly-table
     thead
       tr
         th Date
@@ -25,26 +30,36 @@
         td(ng-if='game.Result === "W"').win {{game.Opponent}}
         td(ng-if='game.Result === "W"').win {{game.auscore}} - {{game.opscore}}
         td(ng-if='game.Result === "W"').win.hidden-xs {{game.Location}}
-        td(ng-if='game.Result === "W"').win.hidden-xs Yes / No
+        td(ng-if='game.Result === "W"').win.hidden-xs.attend-td
+          button(ng-click='toggleAttended("{{game._id}}")', id='{{game._id}}').btn.btn-default.btn-xs
+            span.glyphicon.glyphicon-minus
         td(ng-if='game.Result === "W"').win.visible-xs {{game.Location === 'Auburn, AL' ? 'H' : 'A'}}
         td(ng-if='game.Result === "L"').loss {{game.Date.split('-')[1] + '/' + game.Date.split('-')[2]}}
         td(ng-if='game.Result === "L"').loss {{game.Result}}
         td(ng-if='game.Result === "L"').loss {{game.Opponent}}
         td(ng-if='game.Result === "L"').loss {{game.auscore}} - {{game.opscore}}
         td(ng-if='game.Result === "L"').loss.hidden-xs {{game.Location}}
-        td(ng-if='game.Result === "L"').loss.hidden-xs Yes / No
+        td(ng-if='game.Result === "L"').loss.hidden-xs.attend-td
+          button(ng-click='toggleAttended("{{game._id}}")', id='{{game._id}}').btn.btn-default.btn-xs
+            span.glyphicon.glyphicon-minus
         td(ng-if='game.Result === "L"').loss.visible-xs {{game.Location === 'Auburn, AL' ? 'H' : 'A'}}
         td(ng-if='game.Result === "T"').tie {{game.Date.split('-')[1] + '/' + game.Date.split('-')[2]}}
         td(ng-if='game.Result === "T"').tie {{game.Result}}
         td(ng-if='game.Result === "T"').tie {{game.Opponent}}
         td(ng-if='game.Result === "T"').tie {{game.auscore}} - {{game.opscore}}
         td(ng-if='game.Result === "T"').tie.hidden-xs {{game.Location}}
-        td(ng-if='game.Result === "T"').tie.hidden-xs Yes / No
+        td(ng-if='game.Result === "T"').tie.hidden-xs.attend-td
+          button(ng-click='toggleAttended("{{game._id}}")', id='{{game._id}}').btn.btn-default.btn-xs
+            span.glyphicon.glyphicon-minus
         td(ng-if='game.Result === "T"').tie.visible-xs {{game.Location === 'Auburn, AL' ? 'H' : 'A'}}
   
+  h3(ng-show='record.t > 0 && year !== thisYear && year !== 1943').align-center Record: {{record.w}}-{{record.l}}-{{record.t}} ({{record.secW}}-{{record.secL}}-{{record.secT}})
+  h3(ng-show='record.t === 0 && year != 1943').align-center Record: {{record.w}}-{{record.l}} ({{record.secW}}-{{record.secL}})
   h2(ng-show='year == 1997 || year == 2000').align-center SEC West Champions
-  h2(ng-show='year == 2013 || year == 2010 || year == 2004').align-center SEC Champions
-  h1(ng-show='year == 1957').align-center National Champions
+  h2(ng-show='year == 2013 || year == 2010 || year == 2004 || year == 1989 || year == 1988 || year == 1987 || year == 1983 || year == 1957').align-center SEC Champions
+  h2(ng-show='year == 1919 || year == 1914 || year == 1913').align-center SIAA Champions
+  h1(ng-show='year == 1913').align-center National Champions
+  h1(ng-show='year == 1957').align-center AP National Champions
   h1(ng-show='year == 2010').align-center BCS National Champions
 
 .footer.align-center

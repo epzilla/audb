@@ -187,17 +187,63 @@ h1, h2, h3, h4, h5, h6 {
     p {
         margin-bottom: 0.15em;
     }
+    a {
+        color: $navy;
+        cursor: pointer;
+    }
     &.player-group-d {
         h4 {
             color: $navy;
         }
-        p {
+        p, a {
             color: $orange;
         }
     }
     @include breakpoint(pequeno) {
         max-width: none;
         background: none;
+    }
+}
+
+#recruit-table {
+    thead {
+        tr {
+            th {
+                color: $orange;
+                a {
+                    color: $orange;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+#playerModal {
+    h3, h4, h5, p {
+        color: $navy;
+    }
+}
+
+.glyphicon.glyphicon-remove.highlight {
+    color: red;
+}
+
+.glyphicon.glyphicon-ok.highlight {
+    color: green;
+}
+
+.table > tbody > tr > td.attend-td {
+    padding: 0.45em 0 0 0;
+    button {
+        height: 2em;
+        width: 7em;
+        color: $navy;
+        &:active, &.yes {
+            background-color: $orange;
+            color: #fafafa;
+        }
     }
 }
 
@@ -246,6 +292,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .align-center {
     text-align: center;
+}
+
+.align-left {
+    text-align: left;
 }
 
 .center {

@@ -11,5 +11,6 @@ angular.module('audbApp')
         $scope.recruits = data;
       });
     };
+    $scope.predicate = '+surname';
     $scope.getRecruits(2014);
   });

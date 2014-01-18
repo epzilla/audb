@@ -16,85 +16,107 @@
     #qb.player-group.player-group-o
       h4 QB
       div(ng-repeat='player in players.QB', id='{{player._id}}')
-        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 0') 
+          a(data-target='#playerModal', ng-click='showPlayerInfo(player)'){{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
         p(ng-if='player.retstart === 1')
-          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+          strong
+            a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
   .col-md-4.align-center
     #rb.player-group.player-group-o
       h4 RB
       div(ng-repeat='player in players.RB', id='{{player._id}}')
-        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 0') 
+          a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
         p(ng-if='player.retstart === 1')
-          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+          strong
+            a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
 
 .row.depth
   .col-md-2.align-center
     #wr-9.player-group.player-group-o
       h4 WR
       div(ng-repeat='player in players.9', id='{{player._id}}')
-        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 0') 
+          a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
         p(ng-if='player.retstart === 1')
-          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+          strong
+            a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
   .col-md-2.align-center
     #wr-slot.player-group.player-group-o
       h4 WR
       div(ng-repeat='player in players.Slot', id='{{player._id}}')
-        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 0') 
+          a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
         p(ng-if='player.retstart === 1')
-          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+          strong
+            a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
   .col-md-2
   .col-md-2
   .col-md-2.align-center
     #te.player-group.player-group-o
       h4 TE
       div(ng-repeat='player in players.TE', id='{{player._id}}')
-        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 0') 
+          a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
         p(ng-if='player.retstart === 1')
-          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+          strong
+            a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
   .col-md-2.align-center
     #wr-2.player-group.player-group-o
       h4 WR
       div(ng-repeat='player in players.2', id='{{player._id}}')
-        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 0') 
+          a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
         p(ng-if='player.retstart === 1')
-          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+          strong
+            a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
 
 .row.depth
   .col-md-3.align-center
     #rt.player-group.player-group-o
       h4 RT
       div(ng-repeat='player in players.RT', id='{{player._id}}')
-        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 0') 
+          a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
         p(ng-if='player.retstart === 1')
-          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+          strong
+            a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
   .col-md-2.align-center
     #rg.player-group.player-group-o
       h4 RG
       div(ng-repeat='player in players.RG', id='{{player._id}}')
-        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 0') 
+          a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
         p(ng-if='player.retstart === 1')
-          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+          strong
+            a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
   .col-md-2.align-center
     #c.player-group.player-group-o
       h4 C
       div(ng-repeat='player in players.C', id='{{player._id}}')
-        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 0') 
+          a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
         p(ng-if='player.retstart === 1')
-          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+          strong
+            a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
   .col-md-2.align-center
     #lg.player-group.player-group-o
       h4 LG
       div(ng-repeat='player in players.LG', id='{{player._id}}')
-        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 0') 
+          a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
         p(ng-if='player.retstart === 1')
-          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+          strong
+            a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
   .col-md-3.align-center
     #lt.player-group.player-group-o
       h4 LT
       div(ng-repeat='player in players.LT', id='{{player._id}}')
-        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 0') 
+          a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
         p(ng-if='player.retstart === 1')
-          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+          strong
+            a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
 
 .row
   .col-md-12.align-center
@@ -104,84 +126,128 @@
     #wde.player-group.player-group-d
       h4 DE
       div(ng-repeat='player in players.WDE', id='{{player._id}}')
-        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 0') 
+          a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
         p(ng-if='player.retstart === 1')
-          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+          strong
+            a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
   .col-md-3.align-center
     #dt.player-group.player-group-d
       h4 DT
       div(ng-repeat='player in players.DT', id='{{player._id}}')
-        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 0') 
+          a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
         p(ng-if='player.retstart === 1')
-          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+          strong
+            a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
   .col-md-3.align-center
     #ng.player-group.player-group-d
       h4 DT
       div(ng-repeat='player in players.NG', id='{{player._id}}')
-        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 0') 
+          a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
         p(ng-if='player.retstart === 1')
-          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+          strong
+            a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
   .col-md-3.align-center
     #sde.player-group.player-group-d
       h4 DE
       div(ng-repeat='player in players.SDE', id='{{player._id}}')
-        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 0') 
+          a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
         p(ng-if='player.retstart === 1')
-          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+          strong
+            a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
 
 .row.depth
   .col-md-4.align-center
     #wlb.player-group.player-group-d
       h4 LB
       div(ng-repeat='player in players.WLB', id='{{player._id}}')
-        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 0') 
+          a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
         p(ng-if='player.retstart === 1')
-          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+          strong
+            a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
   .col-md-4.align-center
     #mlb.player-group.player-group-d
       h4 LB
       div(ng-repeat='player in players.MLB', id='{{player._id}}')
-        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 0') 
+          a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
         p(ng-if='player.retstart === 1')
-          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+          strong
+            a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
   .col-md-4.align-center
     #star.player-group.player-group-d
       h4 Star
       div(ng-repeat='player in players.STAR', id='{{player._id}}')
-        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 0') 
+          a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
         p(ng-if='player.retstart === 1')
-          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+          strong
+            a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
 
 .row.depth
   .col-md-3.align-center
     #lcb.player-group.player-group-d
       h4 CB
       div(ng-repeat='player in players.LCB', id='{{player._id}}')
-        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 0') 
+          a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
         p(ng-if='player.retstart === 1')
-          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+          strong
+            a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
   .col-md-3.align-center
     #fs.player-group.player-group-d
       h4 S
       div(ng-repeat='player in players.FS', id='{{player._id}}')
-        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 0') 
+          a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
         p(ng-if='player.retstart === 1')
-          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+          strong
+            a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
   .col-md-3.align-center
     #ss.player-group.player-group-d
       h4 S
       div(ng-repeat='player in players.SS', id='{{player._id}}')
-        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 0') 
+          a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
         p(ng-if='player.retstart === 1')
-          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+          strong
+            a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
   .col-md-3.align-center
     #rcb.player-group.player-group-d
       h4 CB
       div(ng-repeat='player in players.RCB', id='{{player._id}}')
-        p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 0') 
+          a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
         p(ng-if='player.retstart === 1')
-          strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+          strong
+            a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
 
+  .row
+    .col-xs-12
+      p.align-center <strong>Bold</strong> denotes returning starter.
+
+
+div(class='modal fade', id='playerModal', tabindex='-1', role='dialog', aria-hidden='true')
+  div(class='modal-dialog')
+    div(class='modal-content').align-center
+      div(class='modal-header')
+        button(type='button' class='close' data-dismiss='modal' aria-hidden='true') &times;
+        h3#myModalLabel.modal-title {{selectedPlayer.forename}} {{selectedPlayer.surname}}
+      
+      div(class='modal-body')
+        img(src='images/playerimages/{{selectedPlayer.forename}} {{selectedPlayer.surname}}.jpeg').img.img-responsive.center.img-rounded
+        h4 {{selectedPlayer.pos}} - \#{{selectedPlayer.num}}
+        h5 Height: {{selectedPlayer.height}}
+        h5 Weight: {{selectedPlayer.weight}}
+        h5 {{selectedPlayer.city}}, {{selectedPlayer.state}}
+
+      div(class='modal-footer')
+        button(type='button', class='btn btn-default', data-dismiss='modal') Close
+ 
 .footer.align-center
     img(src='images/eagle-2.png', height='50px', width='auto')
     h3 WAR EAGLE

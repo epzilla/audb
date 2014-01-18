@@ -2,8 +2,8 @@
 
 $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 $mainfont: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
-$headerfont: "museo-slab", serif;
-$aufont: "Copperplate Gothic Bold", "Copperplate Bold Gothic", "Copperplate Gothic", "Copperplate Bold", "Copperplate", "museo-slab", $headerfont;
+$aufont: "Copperplate Gothic Bold", "Copperplate Bold Gothic", "Copperplate Gothic", "Copperplate Bold", "Copperplate", "museo-slab", serif;
+$headerfont: "museo-slab", $aufont;
 $modal-back: #333;
 $navy: #002649;
 $orange: #F46507;
