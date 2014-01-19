@@ -281,6 +281,13 @@ h1, h2, h3, h4, h5, h6 {
     .page-header { margin-top: 0; }
 }
 
+@include breakpoint(pequeno) {
+    .attended {
+        background: #EDFF91;
+        font-weight: bold;
+    }
+}
+
 // HELPER CLASSES
 .font-small {
     font-size: 0.5em;

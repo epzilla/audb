@@ -1,16 +1,21 @@
 'use strict';
 
 angular.module('audbApp')
-  .controller('YearlyCtrl', function ($scope, $http) {
+  .controller('YearlyCtrl', function ($scope, $rootScope, $http, Auth, $window) {
     $scope.thisYear = new Date().getFullYear();
     $scope.year = $scope.thisYear;
     $scope.years = [];
+    $scope.user = Auth.currentUser();
+    var breakpoint = 768;
+
     for (var i = $scope.year; i >= 1892; i--) {
       $scope.years.push(i);
     }
+
     if (angular.element('#nav-menu-collapse').hasClass('in')) {
       angular.element('.navbar-toggle').click();
     }
+
     $scope.setYear = function(yr) {
       $http.get('/api/year/'+yr).success(function(data) {
         $scope.games = data;
@@ -45,14 +50,40 @@ angular.module('audbApp')
         }
       });
     };
+
     $scope.toggleAttended = function(gameID) {
       var game = angular.element('#' + gameID);
       if (game.hasClass('yes')) {
         game.removeClass('yes').html('<span class="glyphicon glyphicon-minus"></span>');
-        //TODO Unmark attendance
       } else {
         game.addClass('yes').html('<span class="glyphicon glyphicon-ok"></span>');
       }
+      $http.post('/api/updateAttendance/' + gameID).success( function(user) {
+        $scope.user = user;
+      });
     };
+
+    $scope.smallScreenAttend = function(gameID) {
+      if ($scope.isSmallScreen) {
+        angular.element('#game-row-'+gameID).toggleClass('attended');
+        $http.post('/api/updateAttendance/' + gameID).success( function(user) {
+          $scope.user = user;
+        });
+      }
+    };
+
+    $scope.didAttend = function(gameID) {
+      var games = $scope.user.games;
+      for (var i = 0; i < games.length; i++) {
+        if (games[i] === gameID) {
+          return true;
+        }
+      }
+      return false;
+    };
+
+    $scope.isSmallScreen = $window.innerWidth < breakpoint ? true : false;
+
     $scope.setYear($scope.year);
+
   });

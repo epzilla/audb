@@ -21,7 +21,8 @@ angular.module('audbApp')
 
         return Session.save({
           email: user.email,
-          password: user.password
+          password: user.password,
+          _id: user._id
         }, function(user) {
           $rootScope.currentUser = user;
           return cb();

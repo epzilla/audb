@@ -11,8 +11,9 @@
     "angular-cookies": "1.2.6",
     "angular-sanitize": "1.2.6",
     "angular-route": "1.2.6",
-    "angular-touch": "~1.2.6",
-    "angular-ui-select2": "~1.2.6"
+    "angular-touch": "latest",
+    "angular-ui-select2": "latest",
+    "modernizr": "latest"
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",
