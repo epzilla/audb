@@ -20,7 +20,46 @@ div(ng-if='!currentUser').container
       buttn.btn.btn-lg.btn-success Sign Up
 
 div(ng-if='currentUser').container
-  h3 You are {{currentUser}}
+
+  .page-header
+    h1.align-center {{user.name}}
+
+  h4.align-center Games Attended
+  table().table.table-responsive.table-hover#yearly-table
+    thead
+      tr
+        th Date
+        th W/L
+        th Opponent
+        th Score
+        th.hidden-xs Location
+        th.visible-xs Loc
+    tbody
+      tr(ng-repeat='game in games', id='game-row-{{game._id}}')
+
+        td(ng-if='game.Result === "W"').win {{game.Date.split('-')[1] + '/' + game.Date.split('-')[2]}}
+        td(ng-if='game.Result === "W"').win {{game.Result}}
+        td(ng-if='game.Result === "W"', id='{{game._id + "-opp"}}').win {{game.Opponent}}
+        td(ng-if='game.Result === "W"').win {{game.auscore}} - {{game.opscore}}
+        td(ng-if='game.Result === "W"').win.hidden-xs {{game.Location}}
+        td(ng-if='game.Result === "W"').win.visible-xs {{game.Location === 'Auburn, AL' ? 'H' : 'A'}}
+
+        td(ng-if='game.Result === "L"').loss {{game.Date.split('-')[1] + '/' + game.Date.split('-')[2]}}
+        td(ng-if='game.Result === "L"').loss {{game.Result}}
+        td(ng-if='game.Result === "L"', id='{{game._id + "-opp"}}').loss {{game.Opponent}}
+        td(ng-if='game.Result === "L"').loss {{game.auscore}} - {{game.opscore}}
+        td(ng-if='game.Result === "L"').loss.hidden-xs {{game.Location}}
+        td(ng-if='game.Result === "L"').loss.visible-xs {{game.Location === 'Auburn, AL' ? 'H' : 'A'}}
+
+        td(ng-if='game.Result === "T"').tie {{game.Date.split('-')[1] + '/' + game.Date.split('-')[2]}}
+        td(ng-if='game.Result === "T"').tie {{game.Result}}
+        td(ng-if='game.Result === "T"', id='{{game._id + "-opp"}}').tie {{game.Opponent}}
+        td(ng-if='game.Result === "T"').tie {{game.auscore}} - {{game.opscore}}
+        td(ng-if='game.Result === "T"').tie.hidden-xs {{game.Location}}
+        td(ng-if='game.Result === "T"').tie.visible-xs {{game.Location === 'Auburn, AL' ? 'H' : 'A'}}
+
+  h3(ng-show='record.t > 0').align-center Record: {{record.w}}-{{record.l}}-{{record.t}} ({{record.secW}}-{{record.secL}}-{{record.secT}})
+  h3(ng-show='record.t === 0').align-center Record: {{record.w}}-{{record.l}} ({{record.secW}}-{{record.secL}})
 
 .footer.align-center
     img(src='/images/eagle-2.png', height='50px', width='auto')

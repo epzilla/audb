@@ -13,5 +13,7 @@ nav(role='navigation', ng-controller='NavbarCtrl').navbar.navbar-default
     ul.nav.navbar-nav.pull-right
       li(ng-hide='currentUser', ng-class="{active: isActive('/login')}")
         a(href='/login') Login
+      li(ng-show='currentUser')
+        a(href='#', class='btn btn-au', ng-click='checkIn()') <span class="glyphicon glyphicon-ok"></span>
       li(ng-show='currentUser', ng-class="{active: isActive('/logout')}")
         a(href='#', ng-click='logout()') Logout {{currentUser}}

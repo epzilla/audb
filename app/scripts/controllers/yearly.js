@@ -5,7 +5,10 @@ angular.module('audbApp')
     $scope.thisYear = new Date().getFullYear();
     $scope.year = $scope.thisYear;
     $scope.years = [];
-    $scope.user = Auth.currentUser();
+    $scope.user = {};
+    Auth.currentUser().$promise.then( function(user) {
+      $scope.user = user;
+    });
     var breakpoint = 768;
 
     for (var i = $scope.year; i >= 1892; i--) {

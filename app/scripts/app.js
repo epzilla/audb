@@ -27,6 +27,10 @@ angular.module('audbApp', [
         controller: 'SettingsCtrl',
         authenticate: true
       })
+      .when('/stats', {
+        templateUrl: 'partials/stats',
+        controller: 'StatsCtrl'
+      })
       .when('/yearly', {
         templateUrl: 'partials/yearly',
         controller: 'YearlyCtrl'

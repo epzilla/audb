@@ -48,6 +48,8 @@ html.no-js
         ul.nav.navbar-nav.pull-right
           li(ng-hide='currentUser', ng-class="{active: isActive('/login')}")
             a(href='/login') Login
+          li(ng-show='currentUser', class='checkin-button-li')
+            a(href='#', ng-click='checkIn()', role='button', class='btn btn-au') <span class="glyphicon glyphicon-ok"></span>
           li(ng-show='currentUser', ng-class="{active: isActive('/logout')}")
             a(href='#', ng-click='logout()') Logout {{currentUser.name}}
 
@@ -77,6 +79,7 @@ html.no-js
       }, false);
     <!-- build:js(app) scripts/vendor.js -->
     <!-- bower:js -->
+    <script src="bower_components/modernizr/modernizr.js"></script>
     <script src="bower_components/jquery/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/sass-bootstrap/dist/js/bootstrap.js"></script>
@@ -87,7 +90,6 @@ html.no-js
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/select2/select2.js"></script>
     <script src="bower_components/angular-ui-select2/src/select2.js"></script>
-    <script src="bower_components/modernizr/modernizr.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
@@ -103,6 +105,7 @@ html.no-js
     <script src="scripts/controllers/yearly.js"></script>
     <script src="scripts/controllers/depth.js"></script>
     <script src="scripts/controllers/recruits.js"></script>
+    <script src="scripts/controllers/stats.js"></script>
     <!-- endbuild -->
     script(src='bower_components/fastclick/lib/fastclick.js')
     
