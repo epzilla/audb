@@ -1,35 +1,47 @@
 .container  
   .page-header.align-center
-    h1 {{year}} Auburn Football Results
+    h1(ng-hide='selectedTeams.length > 0') Auburn Football All-Time Results
+    h1(ng-show='selectedTeams.length == 1') Auburn Football All-Time Results vs. {{selectedTeams[0]}} 
+    h1(ng-show='selectedTeams.length > 1') Auburn Football All-Time Results vs.
+      div(ng-repeat='t in selectedTeams').header-list-team {{t}}
+    button(role='button', ng-show='games.length > 0', ng-click='reset()').btn.btn-au#reset Reset <span class="glyphicon glyphicon-refresh top-2px"></span>
 
-  form
+  form#stat-form
     .row
-      .col-sm-4.center.no-float.align-center.pad-bottom-1em
-        select(ng-model='conferences', data-placeholder='Select Opponent(s)', ui-select2, multiple, style='width: 300px', ng-change='setOpponents(opponents)')#opp-picker
+      .col-sm-8.center.no-float.align-center
+        label(for='opp-picker').yearLabel Show me Auburn's games against 
+      .col-sm-8.center.no-float.align-center.pad-bottom-1em
+        select(ng-model='selectedTeams', data-placeholder='Select Opponent(s)', ui-select2, multiple, ng-change='setOpponents(opponents)')#opp-picker
           option(value='ALL-OPP') All Opponents
           optgroup(label='{{c.conference}}', ng-repeat='c in conferences')
             option(value='{{m}}', ng-repeat='m in c.members') {{m}}
           optgroup(label='BCS Conferences')
-            option(value='Conf-SEC') SEC
-            option(value='Conf-{{c.conference}}', ng-repeat='c in conferences | filter:{bcs:true}') {{c.conference}}
+            option(value='Conf: SEC') SEC
+            option(value='Conf: {{c.conference}}', ng-repeat='c in conferences | filter:{bcs:true}') {{c.conference}}
           optgroup(label='FBS Conferences')
-            option(value='Conf-{{c.conference}}', ng-repeat='c in conferences | filter:{bcs:false}') {{c.conference}}
+            option(value='Conf: {{c.conference}}', ng-repeat='c in conferences | filter:{bcs:false}') {{c.conference}}
           optgroup(label='FCS and Defunct Teams')
-            option(value='Conf-FCS') FCS
-            option(value='Conf-Defunct') Defunct Teams
+            option(value='Conf: FCS') FCS
+            option(value='Conf: Defunct') Defunct Teams
 
     .row
-      .col-sm-4.align-center.center.no-float.pad-bottom-1em
+      .col-sm-8.align-center.center.no-float
+        label(for='#start-year').yearLabel From 
+      .col-sm-8.align-center.center.no-float.pad-bottom-1em
         select(ng-model='startYear', data-placeholder='Select Year', ui-select2, ng-change='setYear(year)')#start-year
           option(value="")
           option(ng-repeat='y in years' value='{{y}}') {{y}}
 
     .row
-      .col-sm-4.align-center.center.no-float.pad-bottom-1em
+      .col-sm-8.align-center.center.no-float
+        label(for='#end-year').yearLabel To 
+      .col-sm-8.align-center.center.no-float.pad-bottom-1em 
         select(ng-model='endYear', data-placeholder='Select Year', ui-select2, ng-change='setYear(year)')#end-year
           option(value="")
           option(ng-repeat='y in reverseYears' value='{{y}}') {{y}}
-
+    .row.submit-btn
+      .col-sm-8.align-center.center.no-float
+        button(role='button', ng-click='submitForm()').btn.btn-lg.btn-au Do it <span class="glyphicon glyphicon-circle-arrow-right top-3px"></span>
   table(ng-hide='!games.length').table.table-responsive.table-hover#yearly-table
     thead
       tr

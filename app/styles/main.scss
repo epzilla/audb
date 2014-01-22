@@ -272,6 +272,55 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.yearLabel {
+  display: block;
+  font-size: 1.5em;
+}
+
+.select2-container .select2-choice > .select2-chosen {
+  margin-right: 10px;
+  margin-top: 7px;
+  font-size: 1.25em;
+}
+
+.select2-container .select2-choice {
+  height: 40px;
+}
+
+.select2-container, .select2-drop {
+  width: 75%;
+}
+
+.select2-container-multi .select2-choices {
+  min-height: 40px;
+}
+
+.select2-container-multi .select2-choices .select2-search-field input {
+  margin: 4px 0;
+}
+
+.select2-search, .select2-search input {
+  width: 100%;
+}
+
+.select2-results .select2-result-label {
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.select2-results li.select2-result-with-children > .select2-result-label {
+  font-weight: bold;
+  border-bottom: 2px solid black;
+  border-top: 2px solid black;
+}
+
+h1 {
+  .header-list-team {
+    font-size: 0.5em;
+    margin: 0.2em;
+  }
+}
+
 .row.depth {
   // .col-
 }
@@ -340,6 +389,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .pad-bottom-1em {
   padding-bottom: 1em;
+}
+
+.top-3px {
+  top: 3px;
+}
+
+.top-2px {
+  top: 2px;
 }
 
 .upper {
