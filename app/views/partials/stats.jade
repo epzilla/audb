@@ -55,7 +55,7 @@
     tbody
       tr(ng-repeat='game in games', id='game-row-{{game._id}}', ng-class='didAttend(game._id) ? "attended" : ""', ng-click='smallScreenAttend(game._id)')
 
-        td(ng-if='game.Result === "W"').win {{game.Date.split('-')[1] + '/' + game.Date.split('-')[2]}}
+        td(ng-if='game.Result === "W"').win {{game.Date.split('-')[1] + '/' + game.Date.split('-')[2]+ '/' + game.Date.split('-')[0]}}
         td(ng-if='game.Result === "W"').win {{game.Result}}
         td(ng-if='game.Result === "W"', id='{{game._id + "-opp"}}').win {{game.Opponent}}
         td(ng-if='game.Result === "W"').win {{game.auscore}} - {{game.opscore}}
@@ -69,7 +69,7 @@
             span.glyphicon.glyphicon-minus
         td(ng-if='game.Result === "W"').win.visible-xs {{game.Location === 'Auburn, AL' ? 'H' : 'A'}}
 
-        td(ng-if='game.Result === "L"').loss {{game.Date.split('-')[1] + '/' + game.Date.split('-')[2]}}
+        td(ng-if='game.Result === "L"').loss {{game.Date.split('-')[1] + '/' + game.Date.split('-')[2]+ '/' + game.Date.split('-')[0]}}
         td(ng-if='game.Result === "L"').loss {{game.Result}}
         td(ng-if='game.Result === "L"', id='{{game._id + "-opp"}}').loss {{game.Opponent}}
         td(ng-if='game.Result === "L"').loss {{game.auscore}} - {{game.opscore}}
@@ -83,7 +83,7 @@
             span.glyphicon.glyphicon-minus
         td(ng-if='game.Result === "L"').loss.visible-xs {{game.Location === 'Auburn, AL' ? 'H' : 'A'}}
 
-        td(ng-if='game.Result === "T"').tie {{game.Date.split('-')[1] + '/' + game.Date.split('-')[2]}}
+        td(ng-if='game.Result === "T"').tie {{game.Date.split('-')[1] + '/' + game.Date.split('-')[2]+ '/' + game.Date.split('-')[0]}}
         td(ng-if='game.Result === "T"').tie {{game.Result}}
         td(ng-if='game.Result === "T"', id='{{game._id + "-opp"}}').tie {{game.Opponent}}
         td(ng-if='game.Result === "T"').tie {{game.auscore}} - {{game.opscore}}
@@ -97,14 +97,8 @@
             span.glyphicon.glyphicon-minus
         td(ng-if='game.Result === "T"').tie.visible-xs {{game.Location === 'Auburn, AL' ? 'H' : 'A'}}
   
-  h3(ng-show='record.t > 0 && year !== thisYear && year !== 1943').align-center Record: {{record.w}}-{{record.l}}-{{record.t}} ({{record.secW}}-{{record.secL}}-{{record.secT}})
-  h3(ng-show='record.t === 0 && year != 1943').align-center Record: {{record.w}}-{{record.l}} ({{record.secW}}-{{record.secL}})
-  h2(ng-show='year == 1997 || year == 2000').align-center SEC West Champions
-  h2(ng-show='year == 2013 || year == 2010 || year == 2004 || year == 1989 || year == 1988 || year == 1987 || year == 1983 || year == 1957').align-center SEC Champions
-  h2(ng-show='year == 1919 || year == 1914 || year == 1913').align-center SIAA Champions
-  h1(ng-show='year == 1913').align-center National Champions
-  h1(ng-show='year == 1957').align-center AP National Champions
-  h1(ng-show='year == 2010').align-center BCS National Champions
+  h3(ng-show='record.t > 0').align-center Record: {{record.w}}-{{record.l}}-{{record.t}} ({{record.secW}}-{{record.secL}}-{{record.secT}})
+  h3(ng-show='record.t === 0').align-center Record: {{record.w}}-{{record.l}} ({{record.secW}}-{{record.secL}})
 
 .footer.align-center
     img(src='images/eagle-2.png', height='50px', width='auto')
