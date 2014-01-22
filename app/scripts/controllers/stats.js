@@ -5,7 +5,7 @@ angular.module('audbApp')
     $scope.years = [];
     $scope.reverseYears = [];
     $scope.selectedTeams = [];
-    $scope.endYear = new Date().getFullYear();
+    $scope.endYear = (new Date().getFullYear()) - 1;
     $scope.startYear = 1892;
     $scope.user = {};
     $scope.record = {};
@@ -118,9 +118,11 @@ angular.module('audbApp')
 
     $scope.didAttend = function(gameID) {
       var games = $scope.user.games;
-      for (var i = 0; i < games.length; i++) {
-        if (games[i] === gameID) {
-          return true;
+      if (games) {
+        for (var i = 0; i < games.length; i++) {
+          if (games[i] === gameID) {
+            return true;
+          }
         }
       }
       return false;
