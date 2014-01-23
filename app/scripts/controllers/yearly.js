@@ -19,8 +19,38 @@ angular.module('audbApp')
       $scope.years.push(i);
     }
 
+    $scope.getGamesByYear = function (yr) {
+      $http.get('/api/year/'+yr).success(function(data) {
+          if (!$scope.games || (angular.toJson($scope.games) !== angular.toJson(data))) {
+            $scope.games = data;
+            ls.add('yr-'+yr, data);
+            for (var i = 0; i < data.length; i++) {
+              switch(data[i].Result) {
+                case 'W':
+                  $scope.record.w++;
+                  if (data[i].SEC === 'y') {
+                    $scope.record.secW++;
+                  }
+                  break;
+                case 'L':
+                  $scope.record.l++;
+                  if (data[i].SEC === 'y') {
+                    $scope.record.secL++;
+                  }
+                  break;
+                default:
+                  $scope.record.t++;
+                  if (data[i].SEC === 'y') {
+                    $scope.record.secT++;
+                  }
+              }
+            }
+          }
+        });
+    };
+
     $scope.setYear = function(yr) {
-      $scope.year = yr;
+      $scope.year = parseInt(yr);
       $scope.record = {
           w: 0,
           l: 0,
@@ -52,32 +82,11 @@ angular.module('audbApp')
               }
           }
         }
+        if ($scope.year === $scope.thisYear) {
+          $scope.getGamesByYear(yr);
+        }
       } else {
-        $http.get('/api/year/'+yr).success(function(data) {
-          $scope.games = data;
-          ls.add('yr-'+yr, data);
-          for (var i = 0; i < data.length; i++) {
-            switch(data[i].Result) {
-              case 'W':
-                $scope.record.w++;
-                if (data[i].SEC === 'y') {
-                  $scope.record.secW++;
-                }
-                break;
-              case 'L':
-                $scope.record.l++;
-                if (data[i].SEC === 'y') {
-                  $scope.record.secL++;
-                }
-                break;
-              default:
-                $scope.record.t++;
-                if (data[i].SEC === 'y') {
-                  $scope.record.secT++;
-                }
-            }
-          }
-        });
+        $scope.getGamesByYear(yr);
       }
     };
 
