@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('audbApp')
-  .controller('YearlyCtrl', function ($scope, $rootScope, $http, Auth, $window) {
+  .controller('YearlyCtrl', function ($scope, $rootScope, $http, Auth, $window, localStorageService) {
+    var ls =localStorageService;
     if (angular.element('#nav-menu-collapse').hasClass('in')) {
       angular.element('.navbar-toggle').click();
     }
@@ -20,9 +21,7 @@ angular.module('audbApp')
 
     $scope.setYear = function(yr) {
       $scope.year = yr;
-      $http.get('/api/year/'+yr).success(function(data) {
-        $scope.games = data;
-        $scope.record = {
+      $scope.record = {
           w: 0,
           l: 0,
           t: 0,
@@ -30,28 +29,56 @@ angular.module('audbApp')
           secL: 0,
           secT: 0
         };
-        for (var i = 0; i < data.length; i++) {
-          switch(data[i].Result) {
+      $scope.games = ls.get('yr-'+yr);
+      if ($scope.games) {
+        for (var i = 0; i < $scope.games.length; i++) {
+          switch($scope.games[i].Result) {
             case 'W':
               $scope.record.w++;
-              if (data[i].SEC === 'y') {
+              if ($scope.games[i].SEC === 'y') {
                 $scope.record.secW++;
               }
               break;
             case 'L':
               $scope.record.l++;
-              if (data[i].SEC === 'y') {
+              if ($scope.games[i].SEC === 'y') {
                 $scope.record.secL++;
               }
               break;
             default:
               $scope.record.t++;
-              if (data[i].SEC === 'y') {
+              if ($scope.games[i].SEC === 'y') {
                 $scope.record.secT++;
               }
           }
         }
-      });
+      } else {
+        $http.get('/api/year/'+yr).success(function(data) {
+          $scope.games = data;
+          ls.add('yr-'+yr, data);
+          for (var i = 0; i < data.length; i++) {
+            switch(data[i].Result) {
+              case 'W':
+                $scope.record.w++;
+                if (data[i].SEC === 'y') {
+                  $scope.record.secW++;
+                }
+                break;
+              case 'L':
+                $scope.record.l++;
+                if (data[i].SEC === 'y') {
+                  $scope.record.secL++;
+                }
+                break;
+              default:
+                $scope.record.t++;
+                if (data[i].SEC === 'y') {
+                  $scope.record.secT++;
+                }
+            }
+          }
+        });
+      }
     };
 
     $scope.toggleAttended = function(gameID) {

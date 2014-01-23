@@ -12,6 +12,7 @@
     "angular-sanitize": "1.2.6",
     "angular-route": "1.2.6",
     "angular-touch": "latest",
+    "angular-local-storage": "latest",
     "angular-ui-select2": "latest",
     "modernizr": "latest"
   },

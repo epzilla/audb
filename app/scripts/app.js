@@ -6,9 +6,10 @@ angular.module('audbApp', [
   'ngSanitize',
   'ngRoute',
   'ngTouch',
+  'LocalStorageModule',
   'ui.select2'
 ])
-  .config(function ($routeProvider, $locationProvider, $httpProvider) {
+  .config(function ($routeProvider, $locationProvider, $httpProvider, localStorageServiceProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'partials/main',
@@ -63,6 +64,9 @@ angular.module('audbApp', [
         }
       };
     }]);
+
+    localStorageServiceProvider.setPrefix('audb');
+
   })
   .run(function ($rootScope, $location, Auth) {
 

@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('audbApp')
-  .controller('MainCtrl', function ($scope, $http, Auth) {
+  .controller('MainCtrl', function ($scope, $http, Auth, localStorageService) {
     if (angular.element('#nav-menu-collapse').hasClass('in')) {
       angular.element('.navbar-toggle').click();
     }
     $scope.user = {};
+
     Auth.currentUser().$promise.then(function(user){
       if (user._id) {
         $scope.user = user;
@@ -45,4 +46,16 @@ angular.module('audbApp')
         });
       }
     });
+    $scope.localStuff = {};
+    $scope.testLocalStorage = function () {
+      var someJSON = {
+        hair: 'blonde',
+        age: 28,
+        city: 'Akron'
+      };
+      localStorageService.add('localStorageKey',someJSON);
+      $scope.localStuff = localStorageService.get('localStorageKey');
+      console.log($scope.localStuff);
+    };
+
   });
