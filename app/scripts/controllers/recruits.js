@@ -1,13 +1,14 @@
 'use strict';
 
 angular.module('audbApp')
-  .controller('RecruitsCtrl', function ($scope, $http, localStorageService) {
+  .controller('RecruitsCtrl', function ($scope, $http, $window, localStorageService) {
     var ls = localStorageService;
+    var breakpoint = 768;
     if (angular.element('#nav-menu-collapse').hasClass('in')) {
       angular.element('.navbar-toggle').click();
     }
     $scope.getRecruits = function(year) {
-      $scope.currentClass = year;
+      $scope.currentClass = parseInt(year);
       $scope.recruits = ls.get('rec-'+year);
       if (!$scope.recruits) {
         $http.get('/api/recruits/'+$scope.currentClass).success(function(data) {
@@ -17,5 +18,6 @@ angular.module('audbApp')
       }
     };
     $scope.predicate = '+surname';
+    $scope.isSmallScreen = $window.innerWidth < breakpoint ? true : false;
     $scope.getRecruits(2014);
   });

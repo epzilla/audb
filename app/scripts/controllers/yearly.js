@@ -3,6 +3,7 @@
 angular.module('audbApp')
   .controller('YearlyCtrl', function ($scope, $rootScope, $http, Auth, $window, localStorageService) {
     var ls =localStorageService;
+    var breakpoint = 768;
     if (angular.element('#nav-menu-collapse').hasClass('in')) {
       angular.element('.navbar-toggle').click();
     }
@@ -13,7 +14,6 @@ angular.module('audbApp')
     Auth.currentUser().$promise.then( function(user) {
       $scope.user = user;
     });
-    var breakpoint = 768;
 
     for (var i = $scope.year; i >= 1892; i--) {
       $scope.years.push(i);
