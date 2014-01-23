@@ -43,14 +43,14 @@ html.no-js
         a(href='#').navbar-brand AUDB
       div.collapse.navbar-collapse#nav-menu-collapse
         ul.nav.navbar-nav
-          li(ng-repeat='item in menu', ng-class='{active: isActive(item.link)}')
-            a(ng-cloak, ng-href='{{item.link}}') {{item.title}}
+          li(ng-cloak, ng-repeat='item in menu', ng-class='{active: isActive(item.link)}')
+            a(ng-href='{{item.link}}') {{item.title}}
         ul.nav.navbar-nav.pull-right
           li(ng-hide='currentUser', ng-class="{active: isActive('/login')}")
             a(href='/login') Login
           li(ng-show='currentUser', class='checkin-button-li')
             a(href='#', ng-click='checkIn()', role='button', class='btn btn-au') <span class="glyphicon glyphicon-ok"></span>
-          li(ng-show='currentUser', ng-class="{active: isActive('/logout')}")
+          li(ng-cloak, ng-show='currentUser', ng-class="{active: isActive('/logout')}")
             a(ng-cloak, href='#', ng-click='logout()') Logout {{currentUser.name}}
 
             
