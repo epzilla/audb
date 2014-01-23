@@ -17,14 +17,17 @@ div(ng-if='!currentUser').container
     p War Eagle, and enjoy the site!
 
     p.align-center
-      buttn.btn.btn-lg.btn-success Sign Up
+      a(role='button', href='/signup').btn.btn-lg.btn-success Sign Up
 
 div(ng-if='currentUser').container
 
   .page-header
     h1.align-center {{user.name}}
 
-  h4.align-center Games Attended
+  h4(ng-show='record.t > 0').align-center Games Attended: {{record.w + record.l + record.t}}
+  h4(ng-show='record.t === 0').align-center Games Attended: {{record.w + record.l}}
+  h4(ng-show='record.t > 0').align-center Record: {{record.w}}-{{record.l}}-{{record.t}} ({{record.secW}}-{{record.secL}}-{{record.secT}})
+  h4(ng-show='record.t === 0').align-center Record: {{record.w}}-{{record.l}} ({{record.secW}}-{{record.secL}})
   table().table.table-responsive.table-hover#yearly-table
     thead
       tr
@@ -37,21 +40,21 @@ div(ng-if='currentUser').container
     tbody
       tr(ng-repeat='game in games', id='game-row-{{game._id}}')
 
-        td(ng-if='game.Result === "W"').win {{game.Date.split('-')[1] + '/' + game.Date.split('-')[2]}}
+        td(ng-if='game.Result === "W"').win {{game.Date.split('-')[1] + '/' + game.Date.split('-')[2] + '/' + game.Date.split('-')[0]}}
         td(ng-if='game.Result === "W"').win {{game.Result}}
         td(ng-if='game.Result === "W"', id='{{game._id + "-opp"}}').win {{game.Opponent}}
         td(ng-if='game.Result === "W"').win {{game.auscore}} - {{game.opscore}}
         td(ng-if='game.Result === "W"').win.hidden-xs {{game.Location}}
         td(ng-if='game.Result === "W"').win.visible-xs {{game.Location === 'Auburn, AL' ? 'H' : 'A'}}
 
-        td(ng-if='game.Result === "L"').loss {{game.Date.split('-')[1] + '/' + game.Date.split('-')[2]}}
+        td(ng-if='game.Result === "L"').loss {{game.Date.split('-')[1] + '/' + game.Date.split('-')[2] + '/' + game.Date.split('-')[0]}}
         td(ng-if='game.Result === "L"').loss {{game.Result}}
         td(ng-if='game.Result === "L"', id='{{game._id + "-opp"}}').loss {{game.Opponent}}
         td(ng-if='game.Result === "L"').loss {{game.auscore}} - {{game.opscore}}
         td(ng-if='game.Result === "L"').loss.hidden-xs {{game.Location}}
         td(ng-if='game.Result === "L"').loss.visible-xs {{game.Location === 'Auburn, AL' ? 'H' : 'A'}}
 
-        td(ng-if='game.Result === "T"').tie {{game.Date.split('-')[1] + '/' + game.Date.split('-')[2]}}
+        td(ng-if='game.Result === "T"').tie {{game.Date.split('-')[1] + '/' + game.Date.split('-')[2] + '/' + game.Date.split('-')[0]}}
         td(ng-if='game.Result === "T"').tie {{game.Result}}
         td(ng-if='game.Result === "T"', id='{{game._id + "-opp"}}').tie {{game.Opponent}}
         td(ng-if='game.Result === "T"').tie {{game.auscore}} - {{game.opscore}}

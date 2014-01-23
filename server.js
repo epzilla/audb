@@ -10,7 +10,7 @@ var express = require('express'),
  */
 
 // Default node environment to development
-process.env.NODE_ENV = process.env.NODE_ENV || 'production';
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 // Application Config
 var config = require('./lib/config/config');
@@ -25,7 +25,7 @@ fs.readdirSync(modelsPath).forEach(function (file) {
 });
 
 // Populate empty DB with sample data
-require('./lib/config/dummydata');
+// require('./lib/config/dummydata');
   
 // Passport Configuration
 require('./lib/config/passport')();

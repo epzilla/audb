@@ -6,3 +6,37 @@ app/bower_components
 heroku
 /views
 dist
+dist copy/Procfile
+dist copy/lib/config/config.js
+dist copy/lib/config/dummydata.js
+dist copy/lib/config/env/all.js
+dist copy/lib/config/env/development.js
+dist copy/lib/config/env/production.js
+dist copy/lib/config/env/test.js
+dist copy/lib/config/express.js
+dist copy/lib/config/passport.js
+dist copy/lib/controllers/api.js
+dist copy/lib/controllers/games.js
+dist copy/lib/controllers/index.js
+dist copy/lib/controllers/session.js
+dist copy/lib/controllers/users.js
+dist copy/lib/middleware.js
+dist copy/lib/models/conference.js
+dist copy/lib/models/game.js
+dist copy/lib/models/player.js
+dist copy/lib/models/recruit.js
+dist copy/lib/models/thing.js
+dist copy/lib/models/user.js
+dist copy/lib/routes.js
+dist copy/package.json
+dist copy/server.js
+dist copy/views/404.jade
+dist copy/views/index.jade
+dist copy/views/partials/depth.jade
+dist copy/views/partials/login.jade
+dist copy/views/partials/main.jade
+dist copy/views/partials/navbar.jade
+dist copy/views/partials/recruits.jade
+dist copy/views/partials/signup.jade
+dist copy/views/partials/stats.jade
+dist copy/views/partials/yearly.jade
