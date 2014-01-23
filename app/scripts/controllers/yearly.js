@@ -2,6 +2,9 @@
 
 angular.module('audbApp')
   .controller('YearlyCtrl', function ($scope, $rootScope, $http, Auth, $window) {
+    if (angular.element('#nav-menu-collapse').hasClass('in')) {
+      angular.element('.navbar-toggle').click();
+    }
     $scope.thisYear = new Date().getFullYear();
     $scope.year = $scope.thisYear;
     $scope.years = [];
@@ -15,11 +18,8 @@ angular.module('audbApp')
       $scope.years.push(i);
     }
 
-    if (angular.element('#nav-menu-collapse').hasClass('in')) {
-      angular.element('.navbar-toggle').click();
-    }
-
     $scope.setYear = function(yr) {
+      $scope.year = yr;
       $http.get('/api/year/'+yr).success(function(data) {
         $scope.games = data;
         $scope.record = {

@@ -2,6 +2,9 @@
 
 angular.module('audbApp')
   .controller('SignupCtrl', function ($scope, Auth, $location) {
+    if (angular.element('#nav-menu-collapse').hasClass('in')) {
+      angular.element('.navbar-toggle').click();
+    }
     $scope.user = {};
     $scope.errors = {};
     if (angular.element('#nav-menu-collapse').hasClass('in')) {

@@ -2,10 +2,15 @@
   .page-header.align-center
     h1 {{year}} Auburn Football Results
 
-  form
+  form(ng-if='!isSmallScreen')
     .col-sm-4.center.no-float.align-center.pad-bottom-1em
       select(ng-model='year', data-placeholder='Select Year', ui-select2, ng-change='setYear(year)')#yearpicker
         option(value="")
+        option(ng-repeat='y in years' value='{{y}}') {{y}}
+
+  form(ng-if='isSmallScreen')
+    .col-sm-4.center.no-float.align-center.pad-bottom-1em
+      select(ng-model='year', data-placeholder='Select Year', ng-change='setYear(year)')#yearpicker-ss
         option(ng-repeat='y in years' value='{{y}}') {{y}}
   
   div(ng-if='year == 1943').jumbotron

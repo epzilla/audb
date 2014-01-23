@@ -2,6 +2,9 @@
 
 angular.module('audbApp')
   .controller('StatsCtrl', function ($scope, $http, $window, Auth) {
+    if (angular.element('#nav-menu-collapse').hasClass('in')) {
+      angular.element('.navbar-toggle').click();
+    }
     $scope.years = [];
     $scope.reverseYears = [];
     $scope.selectedTeams = [];
