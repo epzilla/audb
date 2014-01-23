@@ -1,7 +1,7 @@
 .container
   .page-header.align-center
     h1 Auburn Football Recruiting 
-    div(class="dropdown rec-year-dropdown").
+    div(ng-cloak, class="dropdown rec-year-dropdown").
       <button class="btn btn-au btn-lg dropdown-toggle" type="button" id="yearDropdown" data-toggle="dropdown">{{currentClass}}<span class="caret"></span></button>
       <ul class="dropdown-menu" role="menu" aria-labelledby="yearDropdown">
         <li role="presentation"><a role="menuitem" tabindex="-1" ng-click="getRecruits(2011)">2011</a></li>
@@ -50,7 +50,7 @@
           span(ng-show='predicate == "avgstars" && !reverse').glyphicon.glyphicon-chevron-up
           span(ng-show='predicate == "avgstars" && reverse').glyphicon.glyphicon-chevron-down
         th.visible-xs Rank
-    tbody
+    tbody(ng-cloak)
       tr(ng-repeat='rec in recruits | orderBy:predicate:reverse')
         td {{rec.forename}} {{rec.surname}}
         td {{rec.pos}}

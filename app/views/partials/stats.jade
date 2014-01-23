@@ -6,7 +6,7 @@
       div(ng-repeat='t in selectedTeams').header-list-team {{t}}
     button(role='button', ng-show='games.length > 0', ng-click='reset()').btn.btn-au#reset Reset <span class="glyphicon glyphicon-refresh top-2px"></span>
 
-  form(ng-if='!isSmallScreen')#stat-form
+  form(ng-cloak, ng-if='!isSmallScreen')#stat-form
     .row
       .col-sm-8.center.no-float.align-center
         label(for='opp-picker').yearLabel Show me Auburn's games against 
@@ -43,7 +43,7 @@
       .col-sm-8.align-center.center.no-float
         button(role='button', ng-click='submitForm()').btn.btn-lg.btn-au Do it <span class="glyphicon glyphicon-circle-arrow-right top-3px"></span>
 
-  form(ng-if='isSmallScreen')#stat-form
+  form(ng-cloak, ng-if='isSmallScreen')#stat-form
     .row
       .col-sm-8.center.no-float.align-center
         label(for='opp-picker').yearLabel Show me Auburn's games against 
@@ -89,7 +89,7 @@
         th.hidden-xs Location
         th.hidden-xs Attended?
         th.visible-xs Loc
-    tbody
+    tbody(ng-cloak)
       tr(ng-repeat='game in games', id='game-row-{{game._id}}', ng-class='didAttend(game._id) ? "attended" : ""', ng-click='smallScreenAttend(game._id)')
 
         td(ng-if='game.Result === "W"').win {{game.Date.split('-')[1] + '/' + game.Date.split('-')[2]+ '/' + game.Date.split('-')[0]}}

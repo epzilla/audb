@@ -1,10 +1,10 @@
 .page-header.align-center
-  h1 {{year}} Auburn Football Depth Chart
+  h1(ng-cloak) {{year}} Auburn Football Depth Chart
 
 .row
   .col-md-12.align-center
     h2.upper Offense
-.row.depth
+div(ng-cloak).row.depth
   .col-md-4.align-center
     #fb
       //- h4 FB
@@ -121,7 +121,7 @@
 .row
   .col-md-12.align-center
     h2.upper Defense
-.row.depth
+div(ng-cloak).row.depth
   .col-md-3.align-center
     #wde.player-group.player-group-d
       h4 DE
