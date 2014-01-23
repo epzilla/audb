@@ -129,4 +129,25 @@ angular.module('audbApp')
     };
 
     $scope.isSmallScreen = $window.innerWidth < breakpoint ? true : false;
+    if ($scope.isSmallScreen) {
+      angular.element('#opp-picker-ss').change( function(e) {
+        console.log(angular.element(e.target).val());
+        $scope.selectedTeams = angular.element(e.target).val();
+      });
+    }
+    $scope.alert = function (msg) {
+      $window.alert(msg);
+    };
+
+    $scope.setSelectedTeams = function(a) {
+      $scope.selectedTeams = a;
+    };
+
+    $scope.setStart = function(a) {
+      $scope.startYear = a;
+    };
+
+    $scope.setEnd = function(a) {
+      $scope.endYear = a;
+    };
   });
