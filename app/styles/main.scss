@@ -337,6 +337,8 @@ h1 {
   color: #777;
 }
 
+#map-canvas { height: 400px; }
+
 @include breakpoint(tablebreakdown) {
   .jumbotron {
     padding: 1em 1em 2em 1em;

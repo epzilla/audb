@@ -49,13 +49,29 @@ html.no-js
           li(ng-hide='currentUser', ng-class="{active: isActive('/login')}")
             a(href='/login') Login
           li(ng-show='currentUser', class='checkin-button-li')
-            a(href='#', ng-click='checkIn()', role='button', class='btn btn-au') <span class="glyphicon glyphicon-ok"></span>
+            a(ng-click='checkIn()', role='button', class='btn btn-au', data-target='#checkinModal') <span class="glyphicon glyphicon-ok"></span>
           li(ng-cloak, ng-show='currentUser', ng-class="{active: isActive('/logout')}")
             a(ng-cloak, href='#', ng-click='logout()') Logout {{currentUser.name}}
 
             
     div(ng-view).container.main-container
     
+    div(ng-controller='NavbarCtrl', class='modal fade', id='checkinModal', tabindex='-1', role='dialog', aria-hidden='true')
+      div(class='modal-dialog')
+        div(class='modal-content').align-center
+          div(class='modal-header')
+            button(type='button' class='close' data-dismiss='modal' aria-hidden='true') &times;
+            h3#myModalLabel.modal-title Check In
+          
+          div(class='modal-body')
+            p(ng-show='gameDay && (legitCheckin === 0)') Looks like it's Auburn vs. {{todaysGame.Opponent}} today. Let's check you in...
+            p(ng-hide='gameDay || (legitCheckin !== 1)') Sorry, but it doesn't look like Auburn is playing a game near you today. :(
+            p(ng-show='gameDay && (legitCheckin === 2)') OK, we've got you checked in! War Eagle!
+
+            div(ng-show='gameDay')#map-canvas
+          div(class='modal-footer')
+            button(type='button', class='btn btn-default', data-dismiss='modal') Close
+
     // Google Analytics: change UA-XXXXX-X to be your site's ID.
     script.
       var _gaq=[['_setAccount','UA-32843596-1'],['_trackPageview']];
@@ -72,6 +88,9 @@ html.no-js
         };
         var h=document.getElementsByTagName("html")[0];h.className+=" wf-loading";var t=setTimeout(function(){h.className=h.className.replace(/(\s|^)wf-loading(\s|$)/g," ");h.className+=" wf-inactive"},config.scriptTimeout);var tk=document.createElement("script"),d=false;tk.src='//use.typekit.net/'+config.kitId+'.js';tk.type="text/javascript";tk.async="true";tk.onload=tk.onreadystatechange=function(){var a=this.readyState;if(d||a&&a!="complete"&&a!="loaded")return;d=true;clearTimeout(t);try{Typekit.load(config)}catch(b){}};var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(tk,s)
       })();
+
+    // Google Maps
+    script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBfzsOwj_ybkgskB60mqjTTrrXnASWXTUE&sensor=true")
 
     script.
       window.addEventListener('load', function () {
