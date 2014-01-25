@@ -42,10 +42,10 @@ angular.module('audbApp')
 
     $scope.checkIn = function() {
       $http.get('/api/checkinInfo').success( function (data) {
-        if (data) {
+        if (data !== null && data !== 'null') {
           $rootScope.gameDay = true;
         }
-        if ($scope.gameDay) {
+        if ($rootScope.gameDay) {
           $rootScope.todaysGame = data;
           $scope.geo.getCurrentPosition(function(position) {
             var lat = position.coords.latitude;
@@ -100,12 +100,15 @@ angular.module('audbApp')
                   infowindow = new $scope.google.maps.InfoWindow({
                     map: $scope.map,
                     position: mapOptions.center,
-                    content: 'Sorry, but it doesn\'t look like you\'re at the game. We can\'t check you in at this time.'
+                    content: '<h4><u>Oops!</u></h4><p>Sorry, but it doesn\'t look like you\'re at the game.</p>' +
+                              '<p>We can\'t check you in at this time.</p>'
                   });
                 }
               }
             });
           });
+        } else {
+          $rootScope.legitCheckin = 1;
         }
       });
       angular.element('#checkinModal').modal('show');

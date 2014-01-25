@@ -64,7 +64,7 @@ html.no-js
             h3#myModalLabel.modal-title Check In
           
           div(class='modal-body')
-            p(ng-show='gameDay && (legitCheckin === 0)') Looks like it's Auburn vs. {{todaysGame.Opponent}} today. Let's check you in...
+            p(ng-show='gameDay && (legitCheckin !== 2)') Looks like it's Auburn vs. {{todaysGame.Opponent}} today. Let's check you in...
             p(ng-hide='gameDay || (legitCheckin !== 1)') Sorry, but it doesn't look like Auburn is playing a game near you today. :(
             p(ng-show='gameDay && (legitCheckin === 2)') OK, we've got you checked in! War Eagle!
 
