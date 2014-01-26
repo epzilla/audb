@@ -438,6 +438,36 @@ ul.checklist {
     input[type=checkbox]:checked + label {
       background: lighten($orange, 10%);
     }
+    input[type=checkbox]:checked + label:before {  
+      content: "\2713";
+      position: absolute;
+      text-shadow: 1px 1px 1px white;
+      font-size: 16px;
+      width: 1.2em;
+      height: 1.2em;
+      top: 16px;
+      left: 15px;
+      color: white;
+      border-radius: 0.7em;
+      background: #002649;
+      text-align: center;
+      line-height: 15px; 
+    }
+    input[type=checkbox] {
+      visibility: hidden;
+      &:before {
+        content: '';
+        position: absolute;
+        visibility: visible;
+        top: 1em;
+        left: 1em;
+        background: transparent;
+        width: 1.5em;
+        height: 1.5em;
+        border: 2px solid #002649;
+        border-radius: 0.8em;
+      }
+    }
   }
   ul.group {
     padding: 0;
