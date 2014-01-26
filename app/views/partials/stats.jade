@@ -154,6 +154,60 @@ div(ng-controller='StatsCtrl', class='modal fade', id='teamSelectModal', tabinde
               li(ng-repeat='m in c.members').item
                 input(type='checkbox', id='team-{{m}}')
                 label(for='team-{{m}}', ng-click='smallScreenSelectTeams()') {{m}}
+            ul.group
+              li.item.header
+                p BCS Conferences
+              li.item
+                input(type='checkbox', id='conf-SEC')
+                label(for='conf-SEC', ng-click='smallScreenSelectTeams()') Conf: SEC
+              li(ng-repeat='c in conferences | filter:{bcs:true}').item
+                input(type='checkbox', id='conf-{{c.conference}}')
+                label(for='conf-{{c.conference}}', ng-click='smallScreenSelectTeams()') Conf: {{c.conference}}
+            ul.group
+              li.item.header
+                p FBS Conferences
+              li(ng-repeat='c in conferences | filter:{bcs:false}').item
+                input(type='checkbox', id='conf-{{c.conference}}')
+                label(for='conf-{{c.conference}}', ng-click='smallScreenSelectTeams()') Conf: {{c.conference}}
+            ul.group
+              li.item.header
+                p Defunct Conferences
+              li.item
+                input(type='checkbox', id='conf-Big-East')
+                label(for='conf-Big-East', ng-click='smallScreenSelectTeams()') Conf: Big East
+              li.item
+                input(type='checkbox', id='conf-Big-8')
+                label(for='conf-Big-8', ng-click='smallScreenSelectTeams()') Conf: Big 8
+              li.item
+                input(type='checkbox', id='conf-Big-West')
+                label(for='conf-Big-West', ng-click='smallScreenSelectTeams()') Conf: Big West
+              li.item
+                input(type='checkbox', id='conf-Border')
+                label(for='conf-Border', ng-click='smallScreenSelectTeams()') Conf: Border
+              li.item
+                input(type='checkbox', id='conf-Gulf-States')
+                label(for='conf-Gulf-States', ng-click='smallScreenSelectTeams()') Conf: Gulf States
+              li.item
+                input(type='checkbox', id='conf-Metro')
+                label(for='conf-Metro', ng-click='smallScreenSelectTeams()') Conf: Metro
+              li.item
+                input(type='checkbox', id='conf-MVC')
+                label(for='conf-MVC', ng-click='smallScreenSelectTeams()') Conf: MVC
+              li.item
+                input(type='checkbox', id='conf-SIAA')
+                label(for='conf-SIAA', ng-click='smallScreenSelectTeams()') Conf: SIAA
+              li.item
+                input(type='checkbox', id='conf-Southern')
+                label(for='conf-Southern', ng-click='smallScreenSelectTeams()') Conf: Southern
+              li.item
+                input(type='checkbox', id='conf-SWC')
+                label(for='conf-SWC', ng-click='smallScreenSelectTeams()') Conf: SWC
+            ul.group
+              li.item.header
+                p FCS
+              li.item
+                input(type='checkbox', id='conf-FCS')
+                label(for='conf-FCS', ng-click='smallScreenSelectTeams()') Conf: FCS
 
         div(class='modal-footer')
           button(type='button', class='btn btn-default', data-dismiss='modal') Done
