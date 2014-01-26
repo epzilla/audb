@@ -49,7 +49,7 @@ html.no-js
           li(ng-hide='currentUser', ng-class="{active: isActive('/login')}")
             a(href='/login') Login
           li(ng-show='currentUser', class='checkin-button-li')
-            a(ng-click='checkIn()', role='button', class='btn btn-au', data-target='#checkinModal') <span class="glyphicon glyphicon-ok"></span>
+            a(ng-click='checkIn()', role='button', class='btn btn-au', data-target='#checkinModal', ng-disabled='isCheckedIn') <span class="glyphicon glyphicon-ok"></span>
           li(ng-cloak, ng-show='currentUser', ng-class="{active: isActive('/logout')}")
             a(ng-cloak, href='#', ng-click='logout()') Logout {{currentUser.name}}
 
@@ -64,9 +64,10 @@ html.no-js
             h3#myModalLabel.modal-title Check In
           
           div(class='modal-body')
-            p(ng-show='gameDay && (legitCheckin !== 2)') Looks like it's Auburn vs. {{todaysGame.Opponent}} today. Let's check you in...
+            p(ng-show='gameDay && (legitCheckin !== 2) && (legitCheckin !== 3)') Looks like it's Auburn vs. {{todaysGame.Opponent}} today. Let's check you in...
             p(ng-hide='gameDay || (legitCheckin !== 1)') Sorry, but it doesn't look like Auburn is playing a game near you today. :(
             p(ng-show='gameDay && (legitCheckin === 2)') OK, we've got you checked in! War Eagle!
+            p(ng-show='gameDay && (legitCheckin === 3)') No worries, you have aleady checked in for today's game.
 
             div(ng-show='gameDay')#map-canvas
           div(class='modal-footer')
