@@ -20,6 +20,17 @@
             option(value='Conf: {{c.conference}}', ng-repeat='c in conferences | filter:{bcs:true}') {{c.conference}}
           optgroup(label='FBS Conferences')
             option(value='Conf: {{c.conference}}', ng-repeat='c in conferences | filter:{bcs:false}') {{c.conference}}
+          optgroup(label='Defunct Conferences')
+            option(value='Conf: Big East') Big East
+            option(value='Conf: Big 8') Big 8
+            option(value='Conf: Big West') Big West
+            option(value='Conf: Border') Border Conference
+            option(value='Conf: Gulf States') Gulf States Conference
+            option(value='Conf: Metro') Metro Conference
+            option(value='Conf: MVC') Missouri Valley Conference
+            option(value='Conf: SIAA') SIAA
+            option(value='Conf: Southern') Southern Conference
+            option(value='Conf: SWC') SWC
           optgroup(label='FCS')
             option(value='Conf: FCS') FCS
 
