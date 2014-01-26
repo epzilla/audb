@@ -20,15 +20,14 @@
             option(value='Conf: {{c.conference}}', ng-repeat='c in conferences | filter:{bcs:true}') {{c.conference}}
           optgroup(label='FBS Conferences')
             option(value='Conf: {{c.conference}}', ng-repeat='c in conferences | filter:{bcs:false}') {{c.conference}}
-          optgroup(label='FCS and Defunct Teams')
+          optgroup(label='FCS')
             option(value='Conf: FCS') FCS
-            option(value='Conf: Defunct') Defunct Teams
 
     .row
       .col-sm-8.align-center.center.no-float
         label(for='#start-year').yearLabel From 
       .col-sm-8.align-center.center.no-float.pad-bottom-1em
-        select(ng-model='startYear', data-placeholder='Select Year', ui-select2, ng-change='setYear(year)')#start-year
+        select(ng-model='startYear', data-placeholder='Select Year', ui-select2, ng-change='setStart(startYear)')#start-year
           option(value="")
           option(ng-repeat='y in years' value='{{y}}') {{y}}
 
@@ -36,7 +35,7 @@
       .col-sm-8.align-center.center.no-float
         label(for='#end-year').yearLabel To 
       .col-sm-8.align-center.center.no-float.pad-bottom-1em 
-        select(ng-model='endYear', data-placeholder='Select Year', ui-select2, ng-change='setYear(year)')#end-year
+        select(ng-model='endYear', data-placeholder='Select Year', ui-select2, ng-change='setEnd(endYear)')#end-year
           option(value="")
           option(ng-repeat='y in reverseYears' value='{{y}}') {{y}}
     .row.submit-btn
@@ -48,18 +47,9 @@
       .col-sm-8.center.no-float.align-center
         label(for='opp-picker').yearLabel Show me Auburn's games against 
       .col-sm-8.center.no-float.align-center.pad-bottom-1em
-        select(ng-model='selectedTeams', multiple='multiple', ng-change='setSelectedTeams(selectedTeams)')#opp-picker-ss
-          option(value='ALL-OPP') All Opponents
-          optgroup(label='{{c.conference}}', ng-repeat='c in conferences')
-            option(value='{{m}}', ng-repeat='m in c.members') {{m}}
-          optgroup(label='BCS Conferences')
-            option(value='Conf: SEC') SEC
-            option(value='Conf: {{c.conference}}', ng-repeat='c in conferences | filter:{bcs:true}') {{c.conference}}
-          optgroup(label='FBS Conferences')
-            option(value='Conf: {{c.conference}}', ng-repeat='c in conferences | filter:{bcs:false}') {{c.conference}}
-          optgroup(label='FCS and Defunct Teams')
-            option(value='Conf: FCS') FCS
-            option(value='Conf: Defunct') Defunct Teams
+        button(role='button', ng-show='selectedTeams.length > 0', ng-click='showSelectTeams()', data-target='#teamSelectModal').btn.btn-md.btn-au
+          div(ng-repeat='team in selectedTeams') {{team}}
+        button(role='button', ng-hide='selectedTeams.length > 0', ng-click='showSelectTeams()', data-target='#teamSelectModal').btn.btn-md.btn-au Select Teams
 
     .row
       .col-sm-8.align-center.center.no-float
@@ -136,6 +126,26 @@
   
   h3(ng-show='record.t > 0').align-center Record: {{record.w}}-{{record.l}}-{{record.t}} ({{record.secW}}-{{record.secL}}-{{record.secT}})
   h3(ng-show='record.t === 0').align-center Record: {{record.w}}-{{record.l}} ({{record.secW}}-{{record.secL}})
+
+
+div(ng-controller='StatsCtrl', class='modal fade', id='teamSelectModal', tabindex='-1', role='dialog', aria-hidden='true', ng-if='isSmallScreen')
+    div(class='modal-dialog')
+      div(class='modal-content').align-center
+        div(class='modal-header')
+          button(type='button' class='close' data-dismiss='modal' aria-hidden='true') &times;
+          h3#myModalLabel.modal-title Select Teams
+        
+        div(class='modal-body').scrollBox
+          ul.checklist
+            ul(ng-repeat='c in conferences').group
+              li.item.header
+                p {{c.conference}}
+              li(ng-repeat='m in c.members').item
+                input(type='checkbox', id='team-{{m}}')
+                label(for='team-{{m}}', ng-click='smallScreenSelectTeams()') {{m}}
+
+        div(class='modal-footer')
+          button(type='button', class='btn btn-default', data-dismiss='modal') Done
 
 .footer.align-center
     img(src='images/eagle-2.png', height='50px', width='auto')

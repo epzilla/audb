@@ -1,18 +1,20 @@
 'use strict';
 
 angular.module('audbApp')
-  .controller('StatsCtrl', function ($scope, $http, $window, Auth) {
+  .controller('StatsCtrl', function ($scope, $rootScope, $http, $window, Auth) {
     if (angular.element('#nav-menu-collapse').hasClass('in')) {
       angular.element('.navbar-toggle').click();
     }
     $scope.years = [];
     $scope.reverseYears = [];
-    $scope.selectedTeams = [];
+    $rootScope.selectedTeams = [];
     $scope.endYear = (new Date().getFullYear()) - 1;
     $scope.startYear = 1892;
     $scope.user = {};
     $scope.record = {};
+    $scope.maxModalBodyHeight = $window.document.documentElement.clientHeight - 180;
     var breakpoint = 768;
+    $scope.isSmallScreen = $window.innerWidth < breakpoint ? true : false;
 
     Auth.currentUser().$promise.then( function(user) {
       $scope.user = user;
@@ -27,27 +29,51 @@ angular.module('audbApp')
 
     $http.get('/api/conferences').success( function (confs) {
       $scope.conferences = confs;
+      if ($scope.isSmallScreen) {
+        angular.element('#teamSelectModal .modal-body').css({
+          'max-height': $scope.maxModalBodyHeight
+        });
+      }
     });
+
+    $scope.showSelectTeams = function() {
+      angular.element('#teamSelectModal').modal('show');
+    };
+
+    $scope.smallScreenSelectTeams = function () {
+      $rootScope.selectedTeams = [];
+      $window.setTimeout( function() {
+        var checkedTeams = angular.element('input[type=checkbox]:checked + label');
+        console.dir(checkedTeams);
+        checkedTeams.each( function() {
+          $rootScope.selectedTeams.push(angular.element(this).text());
+        });
+        console.dir($rootScope.selectedTeams);
+        $scope.$apply();
+      }, 100);
+    };
 
     $scope.submitForm = function () {
       angular.element('#stat-form button').prop('disabled', true);
       var confs = [];
       var teams = [];
       var x;
-      for (var i = 0; i < $scope.selectedTeams.length; i++) {
-        if ($scope.selectedTeams[i] === 'ALL-OPP') {
+      for (var i = 0; i < $rootScope.selectedTeams.length; i++) {
+        if ($rootScope.selectedTeams[i] === 'ALL-OPP') {
           teams.push('ALL-OPP');
           confs = [];
           break;
         } else {
-          x = $scope.selectedTeams[i].indexOf('Conf: ');
+          x = $rootScope.selectedTeams[i].indexOf('Conf: ');
           if (x !== -1) {
-            confs.push($scope.selectedTeams[i].replace('Conf: ', ''));
+            confs.push($rootScope.selectedTeams[i].replace('Conf: ', ''));
           } else {
-            teams.push($scope.selectedTeams[i]);
+            teams.push($rootScope.selectedTeams[i]);
           }
         }
       }
+      console.log('Start year = ' + $scope.startYear);
+      console.log('End year = ' + $scope.endYear);
       $http.post('/api/statsByOpponent', {
         startYear: $scope.startYear,
         endYear: $scope.endYear,
@@ -95,7 +121,7 @@ angular.module('audbApp')
       angular.element('#reset').hide();
       angular.element('#stat-form').slideDown(300);
       $scope.games = [];
-      $scope.selectedTeams = [];
+      $scope.record = {};
     };
 
     $scope.toggleAttended = function(gameID) {
@@ -131,19 +157,12 @@ angular.module('audbApp')
       return false;
     };
 
-    $scope.isSmallScreen = $window.innerWidth < breakpoint ? true : false;
-    if ($scope.isSmallScreen) {
-      angular.element('#opp-picker-ss').change( function(e) {
-        console.log(angular.element(e.target).val());
-        $scope.selectedTeams = angular.element(e.target).val();
-      });
-    }
     $scope.alert = function (msg) {
       $window.alert(msg);
     };
 
     $scope.setSelectedTeams = function(a) {
-      $scope.selectedTeams = a;
+      $rootScope.selectedTeams = a;
     };
 
     $scope.setStart = function(a) {
