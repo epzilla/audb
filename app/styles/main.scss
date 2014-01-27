@@ -75,6 +75,7 @@ h1, h2, h3, h4, h5, h6 {
 @media screen and (min-width: 768px) {
   .container {
     max-width: 980px;
+    min-height: 75vh;
   }
 
   /* Remove the padding we set earlier */
@@ -151,7 +152,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .container {
-  min-height: 40em;
+  min-height: 75vh;
 }
 
 .rec-year-dropdown {

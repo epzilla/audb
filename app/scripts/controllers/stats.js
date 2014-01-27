@@ -44,11 +44,11 @@ angular.module('audbApp')
       $rootScope.selectedTeams = [];
       $window.setTimeout( function() {
         var checkedTeams = angular.element('input[type=checkbox]:checked + label');
-        console.dir(checkedTeams);
+        // console.dir(checkedTeams);
         checkedTeams.each( function() {
           $rootScope.selectedTeams.push(angular.element(this).text());
         });
-        console.dir($rootScope.selectedTeams);
+        // console.dir($rootScope.selectedTeams);
         $scope.$apply();
       }, 100);
     };

@@ -139,7 +139,7 @@
   h3(ng-show='record.t === 0').align-center Record: {{record.w}}-{{record.l}} ({{record.secW}}-{{record.secL}})
 
 
-div(ng-controller='StatsCtrl', class='modal fade', id='teamSelectModal', tabindex='-1', role='dialog', aria-hidden='true', ng-if='isSmallScreen')
+div(class='modal fade', id='teamSelectModal', tabindex='-1', role='dialog', aria-hidden='true', ng-if='isSmallScreen')
     div(class='modal-dialog')
       div(class='modal-content').align-center
         div(class='modal-header')
@@ -151,63 +151,63 @@ div(ng-controller='StatsCtrl', class='modal fade', id='teamSelectModal', tabinde
             ul(ng-repeat='c in conferences').group
               li.item.header
                 p {{c.conference}}
-              li(ng-repeat='m in c.members').item
+              li(ng-repeat='m in c.members', ng-click='smallScreenSelectTeams()').item
                 input(type='checkbox', id='team-{{m}}')
-                label(for='team-{{m}}', ng-click='smallScreenSelectTeams()') {{m}}
+                label(for='team-{{m}}') {{m}}
             ul.group
               li.item.header
                 p BCS Conferences
-              li.item
+              li(ng-click='smallScreenSelectTeams()').item
                 input(type='checkbox', id='conf-SEC')
-                label(for='conf-SEC', ng-click='smallScreenSelectTeams()') Conf: SEC
-              li(ng-repeat='c in conferences | filter:{bcs:true}').item
+                label(for='conf-SEC') Conf: SEC
+              li(ng-click='smallScreenSelectTeams()', ng-repeat='c in conferences | filter:{bcs:true}').item
                 input(type='checkbox', id='conf-{{c.conference}}')
-                label(for='conf-{{c.conference}}', ng-click='smallScreenSelectTeams()') Conf: {{c.conference}}
+                label(for='conf-{{c.conference}}') Conf: {{c.conference}}
             ul.group
               li.item.header
                 p FBS Conferences
-              li(ng-repeat='c in conferences | filter:{bcs:false}').item
+              li(ng-click='smallScreenSelectTeams()', ng-repeat='c in conferences | filter:{bcs:false}').item
                 input(type='checkbox', id='conf-{{c.conference}}')
-                label(for='conf-{{c.conference}}', ng-click='smallScreenSelectTeams()') Conf: {{c.conference}}
+                label(for='conf-{{c.conference}}') Conf: {{c.conference}}
             ul.group
               li.item.header
                 p Defunct Conferences
-              li.item
+              li(ng-click='smallScreenSelectTeams()').item
                 input(type='checkbox', id='conf-Big-East')
-                label(for='conf-Big-East', ng-click='smallScreenSelectTeams()') Conf: Big East
-              li.item
+                label(for='conf-Big-East') Conf: Big East
+              li(ng-click='smallScreenSelectTeams()').item
                 input(type='checkbox', id='conf-Big-8')
-                label(for='conf-Big-8', ng-click='smallScreenSelectTeams()') Conf: Big 8
-              li.item
+                label(for='conf-Big-8') Conf: Big 8
+              li(ng-click='smallScreenSelectTeams()').item
                 input(type='checkbox', id='conf-Big-West')
-                label(for='conf-Big-West', ng-click='smallScreenSelectTeams()') Conf: Big West
-              li.item
+                label(for='conf-Big-West') Conf: Big West
+              li(ng-click='smallScreenSelectTeams()').item
                 input(type='checkbox', id='conf-Border')
-                label(for='conf-Border', ng-click='smallScreenSelectTeams()') Conf: Border
-              li.item
+                label(for='conf-Border') Conf: Border
+              li(ng-click='smallScreenSelectTeams()').item
                 input(type='checkbox', id='conf-Gulf-States')
-                label(for='conf-Gulf-States', ng-click='smallScreenSelectTeams()') Conf: Gulf States
-              li.item
+                label(for='conf-Gulf-States') Conf: Gulf States
+              li(ng-click='smallScreenSelectTeams()').item
                 input(type='checkbox', id='conf-Metro')
-                label(for='conf-Metro', ng-click='smallScreenSelectTeams()') Conf: Metro
-              li.item
+                label(for='conf-Metro') Conf: Metro
+              li(ng-click='smallScreenSelectTeams()').item
                 input(type='checkbox', id='conf-MVC')
-                label(for='conf-MVC', ng-click='smallScreenSelectTeams()') Conf: MVC
-              li.item
+                label(for='conf-MVC') Conf: MVC
+              li(ng-click='smallScreenSelectTeams()').item
                 input(type='checkbox', id='conf-SIAA')
-                label(for='conf-SIAA', ng-click='smallScreenSelectTeams()') Conf: SIAA
-              li.item
+                label(for='conf-SIAA') Conf: SIAA
+              li(ng-click='smallScreenSelectTeams()').item
                 input(type='checkbox', id='conf-Southern')
-                label(for='conf-Southern', ng-click='smallScreenSelectTeams()') Conf: Southern
-              li.item
+                label(for='conf-Southern') Conf: Southern
+              li(ng-click='smallScreenSelectTeams()').item
                 input(type='checkbox', id='conf-SWC')
-                label(for='conf-SWC', ng-click='smallScreenSelectTeams()') Conf: SWC
+                label(for='conf-SWC') Conf: SWC
             ul.group
               li.item.header
                 p FCS
-              li.item
+              li(ng-click='smallScreenSelectTeams()').item
                 input(type='checkbox', id='conf-FCS')
-                label(for='conf-FCS', ng-click='smallScreenSelectTeams()') Conf: FCS
+                label(for='conf-FCS') Conf: FCS
 
         div(class='modal-footer')
           button(type='button', class='btn btn-default', data-dismiss='modal') Done
