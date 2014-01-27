@@ -10,13 +10,18 @@ angular.module('audbApp')
     $scope.getRecruits = function(year) {
       $scope.currentClass = parseInt(year);
       $scope.recruits = ls.get('rec-'+year);
-      if (!$scope.recruits) {
-        $http.get('/api/recruits/'+$scope.currentClass).success(function(data) {
+      $scope.getRecruitsFromDb(year);
+    };
+
+    $scope.getRecruitsFromDb = function(year) {
+      $http.get('/api/recruits/'+$scope.currentClass).success(function(data) {
+        if (!$scope.recruits || (angular.toJson($scope.recruits) !== angular.toJson(data))) {
           $scope.recruits = data;
           ls.add('rec-'+year, data);
-        });
-      }
+        }
+      });
     };
+
     $scope.predicate = '+surname';
     $scope.isSmallScreen = $window.innerWidth < breakpoint ? true : false;
     $scope.getRecruits(2014);
