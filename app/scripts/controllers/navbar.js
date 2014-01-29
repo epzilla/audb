@@ -166,4 +166,9 @@ angular.module('audbApp')
     angular.element($window).resize(function () {
       $scope.setSmallScreen();
     });
+
+    angular.element('.loader').css({
+      'height': $window.innerHeight
+    });
+
   });
