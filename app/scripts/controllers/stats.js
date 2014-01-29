@@ -12,6 +12,7 @@ angular.module('audbApp')
     $scope.startYear = 1892;
     $scope.user = {};
     $scope.record = {};
+    $scope.noData = false;
     $scope.maxModalBodyHeight = $window.document.documentElement.clientHeight - 180;
     var breakpoint = 768;
     $scope.isSmallScreen = $window.innerWidth < breakpoint ? true : false;
@@ -107,6 +108,9 @@ angular.module('audbApp')
               }
           }
         }
+        $scope.noData = data.length === 0 ? true : false;
+        console.log(data.length);
+        console.log($scope.noData);
         angular.element('#reset').show();
         angular.element('#stat-form').slideUp(650);
 
@@ -119,6 +123,7 @@ angular.module('audbApp')
       angular.element('#stat-form').slideDown(300);
       $scope.games = [];
       $scope.record = {};
+      $scope.noData = false;
     };
 
     $scope.toggleAttended = function(gameID) {

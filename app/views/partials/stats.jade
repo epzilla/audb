@@ -142,8 +142,12 @@
             span.glyphicon.glyphicon-minus
         td(ng-if='game.Result === "T"').tie.visible-xs {{game.Location === 'Auburn, AL' ? 'H' : 'A'}}
   
-  h3(ng-show='record.t > 0').align-center Record: {{record.w}}-{{record.l}}-{{record.t}} ({{record.secW}}-{{record.secL}}-{{record.secT}})
-  h3(ng-show='record.t === 0').align-center Record: {{record.w}}-{{record.l}} ({{record.secW}}-{{record.secL}})
+  h3(ng-show='record.t > 0 && !noData').align-center Record: {{record.w}}-{{record.l}}-{{record.t}} ({{record.secW}}-{{record.secL}}-{{record.secT}})
+  h3(ng-show='record.t === 0 && !noData').align-center Record: {{record.w}}-{{record.l}} ({{record.secW}}-{{record.secL}})
+
+  div(ng-show='noData').align-center
+        h3 No Results :(
+        button(role='button', ng-click='reset()').btn.btn-au#reset Reset <span class="glyphicon glyphicon-refresh top-2px"></span>
 
 
 div(class='modal fade', id='teamSelectModal', tabindex='-1', role='dialog', aria-hidden='true', ng-if='isSmallScreen')
