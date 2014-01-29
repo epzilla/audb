@@ -19,6 +19,9 @@ angular.module('audbApp')
           $scope.recruits = data;
           ls.add('rec-'+year, data);
         }
+        if (angular.element('.loader').hasClass('show')) {
+          angular.element('.loader').toggleClass('show');
+        }
       });
     };
 

@@ -13,7 +13,13 @@ angular.module('audbApp')
       $http.get('/api/playersByPos').success(function(data) {
         $scope.players = data;
         ls.add('depthChart', data);
+        if (angular.element('.loader').hasClass('show')) {
+          angular.element('.loader').toggleClass('show');
+        }
       });
+    }
+    if (angular.element('.loader').hasClass('show')) {
+      angular.element('.loader').toggleClass('show');
     }
     $scope.showPlayerInfo = function(pl) {
       $scope.selectedPlayer = pl;

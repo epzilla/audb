@@ -46,6 +46,9 @@ angular.module('audbApp')
               }
             }
           }
+          if (angular.element('.loader').hasClass('show')) {
+            angular.element('.loader').toggleClass('show');
+          }
         });
     };
 
@@ -80,6 +83,9 @@ angular.module('audbApp')
               if ($scope.games[i].SEC === 'y') {
                 $scope.record.secT++;
               }
+          }
+          if (angular.element('.loader').hasClass('show')) {
+            angular.element('.loader').toggleClass('show');
           }
         }
         if ($scope.year === $scope.thisYear) {

@@ -45,6 +45,9 @@ angular.module('audbApp')
             }
           }
         }
+        if (angular.element('.loader').hasClass('show')) {
+          angular.element('.loader').toggleClass('show');
+        }
       });
     };
 
@@ -84,6 +87,9 @@ angular.module('audbApp')
                     $scope.record.secT++;
                   }
               }
+            }
+            if (angular.element('.loader').hasClass('show')) {
+              angular.element('.loader').toggleClass('show');
             }
             $scope.getUserGames();
           } else {

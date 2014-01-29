@@ -69,6 +69,7 @@ angular.module('audbApp')
 
     $scope.hideMenu = function() {
       angular.element('.navbar-toggle').click();
+      angular.element('.loader').removeClass('hidden').addClass('show');
     };
 
     $scope.checkIn = function() {

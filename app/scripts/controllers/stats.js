@@ -34,6 +34,9 @@ angular.module('audbApp')
           'max-height': $scope.maxModalBodyHeight
         });
       }
+      if (angular.element('.loader').hasClass('show')) {
+        angular.element('.loader').toggleClass('show');
+      }
     });
 
     $scope.showSelectTeams = function() {
