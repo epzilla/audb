@@ -15,13 +15,13 @@ html.no-js
     meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1.0")
     meta(name="apple-mobile-web-app-capable", content="yes")
     meta(name="apple-mobile-web-app-title", content="AUDB")
-    link(rel="shortcut icon", href="images/favicon-gold.png")
     link(rel="apple-touch-icon-precomposed", href="images/audb.png")
     link(rel="stylesheet", href="bower_components/select2/select2.css")
     // Place favicon.ico and apple-touch-icon.png in the root directory
     <!-- build:css(app) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/select2/select2.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
@@ -49,19 +49,19 @@ html.no-js
         ul.nav.navbar-nav
           li(ng-cloak, ng-repeat='item in menu', ng-class='{active: isActive(item.link)}')
             a(ng-href='{{item.link}}', ng-click='hideMenu()') {{item.title}}
-          li(ng-show='isSmallScreen && !currentUser', ng-class="{active: isActive('/login')}") Login
+          li(ng-cloak, ng-show='isSmallScreen && !currentUser', ng-class="{active: isActive('/login')}") Login
             a(href='/login') Login
-          li(ng-show='isSmallScreen && currentUser', class='checkin-button-li')
+          li(ng-cloak, ng-show='isSmallScreen && currentUser', class='checkin-button-li')
             a(ng-click='checkIn()', role='button', class='btn btn-au', data-target='#checkinModal', ng-disabled='isCheckedIn') <span class="glyphicon glyphicon-ok"></span>
           li(ng-cloak, ng-show='isSmallScreen && currentUser')
             a(ng-click='changePwModal()') Change Password
-          li(ng-show='isSmallScreen && currentUser', ng-class="{active: isActive('/logout')}")
+          li(ng-cloak, ng-show='isSmallScreen && currentUser', ng-class="{active: isActive('/logout')}")
             a(ng-click='logout()') Logout {{currentUser.name}}
               
-        ul(ng-hide='isSmallScreen').nav.navbar-nav.pull-right
-          li(ng-hide='currentUser', ng-class="{active: isActive('/login')}")
+        ul(ng-cloak, ng-hide='isSmallScreen').nav.navbar-nav.pull-right
+          li(ng-cloak, ng-hide='currentUser', ng-class="{active: isActive('/login')}")
             a(href='/login') Login
-          li(ng-show='currentUser', class='checkin-button-li')
+          li(ng-cloak, ng-show='currentUser', class='checkin-button-li')
                 a(ng-click='checkIn()', role='button', class='btn btn-au', data-target='#checkinModal', ng-disabled='isCheckedIn') <span class="glyphicon glyphicon-ok"></span>
           li(ng-show='currentUser' class='dropdown')
             a(href='#', data-toggle='dropdown').dropdown-toggle {{currentUser.name}} <b class="caret"></b>

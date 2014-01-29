@@ -95,6 +95,12 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/************* ANGULAR.JS Cloak directive **/
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
 /************* USER STYLES *****************/
 
 @media (min-width: 768px) {
