@@ -85,6 +85,7 @@
       tr
         th Date
         th W/L
+        th.hidden-xs
         th Opponent
         th Score
         th.hidden-xs Location
@@ -95,6 +96,8 @@
 
         td(ng-if='game.Result === "W"').win {{game.Date.split('-')[1] + '/' + game.Date.split('-')[2]+ '/' + game.Date.split('-')[0]}}
         td(ng-if='game.Result === "W"').win {{game.Result}}
+        td(ng-if='game.Result === "W"').win.logo-td.hidden-xs
+          div(class='logo-{{ getConcatName(game.Opponent) }} small-logo')
         td(ng-if='game.Result === "W"', id='{{game._id + "-opp"}}').win {{game.Opponent}}
         td(ng-if='game.Result === "W"').win {{game.auscore}} - {{game.opscore}}
         td(ng-if='game.Result === "W"').win.hidden-xs {{game.Location}}
@@ -109,6 +112,8 @@
 
         td(ng-if='game.Result === "L"').loss {{game.Date.split('-')[1] + '/' + game.Date.split('-')[2]+ '/' + game.Date.split('-')[0]}}
         td(ng-if='game.Result === "L"').loss {{game.Result}}
+        td(ng-if='game.Result === "L"').loss.logo-td.hidden-xs
+          div(class='logo-{{ getConcatName(game.Opponent) }} small-logo')
         td(ng-if='game.Result === "L"', id='{{game._id + "-opp"}}').loss {{game.Opponent}}
         td(ng-if='game.Result === "L"').loss {{game.auscore}} - {{game.opscore}}
         td(ng-if='game.Result === "L"').loss.hidden-xs {{game.Location}}
@@ -123,6 +128,8 @@
 
         td(ng-if='game.Result === "T"').tie {{game.Date.split('-')[1] + '/' + game.Date.split('-')[2]+ '/' + game.Date.split('-')[0]}}
         td(ng-if='game.Result === "T"').tie {{game.Result}}
+        td(ng-if='game.Result === "T"').tie.logo-td.hidden-xs
+          div(class='logo-{{ getConcatName(game.Opponent) }} small-logo')
         td(ng-if='game.Result === "T"', id='{{game._id + "-opp"}}').tie {{game.Opponent}}
         td(ng-if='game.Result === "T"').tie {{game.auscore}} - {{game.opscore}}
         td(ng-if='game.Result === "T"').tie.hidden-xs {{game.Location}}
