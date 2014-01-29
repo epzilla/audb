@@ -44,7 +44,7 @@ html.no-js
       div.collapse.navbar-collapse#nav-menu-collapse
         ul.nav.navbar-nav
           li(ng-cloak, ng-repeat='item in menu', ng-class='{active: isActive(item.link)}')
-            a(ng-href='{{item.link}}') {{item.title}}
+            a(ng-href='{{item.link}}', ng-click='hideMenu()') {{item.title}}
           li(ng-show='isSmallScreen && !currentUser', ng-class="{active: isActive('/login')}") Login
             a(href='/login') Login
           li(ng-show='isSmallScreen && currentUser', class='checkin-button-li')

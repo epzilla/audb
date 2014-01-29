@@ -67,6 +67,10 @@ angular.module('audbApp')
       }
     };
 
+    $scope.hideMenu = function() {
+      angular.element('.navbar-toggle').click();
+    };
+
     $scope.checkIn = function() {
       if (!$rootScope.isCheckedIn) {
         $scope.showLoader();
