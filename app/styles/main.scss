@@ -142,6 +142,21 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+  background-color: $navy;
+  color: white;
+}
+
+.navbar-default .navbar-nav > .dropdown > a .caret {
+  border-top-color: white;
+  border-bottom-color: white;
+}
+
+.navbar-default .navbar-nav > .dropdown > a:hover .caret, .navbar-default .navbar-nav > .dropdown > a:focus .caret {
+  border-top-color: white;
+  border-bottom-color: white;
+}
+
 .container.main-container {
   width: 95%;
   max-width: none;

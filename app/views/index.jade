@@ -45,14 +45,27 @@ html.no-js
         ul.nav.navbar-nav
           li(ng-cloak, ng-repeat='item in menu', ng-class='{active: isActive(item.link)}')
             a(ng-href='{{item.link}}') {{item.title}}
-        ul.nav.navbar-nav.pull-right
+          li(ng-show='isSmallScreen && !currentUser', ng-class="{active: isActive('/login')}") Login
+            a(href='/login') Login
+          li(ng-show='isSmallScreen && currentUser', class='checkin-button-li')
+            a(ng-click='checkIn()', role='button', class='btn btn-au', data-target='#checkinModal', ng-disabled='isCheckedIn') <span class="glyphicon glyphicon-ok"></span>
+          li(ng-cloak, ng-show='isSmallScreen && currentUser')
+            a(ng-click='changePwModal()') Change Password
+          li(ng-show='isSmallScreen && currentUser', ng-class="{active: isActive('/logout')}")
+            a(ng-click='logout()') Logout {{currentUser.name}}
+              
+        ul(ng-hide='isSmallScreen').nav.navbar-nav.pull-right
           li(ng-hide='currentUser', ng-class="{active: isActive('/login')}")
             a(href='/login') Login
           li(ng-show='currentUser', class='checkin-button-li')
-            a(ng-click='checkIn()', role='button', class='btn btn-au', data-target='#checkinModal', ng-disabled='isCheckedIn') <span class="glyphicon glyphicon-ok"></span>
-          li(ng-cloak, ng-show='currentUser', ng-class="{active: isActive('/logout')}")
-            a(ng-cloak, href='#', ng-click='logout()') Logout {{currentUser.name}}
-
+                a(ng-click='checkIn()', role='button', class='btn btn-au', data-target='#checkinModal', ng-disabled='isCheckedIn') <span class="glyphicon glyphicon-ok"></span>
+          li(ng-show='currentUser' class='dropdown')
+            a(href='#', data-toggle='dropdown').dropdown-toggle {{currentUser.name}} <b class="caret"></b>
+            ul.dropdown-menu
+              li(ng-cloak, ng-show='currentUser', ng-class="{active: isActive('/logout')}")
+                a(ng-click='changePwModal()', data-target='#checkinModal') Change Password
+              li(ng-class="{active: isActive('/logout')}")
+                a(ng-click='logout()') Logout
             
     div(ng-view).container.main-container
     
@@ -61,7 +74,7 @@ html.no-js
         div(class='modal-content').align-center
           div(class='modal-header')
             button(type='button' class='close' data-dismiss='modal' aria-hidden='true') &times;
-            h3#myModalLabel.modal-title Check In
+            h3.modal-title Check In
           
           div(class='modal-body')
             p(ng-show='gameDay && (legitCheckin !== 2) && (legitCheckin !== 3)') Looks like it's Auburn vs. {{todaysGame.Opponent}} today. Let's check you in...
@@ -70,6 +83,38 @@ html.no-js
             p(ng-show='gameDay && (legitCheckin === 3)') No worries, you have aleady checked in for today's game.
 
             div(ng-show='gameDay')#map-canvas
+          div(class='modal-footer')
+            button(type='button', class='btn btn-default', data-dismiss='modal') Close
+
+    div(ng-controller='ChangepwCtrl', class='modal fade', id='changePwModal', tabindex='-1', role='dialog', aria-hidden='true')
+      div(class='modal-dialog')
+        div(class='modal-content').align-center
+          div(class='modal-header')
+            button(type='button' class='close' data-dismiss='modal' aria-hidden='true') &times;
+            h3.modal-title Change Password
+          
+          div(class='modal-body')
+            .col-sm-12
+              form.form(name='form', ng-hide='pwChanged', ng-submit='changepw(form)', novalidate='novalidate')
+
+                .form-group
+                  label Old Password
+                  input.form-control(type='password', name='password', ng-model='user.oldPassword', placeholder='Old Password')
+
+                .form-group
+                  label New Password
+                  input.form-control(type='password', name='password', ng-model='user.newPassword', placeholder='New Password')
+
+                .form-group.has-error
+                  p.help-block(ng-show='form.email.$error.required && form.password.$error.required && submitted')
+                    | Please enter your email and password.
+                  p.help-block {{ errors.other }}
+
+                button.btn.btn-lg.btn-primary(type='submit')  Submit
+                span.clearfix
+
+              h4(ng-show='pwChanged') Thanks! Your password has been changed.
+
           div(class='modal-footer')
             button(type='button', class='btn btn-default', data-dismiss='modal') Close
 
@@ -127,6 +172,7 @@ html.no-js
     <script src="scripts/controllers/depth.js"></script>
     <script src="scripts/controllers/recruits.js"></script>
     <script src="scripts/controllers/stats.js"></script>
+    <script src="scripts/controllers/changepw.js"></script>
     <!-- endbuild -->
     script(src='bower_components/fastclick/lib/fastclick.js')
     

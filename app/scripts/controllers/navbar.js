@@ -26,6 +26,8 @@ angular.module('audbApp')
     $scope.geo = {};
     $scope.google = $window.google;
     var infowindow;
+    var breakpoint = 820;
+    $scope.isSmallScreen = $window.innerWidth < breakpoint ? true : false;
 
     if ('geolocation' in $window.navigator) {
       $scope.geo = $window.navigator.geolocation;
@@ -37,10 +39,19 @@ angular.module('audbApp')
         $location.path('/login');
       });
     };
+
+    $scope.setSmallScreen = function () {
+      $scope.isSmallScreen = $window.innerWidth < breakpoint ? true : false;
+      $scope.$apply();
+    };
     
     $scope.isActive = function(route) {
       return route === $location.path();
     };
+
+    $scope.changePwModal = function() {
+      angular.element('#changePwModal').modal('show');
+    }
 
     $scope.showLoader = function() {
       var el = angular.element('.loading');
@@ -145,7 +156,9 @@ angular.module('audbApp')
           }
         });
       }
-      
       angular.element('#checkinModal').modal('show');
     };
+    angular.element($window).resize(function () {
+      $scope.setSmallScreen();
+    });
   });

@@ -16,8 +16,8 @@ div(ng-cloak).row.depth
     #qb.player-group.player-group-o
       h4 QB
       div(ng-repeat='player in players.QB', id='{{player._id}}')
-        p(ng-if='player.retstart === 0') 
-          a(data-target='#playerModal', ng-click='showPlayerInfo(player)'){{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 0')
+          a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
         p(ng-if='player.retstart === 1')
           strong
             a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
