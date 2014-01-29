@@ -129,6 +129,10 @@ angular.module('audbApp')
       return false;
     };
 
+    $scope.getConcatName = function (n) {
+      return n.replace(/\s+/g, '').replace(/&/g, '').replace(/\./g, '');
+    };
+
     $scope.isSmallScreen = $window.innerWidth < breakpoint ? true : false;
 
     $scope.setYear($scope.year);
