@@ -40,17 +40,13 @@ angular.module('audbApp')
       angular.element('#teamSelectModal').modal('show');
     };
 
-    $scope.smallScreenSelectTeams = function () {
-      $rootScope.selectedTeams = [];
-      $window.setTimeout( function() {
-        var checkedTeams = angular.element('input[type=checkbox]:checked + label');
-        // console.dir(checkedTeams);
-        checkedTeams.each( function() {
-          $rootScope.selectedTeams.push(angular.element(this).text());
-        });
-        // console.dir($rootScope.selectedTeams);
-        $scope.$apply();
-      }, 100);
+    $scope.smallScreenSelectTeam = function (team) {
+      var i = $rootScope.selectedTeams.indexOf(team);
+      if (i === -1) {
+        $rootScope.selectedTeams.push(team);
+      } else {
+        $rootScope.selectedTeams.splice(i, 1);
+      }
     };
 
     $scope.submitForm = function () {
@@ -72,8 +68,6 @@ angular.module('audbApp')
           }
         }
       }
-      console.log('Start year = ' + $scope.startYear);
-      console.log('End year = ' + $scope.endYear);
       $http.post('/api/statsByOpponent', {
         startYear: $scope.startYear,
         endYear: $scope.endYear,

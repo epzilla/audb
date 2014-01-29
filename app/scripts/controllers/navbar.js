@@ -51,7 +51,7 @@ angular.module('audbApp')
 
     $scope.changePwModal = function() {
       angular.element('#changePwModal').modal('show');
-    }
+    };
 
     $scope.showLoader = function() {
       var el = angular.element('.loading');
