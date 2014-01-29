@@ -102,5 +102,7 @@ angular.module('audbApp')
           });
         }
       });
+    } else if (angular.element('.loader').hasClass('show')) {
+      angular.element('.loader').toggleClass('show');
     }
   });
