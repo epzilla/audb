@@ -64,6 +64,8 @@ html.no-js
             a(ng-click='logout()') Logout {{currentUser.name}}
               
         ul(ng-cloak, ng-hide='isSmallScreen').nav.navbar-nav.pull-right
+          li(ng-cloak, ng-hide='currentUser')
+            a(ng-click='keyboardModal()') Keyboard Shortcuts (k)
           li(ng-cloak, ng-hide='currentUser', ng-class="{active: isActive('/login')}")
             a(href='/login') Login
           li(ng-cloak, ng-show='currentUser', class='checkin-button-li')
@@ -71,6 +73,8 @@ html.no-js
           li(ng-show='currentUser' class='dropdown')
             a(href='#', data-toggle='dropdown').dropdown-toggle {{currentUser.name}} <b class="caret"></b>
             ul.dropdown-menu
+              li(ng-cloak, ng-show='currentUser')
+                a(ng-click='keyboardModal()') Keyboard Shortcuts (k)
               li(ng-cloak, ng-show='currentUser', ng-class="{active: isActive('/logout')}")
                 a(ng-click='changePwModal()', data-target='#checkinModal') Change Password
               li(ng-class="{active: isActive('/logout')}")
@@ -127,6 +131,78 @@ html.no-js
           div(class='modal-footer')
             button(type='button', class='btn btn-default', data-dismiss='modal') Close
 
+    div(ng-if='!isSmallScreen', ng-controller='NavbarCtrl', class='modal fade', id='keyboardModal', tabindex='-1', role='dialog', aria-hidden='true')
+      div(class='modal-dialog')
+        div(class='modal-content').align-center
+          div(class='modal-header')
+            button(type='button' class='close' data-dismiss='modal' aria-hidden='true') &times;
+            h3.modal-title Keyboard Shortcuts
+          
+          div(class='modal-body')
+            table.table.table-condensed
+              thead.align-left
+                tr
+                  td(colspan='2') 
+                    strong Global
+                tr
+                  th Key
+                  th Action
+              tbody.align-left
+                tr
+                  td g then h
+                  td Go to Home page
+                tr
+                  td g then s
+                  td Go to Stats Page
+                tr
+                  td g then y
+                  td Go to Yearly Results Page
+                tr
+                  td g then d
+                  td Go to Depth Chart
+                tr
+                  td g then r
+                  td Go to Recruiting Page
+                tr
+                  td k
+                  td Show/hide this screen
+              thead.align-left
+                tr
+                  td(colspan='2') 
+                    strong Stats Page
+                tr
+                  th Key
+                  th Action
+              tbody.align-left
+                tr
+                  td s
+                  td Place cursor in team select box
+                tr
+                  td Shift+Enter
+                  td Submit (works even if cursor is in team select field)
+                tr
+                  td r
+                  td Reset form
+              thead.align-left
+                tr
+                  td(colspan='2') 
+                    strong Yearly Results Page
+                tr
+                  th Key
+                  th Action
+              tbody.align-left
+                tr
+                  td
+                    span.glyphicon.glyphicon-arrow-left
+                  td View previous year
+                tr
+                  td
+                    span.glyphicon.glyphicon-arrow-right
+                  td View next year
+
+          div(class='modal-footer')
+            button(type='button', class='btn btn-default', data-dismiss='modal') Close
+
     div.loader
       .loading
 
@@ -179,6 +255,7 @@ html.no-js
     <script src="scripts/services/auth.js"></script>
     <script src="scripts/services/session.js"></script>
     <script src="scripts/services/user.js"></script>
+    <script src="scripts/services/keyboardManager.js"></script>
     <script src="scripts/directives/mongooseError.js"></script>
     <script src="scripts/controllers/yearly.js"></script>
     <script src="scripts/controllers/depth.js"></script>

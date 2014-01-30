@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('audbApp')
-  .controller('StatsCtrl', function ($scope, $rootScope, $http, $window, Auth) {
+  .controller('StatsCtrl', function ($scope, $rootScope, $http, $window, Auth, keyboardManager) {
     if (angular.element('#nav-menu-collapse').hasClass('in')) {
       angular.element('.navbar-toggle').click();
     }
@@ -17,6 +17,16 @@ angular.module('audbApp')
     var breakpoint = 768;
     $scope.isSmallScreen = $window.innerWidth < breakpoint ? true : false;
 
+    $scope.unbindAll = function() {
+      keyboardManager.unbind('s');
+      keyboardManager.unbind('shift+enter');
+      keyboardManager.unbind('r');
+    };
+
+    $scope.focusSelect = function() {
+      angular.element('.select2-search-field input').focus();
+    };
+
     Auth.currentUser().$promise.then( function(user) {
       $scope.user = user;
     });
@@ -27,6 +37,20 @@ angular.module('audbApp')
     for (i = $scope.endYear; i >= $scope.startYear; i--) {
       $scope.reverseYears.push(i);
     }
+
+    $scope.unbindAll();
+
+    keyboardManager.bind('s', function() {
+      $scope.focusSelect();
+    });
+
+    keyboardManager.bind('shift+enter', function() {
+      $scope.submitForm();
+    });
+
+    keyboardManager.bind('r', function() {
+      $scope.reset();
+    });
 
     $http.get('/api/conferences').success( function (confs) {
       $scope.conferences = confs;
@@ -124,6 +148,11 @@ angular.module('audbApp')
       $scope.games = [];
       $scope.record = {};
       $scope.noData = false;
+      $scope.selectedTeams = [];
+      if (!$scope.isSmallScreen) {
+        angular.element('#opp-picker').select2('data', null);
+        $scope.focusSelect();
+      }
     };
 
     $scope.toggleAttended = function(gameID) {

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('audbApp')
-  .controller('NavbarCtrl', function ($scope, $rootScope, $http, $window, $location, Auth) {
+  .controller('NavbarCtrl', function ($scope, $rootScope, $http, $window, $location, Auth, keyboardManager) {
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
@@ -19,6 +19,11 @@ angular.module('audbApp')
       'link': '/recruits'
     }];
 
+    $scope.unbindAll = function() {
+      keyboardManager.unbind('k');
+      keyboardManager.unbind('g');
+    };
+
     $rootScope.gameDay = false;
     $rootScope.todaysGame = {};
     $rootScope.legitCheckin = 0;
@@ -33,6 +38,45 @@ angular.module('audbApp')
       $scope.geo = $window.navigator.geolocation;
     }
     
+    angular.element($window).resize(function () {
+      $scope.setSmallScreen();
+    });
+
+    angular.element('.loader').css({
+      'height': $window.innerHeight
+    });
+
+    $scope.unbindAll();
+
+    keyboardManager.bind('k', function() {
+      $scope.keyboardModal();
+    });
+
+    keyboardManager.bind('g', function() {
+      keyboardManager.bind('h', function() {
+        $location.path('/');
+      });
+      keyboardManager.bind('s', function() {
+        $location.path('/stats');
+      });
+      keyboardManager.bind('y', function() {
+        $location.path('/yearly');
+      });
+      keyboardManager.bind('d', function() {
+        $location.path('/depth');
+      });
+      keyboardManager.bind('r', function() {
+        $location.path('/recruits');
+      });
+      $window.setTimeout( function() {
+        keyboardManager.unbind('h');
+        keyboardManager.unbind('s');
+        keyboardManager.unbind('y');
+        keyboardManager.unbind('d');
+        keyboardManager.unbind('r');
+      }, 1000);
+    });
+
     $scope.logout = function() {
       Auth.logout()
       .then(function() {
@@ -51,6 +95,10 @@ angular.module('audbApp')
 
     $scope.changePwModal = function() {
       angular.element('#changePwModal').modal('show');
+    };
+
+    $scope.keyboardModal = function() {
+      angular.element('#keyboardModal').modal('toggle');
     };
 
     $scope.showLoader = function() {
@@ -163,12 +211,4 @@ angular.module('audbApp')
       }
       angular.element('#checkinModal').modal('show');
     };
-    angular.element($window).resize(function () {
-      $scope.setSmallScreen();
-    });
-
-    angular.element('.loader').css({
-      'height': $window.innerHeight
-    });
-
   });

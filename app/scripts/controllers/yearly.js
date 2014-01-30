@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('audbApp')
-  .controller('YearlyCtrl', function ($scope, $rootScope, $http, Auth, $window, localStorageService) {
+  .controller('YearlyCtrl', function ($scope, $rootScope, $http, Auth, $window, localStorageService, keyboardManager) {
     var ls =localStorageService;
     var breakpoint = 768;
     if (angular.element('#nav-menu-collapse').hasClass('in')) {
@@ -18,6 +18,11 @@ angular.module('audbApp')
     for (var i = $scope.year; i >= 1892; i--) {
       $scope.years.push(i);
     }
+
+    $scope.unbindAll = function() {
+      keyboardManager.unbind('left');
+      keyboardManager.unbind('right');
+    };
 
     $scope.getGamesByYear = function (yr) {
       $http.get('/api/year/'+yr).success(function(data) {
@@ -53,46 +58,48 @@ angular.module('audbApp')
     };
 
     $scope.setYear = function(yr) {
-      $scope.year = parseInt(yr);
-      $scope.record = {
-          w: 0,
-          l: 0,
-          t: 0,
-          secW: 0,
-          secL: 0,
-          secT: 0
-        };
-      $scope.games = ls.get('yr-'+yr);
-      if ($scope.games) {
-        for (var i = 0; i < $scope.games.length; i++) {
-          switch($scope.games[i].Result) {
-            case 'W':
-              $scope.record.w++;
-              if ($scope.games[i].SEC === 'y') {
-                $scope.record.secW++;
-              }
-              break;
-            case 'L':
-              $scope.record.l++;
-              if ($scope.games[i].SEC === 'y') {
-                $scope.record.secL++;
-              }
-              break;
-            default:
-              $scope.record.t++;
-              if ($scope.games[i].SEC === 'y') {
-                $scope.record.secT++;
-              }
+      if (yr <= $scope.thisYear && yr >= 1892) {
+        $scope.year = parseInt(yr);
+        $scope.record = {
+            w: 0,
+            l: 0,
+            t: 0,
+            secW: 0,
+            secL: 0,
+            secT: 0
+          };
+        $scope.games = ls.get('yr-'+yr);
+        if ($scope.games) {
+          for (var i = 0; i < $scope.games.length; i++) {
+            switch($scope.games[i].Result) {
+              case 'W':
+                $scope.record.w++;
+                if ($scope.games[i].SEC === 'y') {
+                  $scope.record.secW++;
+                }
+                break;
+              case 'L':
+                $scope.record.l++;
+                if ($scope.games[i].SEC === 'y') {
+                  $scope.record.secL++;
+                }
+                break;
+              default:
+                $scope.record.t++;
+                if ($scope.games[i].SEC === 'y') {
+                  $scope.record.secT++;
+                }
+            }
+            if (angular.element('.loader').hasClass('show')) {
+              angular.element('.loader').toggleClass('show');
+            }
           }
-          if (angular.element('.loader').hasClass('show')) {
-            angular.element('.loader').toggleClass('show');
+          if ($scope.year === $scope.thisYear) {
+            $scope.getGamesByYear(yr);
           }
-        }
-        if ($scope.year === $scope.thisYear) {
+        } else {
           $scope.getGamesByYear(yr);
         }
-      } else {
-        $scope.getGamesByYear(yr);
       }
     };
 
@@ -133,8 +140,34 @@ angular.module('audbApp')
       return n.replace(/\s+/g, '').replace(/&/g, '').replace(/\./g, '');
     };
 
+    $scope.nextYear = function() {
+      $scope.setYear($scope.year + 1);
+      if (!$scope.isSmallScreen) {
+        angular.element('.select2-container .select2-choice > .select2-chosen').text($scope.year);
+      }
+    };
+
+    $scope.prevYear = function() {
+      $scope.setYear($scope.year - 1);
+      if (!$scope.isSmallScreen) {
+        angular.element('.select2-container .select2-choice > .select2-chosen').text($scope.year);
+      }
+    };
+
     $scope.isSmallScreen = $window.innerWidth < breakpoint ? true : false;
 
     $scope.setYear($scope.year);
+
+    keyboardManager.bind('left', function() {
+      $scope.prevYear();
+    }, {
+      'inputDisabled': false
+    });
+
+    keyboardManager.bind('right', function() {
+      $scope.nextYear();
+    }, {
+      'inputDisabled': false
+    });
 
   });

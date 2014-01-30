@@ -137,6 +137,7 @@ h1, h2, h3, h4, h5, h6 {
       font-size: 1.15em;
       &:hover, &:focus {
         color: #f8f8f8;
+        cursor: pointer;
       }
     }
     & > .active > a {
@@ -539,6 +540,10 @@ ul.checklist {
 
 .align-left {
   text-align: left;
+}
+
+.align-right {
+  text-align: right;
 }
 
 .center {
