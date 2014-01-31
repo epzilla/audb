@@ -22,17 +22,90 @@ angular.module('audbApp')
     $scope.unbindAll = function() {
       keyboardManager.unbind('k');
       keyboardManager.unbind('g');
+      keyboardManager.unbind('up');
+      keyboardManager.unbind('down');
+      keyboardManager.unbind('b');
+      keyboardManager.unbind('a');
     };
 
+    var infowindow;
+    var breakpoint = 820;
+    var code = '';
     $rootScope.gameDay = false;
     $rootScope.todaysGame = {};
     $rootScope.legitCheckin = 0;
     $rootScope.isCheckedIn = false;
     $scope.geo = {};
     $scope.google = $window.google;
-    var infowindow;
-    var breakpoint = 820;
     $scope.isSmallScreen = $window.innerWidth < breakpoint ? true : false;
+
+    var tdpics = [
+      'images/tdpics/1.jpg',
+      'images/tdpics/2.jpg',
+      'images/tdpics/3.jpg',
+      'images/tdpics/4.jpg',
+      'images/tdpics/5.jpg',
+      'images/tdpics/6.jpg',
+    ];
+
+    var getRandomInt = function (min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    };
+
+    var leftHandler = function() {
+      if (code === 'uudd') {
+        code = 'uuddl';
+      } else if (code === 'uuddlr') {
+        code = 'uuddlrl';
+      } else {
+        code = '';
+      }
+    };
+
+    var rightHandler = function() {
+      if (code === 'uuddl') {
+        code = 'uuddlr';
+      } else if (code === 'uuddlrl') {
+        code = 'uuddlrlr';
+      } else {
+        code = '';
+      }
+    };
+
+    var downHandler = function() {
+      if (code === 'uu') {
+        code = 'uud';
+      } else if (code === 'uud') {
+        code = 'uudd';
+      } else {
+        code = '';
+      }
+    };
+
+    var aHandler = function() {
+      if (code === 'uuddlrlrb') {
+        code = 'uuddlrlrbaba';
+        touchdownAuburn();
+      } else {
+        code = '';
+      }
+    };
+
+    var bHandler = function() {
+      if (code === 'uuddlrlr') {
+        code = 'uuddlrlrb';
+      } else {
+        code = '';
+      }
+    };
+
+    var touchdownAuburn = function() {
+      var rand = getRandomInt(0,5);
+      angular.element('.modal-td-pic').attr({'src':tdpics[rand]});
+      $window.document.getElementById('td-au').play();
+      console.log('TOUCHDOOOOOOWN AUBUUUUURN!!!');
+      angular.element('#td-au-modal').modal('show');
+    };
 
     if ('geolocation' in $window.navigator) {
       $scope.geo = $window.navigator.geolocation;
@@ -44,6 +117,10 @@ angular.module('audbApp')
 
     angular.element('.loader').css({
       'height': $window.innerHeight
+    });
+
+    angular.element('.modal-td-pic').css({
+      'max-height': ($window.innerHeight - 250)
     });
 
     $scope.unbindAll();
@@ -76,6 +153,22 @@ angular.module('audbApp')
         keyboardManager.unbind('r');
       }, 1000);
     });
+
+    keyboardManager.bind('up', function() {
+      if (code === '') {
+        code = 'u';
+      } else if (code === 'u') {
+        code = 'uu';
+        keyboardManager.unbind('left');
+        keyboardManager.unbind('right');
+        keyboardManager.bind('left', leftHandler);
+        keyboardManager.bind('right', rightHandler);
+      }
+    });
+
+    keyboardManager.bind('down', downHandler);
+    keyboardManager.bind('b', bHandler);
+    keyboardManager.bind('a', aHandler);
 
     $scope.logout = function() {
       Auth.logout()

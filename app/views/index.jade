@@ -132,76 +132,138 @@ html.no-js
             button(type='button', class='btn btn-default', data-dismiss='modal') Close
 
     div(ng-if='!isSmallScreen', ng-controller='NavbarCtrl', class='modal fade', id='keyboardModal', tabindex='-1', role='dialog', aria-hidden='true')
-      div(class='modal-dialog')
+      div(class='modal-dialog big-modal')
         div(class='modal-content').align-center
           div(class='modal-header')
             button(type='button' class='close' data-dismiss='modal' aria-hidden='true') &times;
             h3.modal-title Keyboard Shortcuts
           
           div(class='modal-body')
-            table.table.table-condensed
-              thead.align-left
-                tr
-                  td(colspan='2') 
-                    strong Global
-                tr
-                  th Key
-                  th Action
-              tbody.align-left
-                tr
-                  td g then h
-                  td Go to Home page
-                tr
-                  td g then s
-                  td Go to Stats Page
-                tr
-                  td g then y
-                  td Go to Yearly Results Page
-                tr
-                  td g then d
-                  td Go to Depth Chart
-                tr
-                  td g then r
-                  td Go to Recruiting Page
-                tr
-                  td k
-                  td Show/hide this screen
-              thead.align-left
-                tr
-                  td(colspan='2') 
-                    strong Stats Page
-                tr
-                  th Key
-                  th Action
-              tbody.align-left
-                tr
-                  td s
-                  td Place cursor in team select box
-                tr
-                  td Shift+Enter
-                  td Submit (works even if cursor is in team select field)
-                tr
-                  td r
-                  td Reset form
-              thead.align-left
-                tr
-                  td(colspan='2') 
-                    strong Yearly Results Page
-                tr
-                  th Key
-                  th Action
-              tbody.align-left
-                tr
-                  td
-                    span.glyphicon.glyphicon-arrow-left
-                  td View previous year
-                tr
-                  td
-                    span.glyphicon.glyphicon-arrow-right
-                  td View next year
+            .row
+              .col-sm-6
+                table.table.table-condensed.table-responsive
+                  thead.align-left
+                    tr
+                      td(colspan='2') 
+                        strong Global
+                    tr
+                      th Key
+                      th Action
+                  tbody.align-left
+                    tr
+                      td g then h
+                      td Go to Home page
+                    tr
+                      td g then s
+                      td Go to Stats Page
+                    tr
+                      td g then y
+                      td Go to Yearly Results Page
+                    tr
+                      td g then d
+                      td Go to Depth Chart
+                    tr
+                      td g then r
+                      td Go to Recruiting Page
+                    tr
+                      td k
+                      td Show/hide this screen
+                table.table.table-condensed.table-responsive
+                  thead.align-left
+                    tr
+                      td(colspan='2') 
+                        strong Stats Page
+                    tr
+                      th Key
+                      th Action
+                  tbody.align-left
+                    tr
+                      td s
+                      td Place cursor in team select box
+                    tr
+                      td Shift+Enter
+                      td Submit (works even if cursor is in team select field)
+                    tr
+                      td r
+                      td Reset form
+              .col-sm-6
+                table.table.table-condensed.table-responsive
+                  thead.align-left
+                    tr
+                      td(colspan='2') 
+                        strong Yearly Results Page
+                    tr
+                      th Key
+                      th Action
+                  tbody.align-left
+                    tr
+                      td
+                        span.glyphicon.glyphicon-arrow-left
+                      td View previous year
+                    tr
+                      td
+                        span.glyphicon.glyphicon-arrow-right
+                      td View next year
+                table.table.table-condensed.table-responsive
+                  thead.align-left
+                    tr
+                      td(colspan='2') 
+                        strong Recruiting Page
+                    tr
+                      th Key
+                      th Action
+                  tbody.align-left
+                    tr
+                      td
+                        span.glyphicon.glyphicon-arrow-left
+                      td View previous recruiting class
+                    tr
+                      td
+                        span.glyphicon.glyphicon-arrow-right
+                      td View next recruiting class
+                    tr
+                      td n
+                      td Sort by Name
+                    tr
+                      td p
+                      td Sort by Position
+                    tr
+                      td h
+                      td Sort by Hometown
+                    tr
+                      td Shift+H
+                      td Sort by High School
+                    tr
+                      td r
+                      td Sort by Rivals <span class="glyphicon glyphicon-star"></span>
+                    tr
+                      td s
+                      td Sort by Scout <span class="glyphicon glyphicon-star"></span>
+                    tr
+                      td Shift+R
+                      td Sort by Rivals Rank
+                    tr
+                      td Shift+S
+                      td Sort by Scout Rank
 
           div(class='modal-footer')
             button(type='button', class='btn btn-default', data-dismiss='modal') Close
+
+    div(ng-controller='NavbarCtrl', class='modal fade', id='td-au-modal', tabindex='-1', role='dialog', aria-hidden='true')
+      div(class='modal-dialog big-modal')
+        div(class='modal-content').align-center
+          div(class='modal-header')
+            button(type='button' class='close' data-dismiss='modal' aria-hidden='true') &times;
+            h3.modal-title TOUCHDOWN AUBURN!
+          
+          div(class='modal-body')
+            img(src='').modal-td-pic
+
+            div(ng-show='gameDay')#map-canvas
+          div(class='modal-footer')
+            button(type='button', class='btn btn-default', data-dismiss='modal') Close
+
+    audio(id='td-au', src='images/tdau.wav')
 
     div.loader
       .loading

@@ -525,6 +525,14 @@ ul.checklist {
   -webkit-overflow-scrolling: touch;
 }
 
+.modal-dialog.big-modal {
+  width: 95%;
+  .modal-td-pic {
+    width: auto;
+    height: auto;
+  }
+}
+
 // HELPER CLASSES
 .font-small {
   font-size: 0.5em;
