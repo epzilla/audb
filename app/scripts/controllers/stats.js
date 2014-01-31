@@ -89,8 +89,9 @@ angular.module('audbApp')
     $scope.submitForm = function () {
       angular.element('#stat-form button').prop('disabled', true);
       var confs = [];
+      var curr = [];
       var teams = [];
-      var x;
+      var x, y;
       for (var i = 0; i < $rootScope.selectedTeams.length; i++) {
         if ($rootScope.selectedTeams[i] === 'ALL-OPP') {
           teams.push('ALL-OPP');
@@ -98,8 +99,11 @@ angular.module('audbApp')
           break;
         } else {
           x = $rootScope.selectedTeams[i].indexOf('Conf: ');
+          y = $rootScope.selectedTeams[i].indexOf('Current ');
           if (x !== -1) {
             confs.push($rootScope.selectedTeams[i].replace('Conf: ', ''));
+          } else if (y !== -1) {
+            curr.push($rootScope.selectedTeams[i].replace('Current ', ''));
           } else {
             teams.push($rootScope.selectedTeams[i]);
           }
@@ -109,7 +113,8 @@ angular.module('audbApp')
         startYear: $scope.startYear,
         endYear: $scope.endYear,
         teams: teams,
-        confs: confs
+        confs: confs,
+        curr: curr
       }).success( function (data) {
         $scope.games = data;
         $scope.record = {

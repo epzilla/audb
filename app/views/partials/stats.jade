@@ -20,6 +20,8 @@
             option(value='Conf: {{c.conference}}', ng-repeat='c in conferences | filter:{bcs:true}') {{c.conference}}
           optgroup(label='FBS Conferences')
             option(value='Conf: {{c.conference}}', ng-repeat='c in conferences | filter:{bcs:false}') {{c.conference}}
+          optgroup(label='Only Current Members')
+            option(value='Current {{c.conference}}', ng-repeat='c in conferences') Current {{c.conference}}
           optgroup(label='Defunct Conferences')
             option(value='Conf: Big East') Big East
             option(value='Conf: Big 8') Big 8
@@ -31,6 +33,7 @@
             option(value='Conf: SIAA') SIAA
             option(value='Conf: Southern') Southern Conference
             option(value='Conf: SWC') SWC
+            option(value='Conf: WAC') WAC
           optgroup(label='FCS')
             option(value='Conf: FCS') FCS
 
@@ -182,6 +185,15 @@ div(class='modal fade', id='teamSelectModal', tabindex='-1', role='dialog', aria
                 label(for='conf-{{c.conference}}') Conf: {{c.conference}}
             ul.group
               li.item.header
+                p Only Current Members
+              li.item
+                input(type='checkbox', id='current-SEC', ng-click='smallScreenSelectTeam("Current SEC")')
+                label(for='current-SEC') Current SEC
+              li(ng-repeat='c in conferences').item
+                input(type='checkbox', id='current-{{c.conference}}', ng-click='smallScreenSelectTeam("Current " + c.conference)')
+                label(for='current-{{c.conference}}') Current {{c.conference}}
+            ul.group
+              li.item.header
                 p Defunct Conferences
               li.item
                 input(type='checkbox', id='conf-Big-East', ng-click='smallScreenSelectTeam("Conf: Big East")')
@@ -213,6 +225,9 @@ div(class='modal fade', id='teamSelectModal', tabindex='-1', role='dialog', aria
               li.item
                 input(type='checkbox', id='conf-SWC', ng-click='smallScreenSelectTeam("Conf: SWC")')
                 label(for='conf-SWC') Conf: SWC
+              li.item
+                input(type='checkbox', id='conf-WAC', ng-click='smallScreenSelectTeam("Conf: WAC")')
+                label(for='conf-WAC') Conf: WAC
             ul.group
               li.item.header
                 p FCS
