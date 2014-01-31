@@ -52,6 +52,8 @@ angular.module('audbApp')
       return Math.floor(Math.random() * (max - min + 1)) + min;
     };
 
+    var secretCount = getRandomInt(0,(tdpics.length - 1));
+
     var leftHandler = function() {
       if (code === 'uudd') {
         code = 'uuddl';
@@ -98,8 +100,9 @@ angular.module('audbApp')
     };
 
     var touchdownAuburn = function() {
-      var rand = getRandomInt(0,5);
-      angular.element('.modal-td-pic').attr({'src':tdpics[rand]});
+      var num = secretCount % (tdpics.length);
+      angular.element('.modal-td-pic').attr({'src':tdpics[num]});
+      secretCount++;
       $window.document.getElementById('td-au').play();
       console.log('TOUCHDOOOOOOWN AUBUUUUURN!!!');
       angular.element('#td-au-modal').modal('show');
