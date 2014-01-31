@@ -85,9 +85,8 @@ angular.module('audbApp')
     var aHandler = function() {
       if (code === 'uuddlrlrb') {
         touchdownAuburn();
-      } else {
-        code = '';
       }
+      code = '';
     };
 
     var bHandler = function() {
