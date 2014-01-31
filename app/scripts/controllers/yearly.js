@@ -22,6 +22,7 @@ angular.module('audbApp')
     $scope.unbindAll = function() {
       keyboardManager.unbind('left');
       keyboardManager.unbind('right');
+      keyboardManager.unbind('space');
     };
 
     $scope.getGamesByYear = function (yr) {
@@ -168,6 +169,14 @@ angular.module('audbApp')
       $scope.nextYear();
     }, {
       'inputDisabled': false
+    });
+
+    keyboardManager.bind('space', function(e) {
+      var btn = e.target.getElementsByClassName('attend-td')[0].children[0];
+      angular.element(btn).click();
+    }, {
+      'inputDisabled': false,
+      'target': $window.document.getElementById('yearly-table')
     });
 
   });

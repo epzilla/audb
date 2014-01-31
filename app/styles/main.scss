@@ -1,5 +1,6 @@
 @import 'mixins';
 @import 'teams';
+@import 'keys';
 
 .browsehappy {
   margin: 0.2em 0;
@@ -530,6 +531,18 @@ ul.checklist {
   .modal-td-pic {
     width: auto;
     height: auto;
+  }
+}
+
+.modal-dialog.med-modal {
+  width: 75%;
+}
+
+#yearly-table {
+  tr {
+    &:focus {
+      background-color: rgb(147, 218, 245);
+    }
   }
 }
 

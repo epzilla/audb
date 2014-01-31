@@ -132,7 +132,7 @@ html.no-js
             button(type='button', class='btn btn-default', data-dismiss='modal') Close
 
     div(ng-if='!isSmallScreen', ng-controller='NavbarCtrl', class='modal fade', id='keyboardModal', tabindex='-1', role='dialog', aria-hidden='true')
-      div(class='modal-dialog big-modal')
+      div(class='modal-dialog med-modal')
         div(class='modal-content').align-center
           div(class='modal-header')
             button(type='button' class='close' data-dismiss='modal' aria-hidden='true') &times;
@@ -147,45 +147,76 @@ html.no-js
                       td(colspan='2') 
                         strong Global
                     tr
-                      th Key
-                      th Action
+                      th.col-sm-4 Key
+                      th.col-sm-8 Action
                   tbody.align-left
                     tr
-                      td g then h
-                      td Go to Home page
+                      td.col-sm-4
+                        span.key.light G
+                        |  then 
+                        span.key.light H
+                      td.col-sm-8 Go to Home page
                     tr
-                      td g then s
-                      td Go to Stats Page
+                      td.col-sm-4
+                        span.key.light G
+                        |  then 
+                        span.key.light S
+                      td.col-sm-8 Go to Stats Page
                     tr
-                      td g then y
-                      td Go to Yearly Results Page
+                      td.col-sm-4
+                        span.key.light G
+                        |  then 
+                        span.key.light Y
+                      td.col-sm-8 Go to Yearly Results Page
                     tr
-                      td g then d
-                      td Go to Depth Chart
+                      td.col-sm-4
+                        span.key.light G
+                        |  then 
+                        span.key.light D
+                      td.col-sm-8 Go to Depth Chart
                     tr
-                      td g then r
-                      td Go to Recruiting Page
+                      td.col-sm-4
+                        span.key.light G
+                        |  then 
+                        span.key.light R
+                      td.col-sm-8 Go to Recruiting Page
                     tr
-                      td k
-                      td Show/hide this screen
+                      td.col-sm-4
+                        span.key.light C
+                      td.col-sm-8 Check in to today's game (only works if logged in)
+                    tr
+                      td.col-sm-4
+                        span.key.light K
+                      td.col-sm-8 Show/hide keyboard shortcuts
                 table.table.table-condensed.table-responsive
                   thead.align-left
                     tr
                       td(colspan='2') 
                         strong Stats Page
                     tr
-                      th Key
-                      th Action
+                      th.col-sm-4 Key
+                      th.col-sm-8 Action
                   tbody.align-left
                     tr
-                      td s
-                      td Place cursor in team select box
+                      td.col-sm-4
+                        span.key.light S
+                      td.col-sm-8 Place cursor in team select box
                     tr
-                      td Shift+Enter
-                      td Submit (works even if cursor is in team select field)
+                      td.col-sm-4
+                        span.key.light Shift
+                        |  + 
+                        span.key.light Enter
+                      td.col-sm-8 Submit (works even if cursor is in team select field)
                     tr
-                      td r
-                      td Reset form
+                      td.col-sm-4
+                        span.key.light R
+                      td.col-sm-8 Reset form
+                    tr
+                      td.col-sm-4
+                        span.key.light Tab 
+                        |  then 
+                        span.key.light Space
+                      td.col-sm-8 Tab through the games, and press [Space] to update attendance for the highlighted game
               .col-sm-6
                 table.table.table-condensed.table-responsive
                   thead.align-left
@@ -193,58 +224,82 @@ html.no-js
                       td(colspan='2') 
                         strong Yearly Results Page
                     tr
-                      th Key
-                      th Action
+                      th.col-sm-4 Key
+                      th.col-sm-8 Action
                   tbody.align-left
                     tr
-                      td
-                        span.glyphicon.glyphicon-arrow-left
-                      td View previous year
+                      td.col-sm-4
+                        span.key.light
+                          span.glyphicon.glyphicon-arrow-left
+                      td.col-sm-8 View previous year
                     tr
-                      td
-                        span.glyphicon.glyphicon-arrow-right
-                      td View next year
+                      td.col-sm-4
+                        span.key.light
+                          span.glyphicon.glyphicon-arrow-right
+                      td.col-sm-8 View next year
+                    tr
+                      td.col-sm-4
+                        span.key.light Tab
+                        |  / 
+                        span.key.light Space
+                      td.col-sm-8 Tab through the games, and press [Space] to update attendance for the highlighted game
                 table.table.table-condensed.table-responsive
                   thead.align-left
                     tr
                       td(colspan='2') 
                         strong Recruiting Page
                     tr
-                      th Key
-                      th Action
+                      th.col-sm-4 Key
+                      th.col-sm-8 Action
                   tbody.align-left
                     tr
-                      td
-                        span.glyphicon.glyphicon-arrow-left
-                      td View previous recruiting class
+                      td.col-sm-4
+                        span.key.light
+                          span.glyphicon.glyphicon-arrow-left
+                      td.col-sm-8 View previous recruiting class
                     tr
-                      td
-                        span.glyphicon.glyphicon-arrow-right
-                      td View next recruiting class
+                      td.col-sm-4
+                        span.key.light
+                          span.glyphicon.glyphicon-arrow-right
+                      td.col-sm-8 View next recruiting class
                     tr
-                      td n
-                      td Sort by Name
+                      td.col-sm-4
+                        span.key.light N
+                      td.col-sm-8 Sort by Name
                     tr
-                      td p
-                      td Sort by Position
+                      td.col-sm-4
+                        span.key.light P
+                      td.col-sm-8 Sort by Position
                     tr
-                      td h
-                      td Sort by Hometown
+                      td.col-sm-4
+                          span.key.light H
+                      td.col-sm-8 Sort by Hometown
                     tr
-                      td Shift+H
-                      td Sort by High School
+                      td.col-sm-4
+                        span.key.light Shift
+                        |  + 
+                        span.key.light H
+                      td.col-sm-8 Sort by High School
                     tr
-                      td r
-                      td Sort by Rivals <span class="glyphicon glyphicon-star"></span>
+                      td.col-sm-4
+                        span.key.light R
+                      td.col-sm-8 Sort by Rivals <span class="glyphicon glyphicon-star"></span>
                     tr
-                      td s
-                      td Sort by Scout <span class="glyphicon glyphicon-star"></span>
+                      td.col-sm-4
+                        span.key.light S
+                      td.col-sm-8 Sort by Scout <span class="glyphicon glyphicon-star"></span>
                     tr
-                      td Shift+R
-                      td Sort by Rivals Rank
+                      td.col-sm-4
+                        span.key.light Shift
+                        |  + 
+                        span.key.light R
+                      td.col-sm-8 Sort by Rivals Rank
                     tr
-                      td Shift+S
-                      td Sort by Scout Rank
+                      td.col-sm-4
+                        span.key.light Shift
+                        |  + 
+                        span.key.light S
+                      td.col-sm-8 Sort by Scout Rank
 
           div(class='modal-footer')
             button(type='button', class='btn btn-default', data-dismiss='modal') Close

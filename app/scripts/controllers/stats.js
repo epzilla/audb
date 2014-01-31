@@ -21,6 +21,7 @@ angular.module('audbApp')
       keyboardManager.unbind('s');
       keyboardManager.unbind('shift+enter');
       keyboardManager.unbind('r');
+      keyboardManager.unbind('space');
     };
 
     $scope.focusSelect = function() {
@@ -50,6 +51,14 @@ angular.module('audbApp')
 
     keyboardManager.bind('r', function() {
       $scope.reset();
+    });
+
+    keyboardManager.bind('space', function(e) {
+      var btn = e.target.getElementsByClassName('attend-td')[0].children[0];
+      angular.element(btn).click();
+    }, {
+      'inputDisabled': false,
+      'target': $window.document.getElementById('yearly-table')
     });
 
     $http.get('/api/conferences').success( function (confs) {
