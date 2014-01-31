@@ -133,8 +133,6 @@ angular.module('audbApp')
           }
         }
         $scope.noData = data.length === 0 ? true : false;
-        console.log(data.length);
-        console.log($scope.noData);
         angular.element('#reset').show();
         angular.element('#stat-form').slideUp(650);
 
