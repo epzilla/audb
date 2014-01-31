@@ -28,6 +28,14 @@ angular.module('audbApp')
       keyboardManager.unbind('a');
     };
 
+    $scope.resetGoto = function() {
+      keyboardManager.unbind('h');
+      keyboardManager.unbind('s');
+      keyboardManager.unbind('y');
+      keyboardManager.unbind('d');
+      keyboardManager.unbind('r');
+    };
+
     var infowindow;
     var breakpoint = 820;
     var code = '';
@@ -131,28 +139,34 @@ angular.module('audbApp')
     });
 
     keyboardManager.bind('g', function() {
+      var resetTimer = $window.setTimeout( function() {
+        $scope.resetGoto();
+      }, 1000);
       keyboardManager.bind('h', function() {
+        $window.clearTimeout(resetTimer);
+        $scope.resetGoto();
         $location.path('/');
       });
       keyboardManager.bind('s', function() {
+        $window.clearTimeout(resetTimer);
+        $scope.resetGoto();
         $location.path('/stats');
       });
       keyboardManager.bind('y', function() {
+        $window.clearTimeout(resetTimer);
+        $scope.resetGoto();
         $location.path('/yearly');
       });
       keyboardManager.bind('d', function() {
+        $window.clearTimeout(resetTimer);
+        $scope.resetGoto();
         $location.path('/depth');
       });
       keyboardManager.bind('r', function() {
+        $window.clearTimeout(resetTimer);
+        $scope.resetGoto();
         $location.path('/recruits');
       });
-      $window.setTimeout( function() {
-        keyboardManager.unbind('h');
-        keyboardManager.unbind('s');
-        keyboardManager.unbind('y');
-        keyboardManager.unbind('d');
-        keyboardManager.unbind('r');
-      }, 1000);
     });
 
     keyboardManager.bind('up', function() {
