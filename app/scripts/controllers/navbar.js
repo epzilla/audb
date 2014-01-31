@@ -66,30 +66,51 @@ angular.module('audbApp')
     var leftHandler = function() {
       if (code === 'uudd') {
         code = 'uuddl';
+        angular.element('#theCode span').removeClass('active');
+        angular.element('#left1').addClass('active');
+        angular.element('#theCode').show().fadeOut(1000);
       } else if (code === 'uuddlr') {
         code = 'uuddlrl';
+        angular.element('#theCode span').removeClass('active');
+        angular.element('#left2').addClass('active');
+        angular.element('#theCode').show().fadeOut(1000);
       } else {
         code = '';
+        angular.element('#theCode span').removeClass('active');
       }
     };
 
     var rightHandler = function() {
       if (code === 'uuddl') {
         code = 'uuddlr';
+        angular.element('#theCode span').removeClass('active');
+        angular.element('#right1').addClass('active');
+        angular.element('#theCode').show().fadeOut(1000);
       } else if (code === 'uuddlrl') {
         code = 'uuddlrlr';
+        angular.element('#theCode span').removeClass('active');
+        angular.element('#right2').addClass('active');
+        angular.element('#theCode').show().fadeOut(1000);
       } else {
         code = '';
+        angular.element('#theCode span').removeClass('active');
       }
     };
 
     var downHandler = function() {
       if (code === 'uu') {
         code = 'uud';
+        angular.element('#theCode span').removeClass('active');
+        angular.element('#down1').addClass('active');
+        angular.element('#theCode').show().fadeOut(1000);
       } else if (code === 'uud') {
         code = 'uudd';
+        angular.element('#theCode span').removeClass('active');
+        angular.element('#down2').addClass('active');
+        angular.element('#theCode').show().fadeOut(1000);
       } else {
         code = '';
+        angular.element('#theCode span').removeClass('active');
       }
     };
 
@@ -98,13 +119,18 @@ angular.module('audbApp')
         touchdownAuburn();
       }
       code = '';
+      angular.element('#theCode span').removeClass('active');
     };
 
     var bHandler = function() {
       if (code === 'uuddlrlr') {
         code = 'uuddlrlrb';
+        angular.element('#theCode span').removeClass('active');
+        angular.element('#b-circle').addClass('active');
+        angular.element('#theCode').show().fadeOut(1000);
       } else {
         code = '';
+        angular.element('#theCode span').removeClass('active');
       }
     };
 
@@ -175,14 +201,20 @@ angular.module('audbApp')
     });
 
     keyboardManager.bind('up', function() {
-      if (code === '') {
-        code = 'u';
-      } else if (code === 'u') {
+      if (code === 'u') {
         code = 'uu';
         keyboardManager.unbind('left');
         keyboardManager.unbind('right');
         keyboardManager.bind('left', leftHandler);
         keyboardManager.bind('right', rightHandler);
+        angular.element('#theCode span').removeClass('active');
+        angular.element('#up2').addClass('active');
+        angular.element('#theCode').show().fadeOut(1000);
+      } else {
+        code = 'u';
+        angular.element('#theCode span').removeClass('active');
+        angular.element('#up1').addClass('active');
+        angular.element('#theCode').show().fadeOut(1000);
       }
     });
 

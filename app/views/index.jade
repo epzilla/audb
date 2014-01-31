@@ -81,6 +81,18 @@ html.no-js
                 a(ng-click='logout()') Logout
             
     div(ng-view).container.main-container
+
+    div(ng-if='!isSmallScreen', ng-controller='NavbarCtrl')#theCode
+      span.glyphicon.glyphicon-arrow-up#up1
+      span.glyphicon.glyphicon-arrow-up#up2
+      span.glyphicon.glyphicon-arrow-down#down1
+      span.glyphicon.glyphicon-arrow-down#down2
+      span.glyphicon.glyphicon-arrow-left#left1
+      span.glyphicon.glyphicon-arrow-right#right1
+      span.glyphicon.glyphicon-arrow-left#left2
+      span.glyphicon.glyphicon-arrow-right#right2
+      span#b-circle &#9399;
+      span#a-circle &#9398;
     
     div(ng-controller='NavbarCtrl', class='modal fade', id='checkinModal', tabindex='-1', role='dialog', aria-hidden='true')
       div(class='modal-dialog')
