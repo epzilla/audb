@@ -51,6 +51,10 @@ angular.module('audbApp')
       });
     };
 
+    $scope.getConcatName = function (n) {
+      return n.replace(/\s+/g, '').replace(/&/g, '').replace(/\./g, '');
+    };
+
     if (Auth.isLoggedIn()) {
       Auth.currentUser().$promise.then(function(user){
         if (user._id) {

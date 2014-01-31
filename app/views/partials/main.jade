@@ -28,11 +28,12 @@ div(ng-cloak, ng-if='currentUser').container
   h4(ng-show='record.t === 0').align-center Games Attended: {{record.w + record.l}}
   h4(ng-show='record.t > 0').align-center Record: {{record.w}}-{{record.l}}-{{record.t}} ({{record.secW}}-{{record.secL}}-{{record.secT}})
   h4(ng-show='record.t === 0').align-center Record: {{record.w}}-{{record.l}} ({{record.secW}}-{{record.secL}})
-  table().table.table-responsive.table-hover#yearly-table
+  table.table.table-responsive.table-hover#yearly-table
     thead
       tr
         th Date
         th W/L
+        th.hidden-xs
         th Opponent
         th Score
         th.hidden-xs Location
@@ -42,6 +43,8 @@ div(ng-cloak, ng-if='currentUser').container
 
         td(ng-if='game.Result === "W"').win {{game.Date.split('-')[1] + '/' + game.Date.split('-')[2] + '/' + game.Date.split('-')[0]}}
         td(ng-if='game.Result === "W"').win {{game.Result}}
+        td(ng-if='game.Result === "W"').win.logo-td.hidden-xs
+          div(class='logo-{{ getConcatName(game.Opponent) }} small-logo')
         td(ng-if='game.Result === "W"', id='{{game._id + "-opp"}}').win {{game.Opponent}}
         td(ng-if='game.Result === "W"').win {{game.auscore}} - {{game.opscore}}
         td(ng-if='game.Result === "W"').win.hidden-xs {{game.Location}}
@@ -49,6 +52,8 @@ div(ng-cloak, ng-if='currentUser').container
 
         td(ng-if='game.Result === "L"').loss {{game.Date.split('-')[1] + '/' + game.Date.split('-')[2] + '/' + game.Date.split('-')[0]}}
         td(ng-if='game.Result === "L"').loss {{game.Result}}
+        td(ng-if='game.Result === "L"').loss.logo-td.hidden-xs
+          div(class='logo-{{ getConcatName(game.Opponent) }} small-logo')
         td(ng-if='game.Result === "L"', id='{{game._id + "-opp"}}').loss {{game.Opponent}}
         td(ng-if='game.Result === "L"').loss {{game.auscore}} - {{game.opscore}}
         td(ng-if='game.Result === "L"').loss.hidden-xs {{game.Location}}
@@ -56,6 +61,8 @@ div(ng-cloak, ng-if='currentUser').container
 
         td(ng-if='game.Result === "T"').tie {{game.Date.split('-')[1] + '/' + game.Date.split('-')[2] + '/' + game.Date.split('-')[0]}}
         td(ng-if='game.Result === "T"').tie {{game.Result}}
+        td(ng-if='game.Result === "T"').tie.logo-td.hidden-xs
+          div(class='logo-{{ getConcatName(game.Opponent) }} small-logo')
         td(ng-if='game.Result === "T"', id='{{game._id + "-opp"}}').tie {{game.Opponent}}
         td(ng-if='game.Result === "T"').tie {{game.auscore}} - {{game.opscore}}
         td(ng-if='game.Result === "T"').tie.hidden-xs {{game.Location}}
