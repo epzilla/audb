@@ -95,7 +95,7 @@
         th.hidden-xs Attended?
         th.visible-xs Loc
     tbody(ng-cloak)
-      tr(ng-repeat='game in games', id='game-row-{{game._id}}', ng-class='didAttend(game._id) ? "attended" : ""', ng-click='smallScreenAttend(game._id)', tabindex='1')
+      tr(ng-repeat='game in games | orderBy:\'Date\'', id='game-row-{{game._id}}', ng-class='didAttend(game._id) ? "attended" : ""', ng-click='smallScreenAttend(game._id)', tabindex='1')
 
         td(ng-if='game.Result === "W"').win {{game.Date.split('-')[1] + '/' + game.Date.split('-')[2]+ '/' + game.Date.split('-')[0]}}
         td(ng-if='game.Result === "W"').win {{game.Result}}

@@ -87,7 +87,7 @@ angular.module('audbApp')
     };
 
     $scope.submitForm = function () {
-      angular.element('#stat-form button').prop('disabled', true);
+      $scope.changeButtonState('loading');
       var confs = [];
       var curr = [];
       var teams = [];
@@ -149,12 +149,12 @@ angular.module('audbApp')
         $scope.noData = data.length === 0 ? true : false;
         angular.element('#reset').show();
         angular.element('#stat-form').slideUp(650);
-
+        $scope.changeButtonState('waitingForReset');
       });
     };
 
     $scope.reset = function () {
-      angular.element('#stat-form button').prop('disabled', false);
+      $scope.changeButtonState('normal');
       angular.element('#reset').hide();
       angular.element('#stat-form').slideDown(300);
       $scope.games = [];
@@ -218,5 +218,21 @@ angular.module('audbApp')
 
     $scope.setEnd = function(a) {
       $scope.endYear = a;
+    };
+
+    $scope.changeButtonState = function(state) {
+      switch (state) {
+        case 'loading':
+          angular.element('#stat-form button').prop('disabled', true)
+                                              .html('Working...');
+          break;
+        case 'waitingForReset':
+          angular.element('#stat-form button').prop('disabled', true)
+                                              .html('Do it <span class="glyphicon glyphicon-circle-arrow-right top-3px"></span>');
+          break;
+        default:
+          angular.element('#stat-form button').prop('disabled', false)
+                                              .html('Do it <span class="glyphicon glyphicon-circle-arrow-right top-3px"></span>');
+      }
     };
   });
