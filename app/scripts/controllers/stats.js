@@ -15,7 +15,7 @@ angular.module('audbApp')
     $scope.noData = false;
     $scope.maxModalBodyHeight = $window.document.documentElement.clientHeight - 180;
     var breakpoint = 768;
-    $scope.isSmallScreen = $window.innerWidth < breakpoint ? true : false;
+    $scope.isSmallScreen = $window.document.documentElement.clientWidth < breakpoint ? true : false;
 
     $scope.unbindAll = function() {
       keyboardManager.unbind('s');
@@ -223,15 +223,15 @@ angular.module('audbApp')
     $scope.changeButtonState = function(state) {
       switch (state) {
         case 'loading':
-          angular.element('#stat-form button').prop('disabled', true)
+          angular.element('#stat-form .submit-btn button').prop('disabled', true)
                                               .html('Working...');
           break;
         case 'waitingForReset':
-          angular.element('#stat-form button').prop('disabled', true)
+          angular.element('#stat-form .submit-btn button').prop('disabled', true)
                                               .html('Do it <span class="glyphicon glyphicon-circle-arrow-right top-3px"></span>');
           break;
         default:
-          angular.element('#stat-form button').prop('disabled', false)
+          angular.element('#stat-form .submit-btn button').prop('disabled', false)
                                               .html('Do it <span class="glyphicon glyphicon-circle-arrow-right top-3px"></span>');
       }
     };

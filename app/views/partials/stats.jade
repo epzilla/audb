@@ -1,9 +1,11 @@
 .container.stat-page-container
   .page-header.align-center
-    h1(ng-hide='selectedTeams.length > 0') Auburn Football All-Time Results
-    h1(ng-show='selectedTeams.length == 1') Auburn Football All-Time Results vs. {{selectedTeams[0]}} 
-    h1(ng-show='selectedTeams.length > 1') Auburn Football All-Time Results vs.
+    h1(ng-hide='selectedTeams.length > 0') Auburn Football Results
+    h1(ng-show='selectedTeams.length == 1') Auburn Football Results vs. {{selectedTeams[0]}} 
+    h1(ng-show='selectedTeams.length > 1') Auburn Football Results vs.
       div(ng-repeat='t in selectedTeams').header-list-team {{t}}
+    h1
+      .header-list-team {{startYear}} &mdash; {{endYear}}
     div(ng-show='selectedTeams.indexOf("Conf: Pac-12") !== -1')
       p Note: Results for Pac-12 also include Pac-10 and Pac-8
     button(role='button', ng-show='games.length > 0', ng-click='reset()').btn.btn-au#reset Reset <span class="glyphicon glyphicon-refresh top-2px"></span>
@@ -72,7 +74,6 @@
         label(for='#start-year').yearLabel From 
       .col-sm-8.align-center.center.no-float.pad-bottom-1em
         select(ng-model='startYear', data-placeholder='Select Year', ng-change='setStart(startYear)')#start-year
-          option(value="")
           option(ng-repeat='y in years' value='{{y}}') {{y}}
 
     .row
@@ -80,7 +81,6 @@
         label(for='#end-year').yearLabel To 
       .col-sm-8.align-center.center.no-float.pad-bottom-1em 
         select(ng-model='endYear', data-placeholder='Select Year', ng-change='setEnd(endYear)')#end-year
-          option(value="")
           option(ng-repeat='y in reverseYears' value='{{y}}') {{y}}
     .row.submit-btn
       .col-sm-8.align-center.center.no-float
