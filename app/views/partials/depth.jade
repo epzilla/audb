@@ -252,32 +252,8 @@ div(class='modal fade', id='playerModal', tabindex='-1', role='dialog', aria-hid
     img(src='images/eagle-2.png', height='50px', width='auto')
     h3 WAR EAGLE
 
-//- table.table.table-responsive.table-hover
-//-   thead
-//-     tr
-//-       th Pos
-//-       th No.
-//-       th Name
-//-       th Year
-//-       th Ht.
-//-       th Wt.
-//-       th Hometown
-//-   tbody(ng-repeat='posgroup in players')
-//-     tr
-//-       th(colspan='7') {{posgroup[0].trupos}}
-//-     tr(ng-repeat='player in posgroup')
-//-       td(ng-if='player.retstart === 0') {{player.pos}}
-//-       td(ng-if='player.retstart === 0') {{player.num}}
-//-       td(ng-if='player.retstart === 0') {{player.forename}} {{player.surname}}
-//-       td(ng-if='player.retstart === 0') {{player.year}}
-//-       td(ng-if='player.retstart === 0') {{player.height}}
-//-       td(ng-if='player.retstart === 0') {{player.weight}}
-//-       td(ng-if='player.retstart === 0') {{player.city}}, {{player.state}}
-
-//-       td(ng-if='player.retstart === 1').bold {{player.pos}}
-//-       td(ng-if='player.retstart === 1').bold {{player.num}}
-//-       td(ng-if='player.retstart === 1').bold {{player.forename}} {{player.surname}}
-//-       td(ng-if='player.retstart === 1').bold {{player.year}}
-//-       td(ng-if='player.retstart === 1').bold {{player.height}}
-//-       td(ng-if='player.retstart === 1').bold {{player.weight}}
-//-       td(ng-if='player.retstart === 1').bold {{player.city}}, {{player.state}}
+script.
+  ga('send', 'pageview', {
+    'page': '/depth',
+    'title': 'Depth Chart Page'
+  });

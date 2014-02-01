@@ -26,3 +26,8 @@
     hr
     | Not registered? 
     a.text-center.new-account(href='/signup') Create an account.
+script.
+  ga('send', 'pageview', {
+    'page': '/login',
+    'title': 'Login Page'
+  });
