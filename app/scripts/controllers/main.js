@@ -11,8 +11,9 @@ angular.module('audbApp')
     $scope.getUserGames = function () {
       $http.get('/api/gamesByUser/' + $scope.user._id).success(function(data) {
         if (!$scope.games || (angular.toJson($scope.games) !== angular.toJson(data))) {
+          console.log('mismatch');
           $scope.games = data;
-          ls.add('myGames', data);
+          ls.add($scope.user._id + '_games', data);
           $scope.record = {
             w: 0,
             l: 0,
@@ -68,7 +69,7 @@ angular.module('audbApp')
             secT: 0,
             total: 0
           };
-          $scope.games = ls.get('myGames');
+          $scope.games = ls.get($scope.user._id + '_games');
           if ($scope.games) {
             for (var i = 0; i < $scope.games.length; i++) {
               $scope.record.total++;
