@@ -13,8 +13,7 @@
     "angular-route": "1.2.6",
     "angular-touch": "latest",
     "angular-local-storage": "latest",
-    "angular-ui-select2": "latest",
-    "modernizr": "latest"
+    "angular-ui-select2": "latest"
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",

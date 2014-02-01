@@ -1,4 +1,4 @@
-.container  
+div(ng-swipe-left='nextYear()', ng-swipe-right='prevYear()').container  
   .page-header.align-center
     h1 {{year}} Auburn Football Results
 
@@ -9,9 +9,11 @@
         option(ng-cloak, ng-repeat='y in years' value='{{y}}') {{y}}
 
   form(ng-if='isSmallScreen')
-    .col-sm-4.center.no-float.align-center.pad-bottom-1em
+
+    .col-sm-4.center.no-float.align-center
       select(ng-model='year', data-placeholder='Select Year', ng-change='setYear(year)')#yearpicker-ss
         option(ng-cloak, ng-repeat='y in years' value='{{y}}') {{y}}
+      p Swipe left/right to view next/previous year
   
   div(ng-if='year == 1943').jumbotron
     h1 Allies 1 - Axis 0

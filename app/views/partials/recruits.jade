@@ -1,4 +1,4 @@
-.container
+div(ng-swipe-left='nextYear()', ng-swipe-right='prevYear()').container
   .page-header.align-center
     h1 Auburn Football Recruiting 
     div(ng-cloak, class="dropdown rec-year-dropdown").
@@ -6,6 +6,7 @@
       <ul class="dropdown-menu" role="menu" aria-labelledby="yearDropdown">
         <li ng-repeat="y in recClasses"  role="presentation"><a role="menuitem" tabindex="-1" ng-click="getRecruits(y)">{{y}}</a></li>
       </ul>
+    <p class="pad-top-mobile" ng-show="isSmallScreen">Swipe left/right to view next/previous year</p>
 
   table.table.table-responsive.table-hover#recruit-table
     thead

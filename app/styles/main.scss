@@ -305,6 +305,10 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1.5em;
 }
 
+#yearpicker-ss {
+  margin-bottom: 1em;
+}
+
 .select2-container .select2-choice > .select2-chosen {
   margin-right: 10px;
   margin-top: 7px;
@@ -600,6 +604,12 @@ ul.checklist {
 .pad-mobile {
   @include breakpoint(pequeno) {
     padding: 1em;
+  }
+}
+
+.pad-top-mobile {
+  @include breakpoint(pequeno) {
+    padding-top: 1em;
   }
 }
 
