@@ -4,6 +4,8 @@
     h1(ng-show='selectedTeams.length == 1') Auburn Football All-Time Results vs. {{selectedTeams[0]}} 
     h1(ng-show='selectedTeams.length > 1') Auburn Football All-Time Results vs.
       div(ng-repeat='t in selectedTeams').header-list-team {{t}}
+    div(ng-show='selectedTeams.indexOf("Conf: Pac-12") !== -1')
+      p Note: Results for Pac-12 also include Pac-10 and Pac-8
     button(role='button', ng-show='games.length > 0', ng-click='reset()').btn.btn-au#reset Reset <span class="glyphicon glyphicon-refresh top-2px"></span>
 
   form(ng-cloak, ng-if='!isSmallScreen')#stat-form

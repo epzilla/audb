@@ -160,7 +160,7 @@ angular.module('audbApp')
       $scope.games = [];
       $scope.record = {};
       $scope.noData = false;
-      $scope.selectedTeams = [];
+      $rootScope.selectedTeams = [];
       if (!$scope.isSmallScreen) {
         angular.element('#opp-picker').select2('data', null);
         $scope.focusSelect();
