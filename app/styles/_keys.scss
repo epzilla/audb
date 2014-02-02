@@ -9,12 +9,14 @@
  */
 
 /* Base style, essential for every key. */
+@import 'mixins';
+
 kbd, .key {
   display: inline;
   display: inline-block;
   min-width: 1em;
   padding: .2em .3em;
-  font: normal .85em/1 "Lucida Grande", Lucida, Arial, sans-serif;
+  font: normal .85em/1 $mainfont;
   text-align: center;
   text-decoration: none;
   -moz-border-radius: .3em;
