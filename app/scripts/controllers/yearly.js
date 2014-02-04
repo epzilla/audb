@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('audbApp')
-  .controller('YearlyCtrl', function ($scope, $rootScope, $http, Auth, $window, localStorageService, keyboardManager) {
+  .controller('YearlyCtrl', function ($scope, $rootScope, $http, Auth,
+                                      $window, localStorageService, keyboardManager, TouchDetect) {
     var ls =localStorageService;
     var breakpoint = 768;
     if (angular.element('#nav-menu-collapse').hasClass('in')) {
@@ -11,6 +12,7 @@ angular.module('audbApp')
     $scope.year = $scope.thisYear;
     $scope.years = [];
     $scope.user = {};
+    $scope.hasTouch = TouchDetect.hasTouch();
     Auth.currentUser().$promise.then( function(user) {
       $scope.user = user;
     });
@@ -152,6 +154,18 @@ angular.module('audbApp')
       $scope.setYear($scope.year - 1);
       if (!$scope.isSmallScreen) {
         angular.element('.select2-container .select2-choice > .select2-chosen').text($scope.year);
+      }
+    };
+
+    $scope.swipeNextYear = function() {
+      if ($scope.hasTouch) {
+        $scope.nextYear();
+      }
+    };
+
+    $scope.swipePrevYear = function() {
+      if ($scope.hasTouch) {
+        $scope.prevYear();
       }
     };
 

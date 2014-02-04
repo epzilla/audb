@@ -59,7 +59,7 @@ angular.module('audbApp')
     };
 
     $scope.sortAlpha = function() {
-      $scope.predicate = 'surname';
+      $scope.predicate = '[surname, forename]';
       $scope.reverse = !$scope.reverse;
     };
 
@@ -69,12 +69,12 @@ angular.module('audbApp')
     };
 
     $scope.sortHome = function() {
-      $scope.predicate = 'state';
+      $scope.predicate = '[state, city, hs, surname, forename]';
       $scope.reverse = !$scope.reverse;
     };
 
     $scope.sortHS = function() {
-      $scope.predicate = 'hs';
+      $scope.predicate = '[hs, state, city, hs, surname, forename]';
       $scope.reverse = !$scope.reverse;
     };
 

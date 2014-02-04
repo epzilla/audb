@@ -12,21 +12,21 @@ div(ng-swipe-left='nextYear()', ng-swipe-right='prevYear()').container
     thead
       tr
         th
-          a(ng-click='predicate = "surname"; reverse=!reverse;') Name
-          span(ng-show='predicate == "surname" && !reverse').glyphicon.glyphicon-chevron-up
-          span(ng-show='predicate == "surname" && reverse').glyphicon.glyphicon-chevron-down
+          a(ng-click='predicate = "[surname, forename]"; reverse=!reverse;') Name
+          span(ng-show='predicate == "[surname, forename]" && !reverse').glyphicon.glyphicon-chevron-up
+          span(ng-show='predicate == "[surname, forename]" && reverse').glyphicon.glyphicon-chevron-down
         th
           a(ng-click='predicate = "pos"; reverse=!reverse;') Pos
           span(ng-show='predicate == "pos" && !reverse').glyphicon.glyphicon-chevron-up
           span(ng-show='predicate == "pos" && reverse').glyphicon.glyphicon-chevron-down
         th
-          a(ng-click='predicate = "state"; reverse=!reverse;') Hometown
-          span(ng-show='predicate == "state" && !reverse').glyphicon.glyphicon-chevron-up
-          span(ng-show='predicate == "state" && reverse').glyphicon.glyphicon-chevron-down
+          a(ng-click='predicate = "[state, city, hs, surname, forename]"; reverse=!reverse;') Hometown
+          span(ng-show='predicate == "[state, city, hs, surname, forename]" && !reverse').glyphicon.glyphicon-chevron-up
+          span(ng-show='predicate == "[state, city, hs, surname, forename]" && reverse').glyphicon.glyphicon-chevron-down
         th.hidden-xs
-          a(ng-click='predicate = "hs"; reverse=!reverse;') High School
-          span(ng-show='predicate == "hs" && !reverse').glyphicon.glyphicon-chevron-up
-          span(ng-show='predicate == "hs" && reverse').glyphicon.glyphicon-chevron-down
+          a(ng-click='predicate = "[hs, state, city, hs, surname, forename]"; reverse=!reverse;') High School
+          span(ng-show='predicate == "[hs, state, city, hs, surname, forename]" && !reverse').glyphicon.glyphicon-chevron-up
+          span(ng-show='predicate == "[hs, state, city, hs, surname, forename]" && reverse').glyphicon.glyphicon-chevron-down
         th.hidden-xs.align-center
           a(ng-click='predicate = "rivalsstars"; reverse=!reverse;') Rivals
           span(ng-show='predicate == "rivalsstars" && !reverse').glyphicon.glyphicon-chevron-up
