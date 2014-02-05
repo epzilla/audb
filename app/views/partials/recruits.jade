@@ -47,7 +47,10 @@ div(ng-swipe-left='swipeNextYear()', ng-swipe-right='swipePrevYear()').container
           a(ng-click='predicate = "avgstars"; reverse=!reverse;') Stars
           span(ng-show='predicate == "avgstars" && !reverse').glyphicon.glyphicon-chevron-up
           span(ng-show='predicate == "avgstars" && reverse').glyphicon.glyphicon-chevron-down
-        th.visible-xs Rank
+        th.visible-xs
+          a(ng-click='predicate = "avgrank"; reverse=!reverse;') Rank
+          span(ng-show='predicate == "avgrank" && !reverse').glyphicon.glyphicon-chevron-up
+          span(ng-show='predicate == "avgrank" && reverse').glyphicon.glyphicon-chevron-down
     tbody(ng-cloak)
       tr(ng-repeat='rec in recruits | orderBy:predicate:reverse')
         td {{rec.forename}} {{rec.surname}}
@@ -58,8 +61,8 @@ div(ng-swipe-left='swipeNextYear()', ng-swipe-right='swipePrevYear()').container
         td.hidden-xs.align-center {{rec.scoutstars}} <span class="glyphicon glyphicon-star"></span>
         td.hidden-xs.align-center {{rec.rivalsrank}}
         td.hidden-xs.align-center {{rec.scoutrank}}
-        td.visible-xs {{(rec.scoutstars + rec.rivalsstars) / 2.0 | number:1}}
-        td.visible-xs {{(rec.rivalsrank + rec.scoutrank) / 2.0 | number:1}}
+        td.visible-xs {{rec.avgstars | number:1}}
+        td.visible-xs {{rec.avgrank | number:1}}
   
   div(ng-if='isSmallScreen').pad-mobile
     p
