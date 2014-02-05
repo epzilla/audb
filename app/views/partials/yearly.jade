@@ -13,7 +13,7 @@ div(ng-swipe-left='swipeNextYear()', ng-swipe-right='swipePrevYear()').container
     .col-sm-4.center.no-float.align-center
       select(ng-model='year', data-placeholder='Select Year', ng-change='setYear(year)')#yearpicker-ss
         option(ng-cloak, ng-repeat='y in years' value='{{y}}') {{y}}
-      p Swipe left/right to view next/previous year
+      p(ng-if='hasTouch') Swipe left/right to view next/previous year
   
   div(ng-if='year == 1943').jumbotron
     h1 Allies 1 - Axis 0

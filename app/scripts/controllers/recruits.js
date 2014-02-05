@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('audbApp')
-  .controller('RecruitsCtrl', function ($scope, $http, $window, localStorageService, keyboardManager) {
+  .controller('RecruitsCtrl', function ($scope, $http, $window, localStorageService, keyboardManager, TouchDetect) {
     if (angular.element('#nav-menu-collapse').hasClass('in')) {
       angular.element('.navbar-toggle').click();
     }
@@ -9,6 +9,7 @@ angular.module('audbApp')
     var ls = localStorageService;
     var breakpoint = 768;
     var dateNow = new Date();
+    $scope.hasTouch = TouchDetect.hasTouch();
     $scope.thisYear = dateNow.getFullYear();
     $scope.currentClass = dateNow.getMonth() < 2 ? $scope.thisYear : ($scope.thisYear + 1);
     $scope.recClasses = [2011, 2012, 2013, 2014, 2015, 2016];
@@ -37,6 +38,18 @@ angular.module('audbApp')
       if ($scope.currentClass > $scope.recClasses[0]) {
         $scope.currentClass--;
         $scope.getRecruits($scope.currentClass);
+      }
+    };
+
+    $scope.swipeNextYear = function() {
+      if ($scope.hasTouch) {
+        $scope.nextYear();
+      }
+    };
+
+    $scope.swipePrevYear = function() {
+      if ($scope.hasTouch) {
+        $scope.prevYear();
       }
     };
 
