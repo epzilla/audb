@@ -118,6 +118,7 @@ h1, h2, h3, h4, h5, h6 {
     .navbar-toggle {
       background-color: $orange;
       border-color: $navy;
+      color: $navy;
       .icon-bar {
         background-color: $navy;
       }
@@ -202,6 +203,9 @@ h1, h2, h3, h4, h5, h6 {
     }
     &.align-center {
       text-align: center;
+    }
+    &.lead {
+      color: $navy;
     }
   }
 }
