@@ -191,11 +191,9 @@ angular.module('audbApp')
     $scope.didAttend = function(gameID) {
       var games = $scope.user.games;
       if (games) {
-        for (var i = 0; i < games.length; i++) {
-          if (games[i] === gameID) {
-            return true;
-          }
-        }
+        return games.some(function(thisGame) {
+          return thisGame === gameID;
+        });
       }
       return false;
     };
