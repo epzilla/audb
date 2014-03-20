@@ -9,16 +9,16 @@ angular.module('audbApp')
       angular.element('.navbar-toggle').click();
     }
     $scope.players = ls.get('depthChart');
-    if (!$scope.players) {
-      $http.get('/api/playersByPos').success(function(data) {
+    $http.get('/api/playersByPos').success(function(data) {
+      if (!$scope.players || $scope.players !== data) {
         $scope.players = data;
         ls.add('depthChart', data);
-        if (angular.element('.loader').hasClass('show')) {
-          angular.element('.loader').toggleClass('show');
-        }
-      });
-    }
-    if (angular.element('.loader').hasClass('show')) {
+      }
+      if (angular.element('.loader').hasClass('show')) {
+        angular.element('.loader').toggleClass('show');
+      }
+    });
+    if (angular.element('.loader').hasClass('show') && $scope.players) {
       angular.element('.loader').toggleClass('show');
     }
     $scope.showPlayerInfo = function(pl) {
