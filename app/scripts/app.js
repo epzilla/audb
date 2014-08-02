@@ -44,6 +44,10 @@ angular.module('audbApp', [
         templateUrl: 'partials/recruits',
         controller: 'RecruitsCtrl'
       })
+      .when('/admin', {
+        templateUrl: 'partials/admin',
+        controller: 'AdminCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

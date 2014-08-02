@@ -107,6 +107,19 @@ angular.module('audbApp')
       isLoggedIn: function() {
         var user = $rootScope.currentUser;
         return !!user;
+      },
+
+      /**
+       * Simple check to see if a user is logged in
+       * 
+       * @return {Boolean}
+       */
+      isAdmin: function() {
+        var user = $rootScope.currentUser;
+        if (user) {
+          return (user.role === 'admin');
+        }
+        return false;
       }
     };
   });

@@ -123,9 +123,9 @@
         td(ng-if='game.Result === "L"').loss {{game.auscore}} - {{game.opscore}}
         td(ng-if='game.Result === "L"').loss.hidden-xs {{game.Location}}
         td(ng-if='game.Result === "L"').loss.hidden-xs.attend-td
-          button(ng-if='currentUser && (user.games.indexOf(game) === -1)', ng-click='toggleAttended("{{game._id}}")', id='{{game._id}}', tabindex='-1').btn.btn-default.btn-xs
+          button(ng-if='currentUser && (!didAttend(game._id))', ng-click='toggleAttended("{{game._id}}")', id='{{game._id}}', tabindex='-1').btn.btn-default.btn-xs
             span.glyphicon.glyphicon-minus
-          button(ng-if='currentUser && (user.games.indexOf(game) !== -1)', ng-click='toggleAttended("{{game._id}}")', id='{{game._id}}', tabindex='-1').btn.btn-default.btn-xs.yes
+          button(ng-if='currentUser && didAttend(game._id)', ng-click='toggleAttended("{{game._id}}")', id='{{game._id}}', tabindex='-1').btn.btn-default.btn-xs.yes
             span.glyphicon.glyphicon-ok
           button(ng-if='!currentUser', ng-click='toggleAttended("{{game._id}}")', id='{{game._id}}', tabindex='-1').btn.btn-default.btn-xs.disabled
             span.glyphicon.glyphicon-minus
@@ -139,9 +139,9 @@
         td(ng-if='game.Result === "T"').tie {{game.auscore}} - {{game.opscore}}
         td(ng-if='game.Result === "T"').tie.hidden-xs {{game.Location}}
         td(ng-if='game.Result === "T"').tie.hidden-xs.attend-td
-          button(ng-if='currentUser && (user.games.indexOf(game) === -1)', ng-click='toggleAttended("{{game._id}}")', id='{{game._id}}', tabindex='-1').btn.btn-default.btn-xs
+          button(ng-if='currentUser && (!didAttend(game._id))', ng-click='toggleAttended("{{game._id}}")', id='{{game._id}}', tabindex='-1').btn.btn-default.btn-xs
             span.glyphicon.glyphicon-minus
-          button(ng-if='currentUser && (user.games.indexOf(game) !== -1)', ng-click='toggleAttended("{{game._id}}")', id='{{game._id}}', tabindex='-1').btn.btn-default.btn-xs.yes
+          button(ng-if='currentUser && didAttend(game._id)', ng-click='toggleAttended("{{game._id}}")', id='{{game._id}}', tabindex='-1').btn.btn-default.btn-xs.yes
             span.glyphicon.glyphicon-ok
           button(ng-if='!currentUser', ng-click='toggleAttended("{{game._id}}")', id='{{game._id}}', tabindex='-1').btn.btn-default.btn-xs.disabled
             span.glyphicon.glyphicon-minus
