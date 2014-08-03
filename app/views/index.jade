@@ -69,7 +69,7 @@ html.no-js
           li(ng-cloak, ng-show='currentUser', class='checkin-button-li')
                 a(ng-click='checkIn()', role='button', class='btn btn-au', data-target='#checkinModal', ng-disabled='isCheckedIn') <span class="glyphicon glyphicon-ok"></span>
           li(ng-show='currentUser' class='dropdown')
-            a(href='#', data-toggle='dropdown').dropdown-toggle {{currentUser.name}} <b class="caret"></b>
+            a(data-toggle='dropdown').dropdown-toggle {{currentUser.name}} <b class="caret"></b>
             ul.dropdown-menu
               li(ng-cloak, ng-show='currentUser')
                 a(ng-click='keyboardModal()') Keyboard Shortcuts (k)

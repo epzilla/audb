@@ -320,6 +320,11 @@ module.exports = function (grunt) {
             'server.js',
             'lib/**/*'
           ]
+        }, {
+          expand: true,
+          cwd: '<%= yeoman.app %>/images',
+          dest: '<%= yeoman.dist %>/public/images',
+          src: '**/*'
         }]
       },
       styles: {
