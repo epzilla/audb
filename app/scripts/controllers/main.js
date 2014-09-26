@@ -99,6 +99,40 @@ angular.module('audbApp')
           } else {
             $scope.getUserGames();
           }
+
+          var wlFilter = crossfilter($scope.games);
+
+          // Dimensions
+          $scope.winLossDimension = wlFilter.dimension(function (d) { 
+            if (d.Result === 'W') {
+              return 'Win';
+            } else if (d.Result === 'L') {
+              return 'Loss';
+            } else {
+              return 'Tie';
+            }
+          });
+          $scope.homeAwayDimension = wlFilter.dimension(function (d) { 
+            if (d.Location === 'Auburn, AL') {
+              return 'Home';
+            } else {
+              return 'Away';
+            }
+          });
+          $scope.confDimension = wlFilter.dimension(function (d) {
+            if (d.Conference === 'Pac-10') {
+              return 'Pac-12';
+            } else if (d.Conference === 'Conference-USA') {
+              return 'Conf-USA';
+            } else {
+              return d.Conference; 
+            }
+          });
+
+          $scope.winLossGroup = $scope.winLossDimension.group();
+          $scope.homeAwayGroup = $scope.homeAwayDimension.group();
+          $scope.confGroup = $scope.confDimension.group();
+
         } else {
           $http.get('/api/userByEmail/' + $rootScope.currentUser.email).success( function (data) {
             $scope.user = data;

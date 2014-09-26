@@ -67,11 +67,13 @@ div(ng-swipe-left='swipeNextYear()', ng-swipe-right='swipePrevYear()').container
         td(ng-if='game.Result === "L"').loss.visible-xs {{game.Location === 'Auburn, AL' ? 'H' : 'A'}}
 
         td(ng-if='game.Result === "T"').tie {{game.Date.split('-')[1] + '/' + game.Date.split('-')[2]}}
-        td(ng-if='game.Result === "T"').tie {{game.Result}}
+        td(ng-if='game.Result === "T" && year === thisYear').tie
+        td(ng-if='game.Result === "T" && year !== thisYear').tie {{game.Result}}
         td(ng-if='game.Result === "T"').tie.logo-td.hidden-xs
           div(class='logo-{{ getConcatName(game.Opponent) }} small-logo')
         td(ng-if='game.Result === "T"', id='{{game._id + "-opp"}}').tie {{game.Opponent}}
-        td(ng-if='game.Result === "T"').tie {{game.auscore}} - {{game.opscore}}
+        td(ng-if='game.Result === "T" && year !== thisYear').tie {{game.auscore}} - {{game.opscore}}
+        td(ng-if='game.Result === "T" && year === thisYear').tie
         td(ng-if='game.Result === "T"').tie.hidden-xs {{game.Location}}
         td(ng-if='game.Result === "T"').tie.hidden-xs.attend-td
           button(ng-if='currentUser && (!didAttend(game._id))', ng-click='toggleAttended("{{game._id}}")', id='{{game._id}}', tabindex='-1').btn.btn-default.btn-xs
@@ -84,6 +86,7 @@ div(ng-swipe-left='swipeNextYear()', ng-swipe-right='swipePrevYear()').container
   
   h3(ng-cloak, ng-show='record.t > 0 && year !== thisYear && year !== 1943').align-center Record: {{record.w}}-{{record.l}}-{{record.t}} ({{record.secW}}-{{record.secL}}-{{record.secT}})
   h3(ng-cloak, ng-show='record.t === 0 && year != 1943').align-center Record: {{record.w}}-{{record.l}} ({{record.secW}}-{{record.secL}})
+  h3(ng-cloak, ng-show='year === thisYear').align-center Record: {{record.w}}-{{record.l}} ({{record.secW}}-{{record.secL}})
   h2(ng-show='year == 1997 || year == 2000').align-center SEC West Champions
   h2(ng-show='year == 2013 || year == 2010 || year == 2004 || year == 1989 || year == 1988 || year == 1987 || year == 1983 || year == 1957').align-center SEC Champions
   h2(ng-show='year == 1919 || year == 1914 || year == 1913').align-center SIAA Champions

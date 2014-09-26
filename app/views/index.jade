@@ -28,6 +28,7 @@ html.no-js
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
+    <link rel="stylesheet" href="bower_components/dcjs/dc.css" />
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   body(ng-app="audbApp")
@@ -378,6 +379,9 @@ html.no-js
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="bower_components/crossfilter/crossfilter.min.js"></script>
+    <script src="bower_components/d3/d3.min.js"></script>
+    <script src="bower_components/dcjs/dc.min.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/navbar.js"></script>
@@ -390,6 +394,7 @@ html.no-js
     <script src="scripts/services/keyboardManager.js"></script>
     <script src="scripts/services/touchDetect.js"></script>
     <script src="scripts/directives/mongooseError.js"></script>
+    <script src="scripts/directives/pie-chart.js"></script>
     <script src="scripts/controllers/yearly.js"></script>
     <script src="scripts/controllers/depth.js"></script>
     <script src="scripts/controllers/recruits.js"></script>

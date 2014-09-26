@@ -24,10 +24,26 @@ div(ng-cloak, ng-if='currentUser').container
   .page-header
     h1.align-center {{user.name}}
 
-  h4(ng-show='record.t > 0').align-center Games Attended: {{record.w + record.l + record.t}}
-  h4(ng-show='record.t === 0').align-center Games Attended: {{record.w + record.l}}
-  h4(ng-show='record.t > 0').align-center Record: {{record.w}}-{{record.l}}-{{record.t}} ({{record.secW}}-{{record.secL}}-{{record.secT}})
-  h4(ng-show='record.t === 0').align-center Record: {{record.w}}-{{record.l}} ({{record.secW}}-{{record.secL}})
+  .row
+    h4(ng-show='record.t > 0').align-center Games Attended: {{record.w + record.l + record.t}}
+    h4(ng-show='record.t === 0').align-center Games Attended: {{record.w + record.l}}
+    h4(ng-show='record.t > 0').align-center Record: {{record.w}}-{{record.l}}-{{record.t}} ({{record.secW}}-{{record.secL}}-{{record.secT}})
+    h4(ng-show='record.t === 0').align-center Record: {{record.w}}-{{record.l}} ({{record.secW}}-{{record.secL}})
+  .row
+    .col-md-4.text-center
+      h3 Overall Win Loss Pct.
+      pie-chart(dimension='winLossDimension', dimension-group='winLossGroup', chart-height='350')
+    .col-md-4.text-center
+      h3 Home/Away
+      pie-chart(dimension='homeAwayDimension', dimension-group='homeAwayGroup', chart-height='350')
+    .col-md-4.text-center
+      h3 Conference
+      pie-chart(dimension='confDimension', dimension-group='confGroup', chart-height='350')
+
+  hr
+
+  h2.text-center Games
+
   table.table.table-responsive.table-hover#yearly-table
     thead
       tr
