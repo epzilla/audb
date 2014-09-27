@@ -8,7 +8,7 @@ angular.module('audbApp').directive('pieChart', function() {
       dimensionGroup: '=',
       chartHeight: '='
     },
-    link: function(scope, element, attrs) {
+    link: function(scope, element) {
       var drawChart = function() {
         var pieChart = dc.pieChart(element[0]);
         var pieSize = (3/4) * scope.chartHeight;
@@ -25,7 +25,7 @@ angular.module('audbApp').directive('pieChart', function() {
             return d.value;
           });
 
-        dc.renderAll();        
+        dc.renderAll();
       };
 
       if (scope.dimensionGroup) {

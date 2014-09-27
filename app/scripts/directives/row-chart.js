@@ -10,10 +10,10 @@ angular.module('audbApp').directive('rowChart', function($window) {
       chartScale: '=',
       colors: '='
     },
-    link: function(scope, element, attrs) {
-      var el = element[0];
-      var width = el.clientWidth;
-      var height = el.clientHeight;
+    link: function(scope, element) {
+      // var el = element[0];
+      // var width = el.clientWidth;
+      // var height = el.clientHeight;
 
       var drawChart = function() {
         var rowChart = dc.rowChart(element[0]);
@@ -44,13 +44,13 @@ angular.module('audbApp').directive('rowChart', function($window) {
             return d.value.toFixed() + '%';
           })
           .x(scope.chartScale)
-          .xAxis().scale(scope.chartScale) 
+          .xAxis().scale(scope.chartScale)
           .tickValues([0,25,50,75,100])
           .tickFormat(function (d) {
-                return d + '%';
+            return d + '%';
           });
 
-        dc.renderAll();        
+        dc.renderAll();
       };
 
       if (scope.dimensionGroup) {

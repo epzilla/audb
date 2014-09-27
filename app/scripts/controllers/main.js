@@ -46,6 +46,9 @@ angular.module('audbApp')
             }
           }
         }
+
+        calculateDimensions();
+
         if (angular.element('.loader').hasClass('show')) {
           angular.element('.loader').toggleClass('show');
         }
@@ -101,67 +104,6 @@ angular.module('audbApp')
             $scope.getUserGames();
           }
 
-          var gameFilter = crossfilter($scope.games);
-
-          // Dimensions
-          $scope.winLossDimension = gameFilter.dimension(function (d) { 
-            if (d.Result === 'W') {
-              return 'Win';
-            } else if (d.Result === 'L') {
-              return 'Loss';
-            } else {
-              return 'Tie';
-            }
-          });
-          $scope.homeAwayDimension = gameFilter.dimension(function (d) { 
-            if (d.Location === 'Auburn, AL') {
-              return 'Home';
-            } else {
-              return 'Away';
-            }
-          });
-          $scope.confDimension = gameFilter.dimension(function (d) {
-            if (d.Conference === 'Pac-10') {
-              return 'Pac-12';
-            } else if (d.Conference === 'Conference-USA') {
-              return 'Conf-USA';
-            } else if (d.Conference === 'SECWest') {
-              return 'SEC (West)';
-            } else if (d.Conference === 'SECEast') {
-              return 'SEC (East)';
-            } else {
-              return d.Conference; 
-            }
-          });
-          $scope.auScoreDimension = gameFilter.dimension(function(d) { return d.auscore; });
-
-          $scope.winLossGroup = $scope.winLossDimension.group();
-          $scope.homeAwayGroup = $scope.homeAwayDimension.group();
-          $scope.confGroup = $scope.confDimension.group();
-          $scope.scoreDimensionGroup = $scope.auScoreDimension.group().reduce(
-              //add
-            function(p,v){
-              ++p.count;
-              p.ausum += v.auscore;
-              p.opsum += v.opscore;
-              p.Auburn = p.ausum / p.count;
-              p.Opponent = p.opsum / p.count;
-              return p;
-            },
-            //remove
-            function(p,v){
-              ++p.count;
-              p.ausum -= v.auscore;
-              p.opsum -= v.opscore;
-              p.Auburn = p.ausum / p.count;
-              p.Opponent = p.opsum / p.count;
-              return p;
-            },
-            //init
-            function(){
-              return  {Auburn: 0, Opponent: 0}; 
-            });
-
         } else {
           $http.get('/api/userByEmail/' + $rootScope.currentUser.email).success( function (data) {
             $scope.user = data;
@@ -172,4 +114,69 @@ angular.module('audbApp')
     } else if (angular.element('.loader').hasClass('show')) {
       angular.element('.loader').toggleClass('show');
     }
+
+    var calculateDimensions = function() {
+
+      var gameFilter = crossfilter($scope.games);
+
+      // Dimensions
+      $scope.winLossDimension = gameFilter.dimension(function (d) {
+        if (d.Result === 'W') {
+          return 'Win';
+        } else if (d.Result === 'L') {
+          return 'Loss';
+        } else {
+          return 'Tie';
+        }
+      });
+      $scope.homeAwayDimension = gameFilter.dimension(function (d) {
+        if (d.Location === 'Auburn, AL') {
+          return 'Home';
+        } else {
+          return 'Away';
+        }
+      });
+      $scope.confDimension = gameFilter.dimension(function (d) {
+        if (d.Conference === 'Pac-10') {
+          return 'Pac-12';
+        } else if (d.Conference === 'Conference-USA') {
+          return 'Conf-USA';
+        } else if (d.Conference === 'SECWest') {
+          return 'SEC (West)';
+        } else if (d.Conference === 'SECEast') {
+          return 'SEC (East)';
+        } else {
+          return d.Conference;
+        }
+      });
+      $scope.auScoreDimension = gameFilter.dimension(function(d) { return d.auscore; });
+
+      $scope.winLossGroup = $scope.winLossDimension.group();
+      $scope.homeAwayGroup = $scope.homeAwayDimension.group();
+      $scope.confGroup = $scope.confDimension.group();
+      $scope.scoreDimensionGroup = $scope.auScoreDimension.group().reduce(
+          //add
+        function(p,v){
+          ++p.count;
+          p.ausum += v.auscore;
+          p.opsum += v.opscore;
+          p.Auburn = p.ausum / p.count;
+          p.Opponent = p.opsum / p.count;
+          return p;
+        },
+        //remove
+        function(p,v){
+          ++p.count;
+          p.ausum -= v.auscore;
+          p.opsum -= v.opscore;
+          p.Auburn = p.ausum / p.count;
+          p.Opponent = p.opsum / p.count;
+          return p;
+        },
+        //init
+        function(){
+          return  {Auburn: 0, Opponent: 0};
+        });
+    };
+
   });
