@@ -3,7 +3,7 @@
 angular.module('audbApp')
   .controller('DepthCtrl', function ($scope, $http, localStorageService) {
     var ls = localStorageService;
-    $scope.year = 2014;
+    $scope.year = new Date().getFullYear();
     $scope.selectedPlayer = {};
     if (angular.element('#nav-menu-collapse').hasClass('in')) {
       angular.element('.navbar-toggle').click();

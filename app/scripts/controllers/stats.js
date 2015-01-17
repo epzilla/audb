@@ -8,7 +8,7 @@ angular.module('audbApp')
     $scope.years = [];
     $scope.reverseYears = [];
     $rootScope.selectedTeams = [];
-    $scope.endYear = (new Date().getFullYear()) - 1;
+    $scope.endYear = new Date().getFullYear();
     $scope.startYear = 1892;
     $scope.user = {};
     $scope.record = {};

@@ -2,6 +2,7 @@
 
 var express = require('express'),
     path = require('path'),
+    http = require('http'),
     fs = require('fs'),
     mongoose = require('mongoose');
 
@@ -38,6 +39,9 @@ require('./lib/routes')(app);
 // Start server
 app.listen(config.port, function () {
   console.log('Express server listening on port %d in %s mode', config.port, app.get('env'));
+  setInterval(function() {
+    http.get('http://audb.herokuapp.com');
+  }, 300000);
 });
 
 // Expose app

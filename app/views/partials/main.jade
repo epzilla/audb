@@ -39,11 +39,21 @@ div(ng-cloak, ng-if='currentUser').container
     .col-md-4.text-center
       h3 Conference
       pie-chart(dimension='confDimension', dimension-group='confGroup', chart-height='350')
-  //- .row
-  //-   .col-md-12
-  //-   row-chart(dimension='scoreDimension', dimension-group='scoreDimensionGroup',
-  //-               chart-scale='scoreChartScale', chart-width='scoreChartWidth',
-  //-               colors='["#002649", "#F46507"]')
+  .row
+    .col-md-4.text-center
+      h3 Opponents
+      pie-chart(dimension='opDimension', dimension-group='opGroup', chart-height='350')
+    .col-md-4.text-center
+      h3 Home/Away
+      //- pie-chart(dimension='homeAwayDimension', dimension-group='homeAwayGroup', chart-height='350')
+    .col-md-4.text-center
+      h3 Conference
+      //- pie-chart(dimension='confDimension', dimension-group='confGroup', chart-height='350')
+  .row
+    .col-md-12
+    //- row-chart(dimension='scoreDimension', dimension-group='gameGroup',
+    //-             chart-scale='scoreChartScale', chart-width='scoreChartWidth',
+    //-             colors='["#002649", "#F46507"]')
 
   hr
 

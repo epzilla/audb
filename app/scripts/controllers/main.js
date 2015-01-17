@@ -149,34 +149,14 @@ angular.module('audbApp')
           return d.Conference;
         }
       });
-      $scope.auScoreDimension = gameFilter.dimension(function(d) { return d.auscore; });
+      $scope.scoreDimension = gameFilter.dimension(function(d) { return d.auscore; });
+      $scope.opDimension = gameFilter.dimension(function(d) { return d.Opponent; });
 
       $scope.winLossGroup = $scope.winLossDimension.group();
       $scope.homeAwayGroup = $scope.homeAwayDimension.group();
       $scope.confGroup = $scope.confDimension.group();
-      $scope.scoreDimensionGroup = $scope.auScoreDimension.group().reduce(
-          //add
-        function(p,v){
-          ++p.count;
-          p.ausum += v.auscore;
-          p.opsum += v.opscore;
-          p.Auburn = p.ausum / p.count;
-          p.Opponent = p.opsum / p.count;
-          return p;
-        },
-        //remove
-        function(p,v){
-          ++p.count;
-          p.ausum -= v.auscore;
-          p.opsum -= v.opscore;
-          p.Auburn = p.ausum / p.count;
-          p.Opponent = p.opsum / p.count;
-          return p;
-        },
-        //init
-        function(){
-          return  {Auburn: 0, Opponent: 0};
-        });
+      $scope.opGroup = $scope.opDimension.group();
+
     };
 
   });
