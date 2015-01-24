@@ -7,7 +7,6 @@ angular.module('audbApp')
     }
     
     $scope.years = [];
-    $scope.reverseYears = [];
     $rootScope.selectedTeams = [];
     $scope.endYear = new Date().getFullYear();
     $scope.startYear = 1892;
@@ -36,9 +35,8 @@ angular.module('audbApp')
     for (var i = $scope.startYear; i <= $scope.endYear; i++) {
       $scope.years.push(i);
     }
-    for (i = $scope.endYear; i >= $scope.startYear; i--) {
-      $scope.reverseYears.push(i);
-    }
+
+    $scope.reverseYears = $scope.years.slice().reverse();
 
     $scope.unbindAll();
 

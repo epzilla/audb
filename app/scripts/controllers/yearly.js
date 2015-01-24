@@ -32,35 +32,35 @@ angular.module('audbApp')
 
     $scope.getGamesByYear = function (yr) {
       $http.get('/api/year/'+yr).success(function (data) {
-          if (!$scope.games || (angular.toJson($scope.games) !== angular.toJson(data))) {
-            $scope.games = data;
-            ls.add('yr-'+yr, data);
-            for (var i = 0; i < data.length; i++) {
-              switch(data[i].Result) {
-                case 'W':
-                  $scope.record.w++;
-                  if (data[i].SEC === 'y') {
-                    $scope.record.secW++;
-                  }
-                  break;
-                case 'L':
-                  $scope.record.l++;
-                  if (data[i].SEC === 'y') {
-                    $scope.record.secL++;
-                  }
-                  break;
-                default:
-                  $scope.record.t++;
-                  if (data[i].SEC === 'y') {
-                    $scope.record.secT++;
-                  }
-              }
+        if (!$scope.games || (angular.toJson($scope.games) !== angular.toJson(data))) {
+          $scope.games = data;
+          ls.add('yr-'+yr, data);
+          for (var i = 0; i < data.length; i++) {
+            switch(data[i].Result) {
+              case 'W':
+                $scope.record.w++;
+                if (data[i].SEC === 'y') {
+                  $scope.record.secW++;
+                }
+                break;
+              case 'L':
+                $scope.record.l++;
+                if (data[i].SEC === 'y') {
+                  $scope.record.secL++;
+                }
+                break;
+              default:
+                $scope.record.t++;
+                if (data[i].SEC === 'y') {
+                  $scope.record.secT++;
+                }
             }
           }
-          if (angular.element('.loader').hasClass('show')) {
-            angular.element('.loader').toggleClass('show');
-          }
-        });
+        }
+        if (angular.element('.loader').hasClass('show')) {
+          angular.element('.loader').toggleClass('show');
+        }
+      });
     };
 
     $scope.setYear = function (yr) {
