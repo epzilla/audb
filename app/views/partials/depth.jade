@@ -162,7 +162,7 @@ div(ng-cloak).row.depth
 .row.depth
   .col-md-4.align-center
     #wlb.player-group.player-group-d
-      h4 LB
+      h4 WLB
       div(ng-repeat='player in players.WLB', id='{{player._id}}')
         p(ng-if='player.retstart === 0') 
           a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
@@ -171,7 +171,7 @@ div(ng-cloak).row.depth
             a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
   .col-md-4.align-center
     #mlb.player-group.player-group-d
-      h4 LB
+      h4 MLB
       div(ng-repeat='player in players.MLB', id='{{player._id}}')
         p(ng-if='player.retstart === 0') 
           a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
@@ -180,8 +180,8 @@ div(ng-cloak).row.depth
             a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
   .col-md-4.align-center
     #star.player-group.player-group-d
-      h4 Star
-      div(ng-repeat='player in players.STAR', id='{{player._id}}')
+      h4 SLB
+      div(ng-repeat='player in players.SLB', id='{{player._id}}')
         p(ng-if='player.retstart === 0') 
           a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
         p(ng-if='player.retstart === 1')
