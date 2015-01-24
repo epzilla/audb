@@ -10,18 +10,18 @@ angular.module('audbApp')
       angular.element('.navbar-toggle').click();
     }
 
-    Auth.currentUser().$promise.then( function(user) {
+    Auth.currentUser().$promise.then(function (user) {
       $scope.user = user;
     });
 
-    $scope.showLoader = function() {
+    $scope.showLoader = function () {
       var el = angular.element('.loading');
       if (el.length === 0) {
         angular.element('#map-canvas').before('<div class="loading"></div>');
       }
     };
 
-    $scope.hideLoader = function() {
+    $scope.hideLoader = function () {
       var el = angular.element('.loading');
       if (el.length > 0) {
         el.remove();
@@ -31,19 +31,16 @@ angular.module('audbApp')
     $scope.changepw = function (form) {
       $scope.showLoader();
       $scope.submitted = true;
-      console.log($scope.user._id);
-      console.log($scope.user.oldPassword);
-      console.log($scope.user.newPassword);
       if(form.$valid) {
         Auth.changePassword($scope.user.oldPassword, $scope.user.newPassword)
-        .then( function() {
+        .then(function () {
           $scope.hideLoader();
           $scope.pwChanged = true;
-          $window.setTimeout( function() {
+          $window.setTimeout(function () {
             angular.element('#changePwModal').modal('hide');
           }, 3000);
         })
-        .catch( function(err) {
+        .catch(function (err) {
           $scope.hideLoader();
           err = err.data;
           $scope.errors.other = err.message;

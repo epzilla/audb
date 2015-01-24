@@ -203,7 +203,7 @@ angular.module('audbApp')
           modifiers.shift.pressed === modifiers.shift.wanted &&
           modifiers.alt.pressed === modifiers.alt.wanted &&
           modifiers.meta.pressed === modifiers.meta.wanted) {
-          $timeout(function() {
+          $timeout(function () {
             callback(e);
           }, 1);
 

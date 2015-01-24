@@ -39,7 +39,7 @@ require('./lib/routes')(app);
 // Start server
 app.listen(config.port, function () {
   console.log('Express server listening on port %d in %s mode', config.port, app.get('env'));
-  setInterval(function() {
+  setInterval(function () {
     http.get('http://audb.herokuapp.com');
   }, 300000);
 });

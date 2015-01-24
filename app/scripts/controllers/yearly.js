@@ -5,15 +5,18 @@ angular.module('audbApp')
                                       $window, localStorageService, keyboardManager, TouchDetect) {
     var ls =localStorageService;
     var breakpoint = 768;
+
     if (angular.element('#nav-menu-collapse').hasClass('in')) {
       angular.element('.navbar-toggle').click();
     }
+
     $scope.thisYear = new Date().getFullYear();
     $scope.year = $scope.thisYear;
     $scope.years = [];
     $scope.user = {};
     $scope.hasTouch = TouchDetect.hasTouch();
-    Auth.currentUser().$promise.then( function(user) {
+
+    Auth.currentUser().$promise.then(function (user) {
       $scope.user = user;
     });
 
@@ -21,14 +24,14 @@ angular.module('audbApp')
       $scope.years.push(i);
     }
 
-    $scope.unbindAll = function() {
+    $scope.unbindAll = function () {
       keyboardManager.unbind('left');
       keyboardManager.unbind('right');
       keyboardManager.unbind('space');
     };
 
     $scope.getGamesByYear = function (yr) {
-      $http.get('/api/year/'+yr).success(function(data) {
+      $http.get('/api/year/'+yr).success(function (data) {
           if (!$scope.games || (angular.toJson($scope.games) !== angular.toJson(data))) {
             $scope.games = data;
             ls.add('yr-'+yr, data);
@@ -60,7 +63,7 @@ angular.module('audbApp')
         });
     };
 
-    $scope.setYear = function(yr) {
+    $scope.setYear = function (yr) {
       if (yr <= $scope.thisYear && yr >= 1892) {
         $scope.year = parseInt(yr);
         $scope.record = {
@@ -106,31 +109,31 @@ angular.module('audbApp')
       }
     };
 
-    $scope.toggleAttended = function(gameID) {
+    $scope.toggleAttended = function (gameID) {
       var game = angular.element('#' + gameID);
       if (game.hasClass('yes')) {
         game.removeClass('yes').html('<span class="glyphicon glyphicon-minus"></span>');
       } else {
         game.addClass('yes').html('<span class="glyphicon glyphicon-ok"></span>');
       }
-      $http.post('/api/updateAttendance/' + gameID).success( function(user) {
+      $http.post('/api/updateAttendance/' + gameID).success(function (user) {
         $scope.user = user;
       });
     };
 
-    $scope.smallScreenAttend = function(gameID) {
+    $scope.smallScreenAttend = function (gameID) {
       if ($scope.isSmallScreen) {
         angular.element('#game-row-'+gameID).toggleClass('attended');
-        $http.post('/api/updateAttendance/' + gameID).success( function(user) {
+        $http.post('/api/updateAttendance/' + gameID).success(function (user) {
           $scope.user = user;
         });
       }
     };
 
-    $scope.didAttend = function(gameID) {
+    $scope.didAttend = function (gameID) {
       var games = $scope.user.games;
       if (games) {
-        return games.some(function(thisGame) {
+        return games.some(function (thisGame) {
           return thisGame === gameID;
         });
       }
@@ -141,27 +144,27 @@ angular.module('audbApp')
       return n.replace(/\s+/g, '').replace(/&/g, '').replace(/\./g, '');
     };
 
-    $scope.nextYear = function() {
+    $scope.nextYear = function () {
       $scope.setYear($scope.year + 1);
       if (!$scope.isSmallScreen) {
         angular.element('.select2-container .select2-choice > .select2-chosen').text($scope.year);
       }
     };
 
-    $scope.prevYear = function() {
+    $scope.prevYear = function () {
       $scope.setYear($scope.year - 1);
       if (!$scope.isSmallScreen) {
         angular.element('.select2-container .select2-choice > .select2-chosen').text($scope.year);
       }
     };
 
-    $scope.swipeNextYear = function() {
+    $scope.swipeNextYear = function () {
       if ($scope.hasTouch) {
         $scope.nextYear();
       }
     };
 
-    $scope.swipePrevYear = function() {
+    $scope.swipePrevYear = function () {
       if ($scope.hasTouch) {
         $scope.prevYear();
       }
@@ -171,19 +174,19 @@ angular.module('audbApp')
 
     $scope.setYear($scope.year);
 
-    keyboardManager.bind('left', function() {
+    keyboardManager.bind('left', function () {
       $scope.prevYear();
     }, {
       'inputDisabled': false
     });
 
-    keyboardManager.bind('right', function() {
+    keyboardManager.bind('right', function () {
       $scope.nextYear();
     }, {
       'inputDisabled': false
     });
 
-    keyboardManager.bind('space', function(e) {
+    keyboardManager.bind('space', function (e) {
       var btn = e.target.getElementsByClassName('attend-td')[0].children[0];
       angular.element(btn).click();
     }, {

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('audbApp').directive('rowChart', function($window) {
+angular.module('audbApp').directive('rowChart', function ($window) {
   return {
     restrict: 'E',
     scope: {
@@ -10,12 +10,12 @@ angular.module('audbApp').directive('rowChart', function($window) {
       chartScale: '=',
       colors: '='
     },
-    link: function(scope, element) {
+    link: function (scope, element) {
       // var el = element[0];
       // var width = el.clientWidth;
       // var height = el.clientHeight;
 
-      var drawChart = function() {
+      var drawChart = function () {
         var rowChart = dc.rowChart(element[0]);
       
         rowChart
@@ -57,15 +57,15 @@ angular.module('audbApp').directive('rowChart', function($window) {
         drawChart();
       }
 
-      scope.$watch('dimensionGroup', function() {
+      scope.$watch('dimensionGroup', function () {
         if (scope.dimensionGroup) {
           drawChart();
         }
       });
 
-      scope.$watch( function() {
+      scope.$watch(function () {
         return $window.innerWidth;
-      }, function() {
+      }, function () {
         if (scope.dimensionGroup) {
           drawChart();
         }

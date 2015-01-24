@@ -5,6 +5,7 @@ angular.module('audbApp')
     if (angular.element('#nav-menu-collapse').hasClass('in')) {
       angular.element('.navbar-toggle').click();
     }
+    
     $scope.years = [];
     $scope.reverseYears = [];
     $rootScope.selectedTeams = [];
@@ -17,18 +18,18 @@ angular.module('audbApp')
     var breakpoint = 768;
     $scope.isSmallScreen = $window.document.documentElement.clientWidth < breakpoint ? true : false;
 
-    $scope.unbindAll = function() {
+    $scope.unbindAll = function () {
       keyboardManager.unbind('s');
       keyboardManager.unbind('shift+enter');
       keyboardManager.unbind('r');
       keyboardManager.unbind('space');
     };
 
-    $scope.focusSelect = function() {
+    $scope.focusSelect = function () {
       angular.element('.select2-search-field input').focus();
     };
 
-    Auth.currentUser().$promise.then( function(user) {
+    Auth.currentUser().$promise.then(function (user) {
       $scope.user = user;
     });
 
@@ -41,19 +42,19 @@ angular.module('audbApp')
 
     $scope.unbindAll();
 
-    keyboardManager.bind('s', function() {
+    keyboardManager.bind('s', function () {
       $scope.focusSelect();
     });
 
-    keyboardManager.bind('shift+enter', function() {
+    keyboardManager.bind('shift+enter', function () {
       $scope.submitForm();
     });
 
-    keyboardManager.bind('r', function() {
+    keyboardManager.bind('r', function () {
       $scope.reset();
     });
 
-    keyboardManager.bind('space', function(e) {
+    keyboardManager.bind('space', function (e) {
       var btn = e.target.getElementsByClassName('attend-td')[0].children[0];
       angular.element(btn).click();
     }, {
@@ -73,7 +74,7 @@ angular.module('audbApp')
       }
     });
 
-    $scope.showSelectTeams = function() {
+    $scope.showSelectTeams = function () {
       angular.element('#teamSelectModal').modal('show');
     };
 
@@ -167,31 +168,31 @@ angular.module('audbApp')
       }
     };
 
-    $scope.toggleAttended = function(gameID) {
+    $scope.toggleAttended = function (gameID) {
       var game = angular.element('#' + gameID);
       if (game.hasClass('yes')) {
         game.removeClass('yes').html('<span class="glyphicon glyphicon-minus"></span>');
       } else {
         game.addClass('yes').html('<span class="glyphicon glyphicon-ok"></span>');
       }
-      $http.post('/api/updateAttendance/' + gameID).success( function(user) {
+      $http.post('/api/updateAttendance/' + gameID).success(function (user) {
         $scope.user = user;
       });
     };
 
-    $scope.smallScreenAttend = function(gameID) {
+    $scope.smallScreenAttend = function (gameID) {
       if ($scope.isSmallScreen) {
         angular.element('#game-row-'+gameID).toggleClass('attended');
-        $http.post('/api/updateAttendance/' + gameID).success( function(user) {
+        $http.post('/api/updateAttendance/' + gameID).success(function (user) {
           $scope.user = user;
         });
       }
     };
 
-    $scope.didAttend = function(gameID) {
+    $scope.didAttend = function (gameID) {
       var games = $scope.user.games;
       if (games) {
-        return games.some(function(thisGame) {
+        return games.some(function (thisGame) {
           return thisGame === gameID;
         });
       }
@@ -206,19 +207,19 @@ angular.module('audbApp')
       $window.alert(msg);
     };
 
-    $scope.setSelectedTeams = function(a) {
+    $scope.setSelectedTeams = function (a) {
       $rootScope.selectedTeams = a;
     };
 
-    $scope.setStart = function(a) {
+    $scope.setStart = function (a) {
       $scope.startYear = a;
     };
 
-    $scope.setEnd = function(a) {
+    $scope.setEnd = function (a) {
       $scope.endYear = a;
     };
 
-    $scope.changeButtonState = function(state) {
+    $scope.changeButtonState = function (state) {
       switch (state) {
         case 'loading':
           angular.element('#stat-form .submit-btn button').prop('disabled', true)

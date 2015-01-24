@@ -16,17 +16,17 @@ angular.module('audbApp')
        * @param  {Function} callback - optional
        * @return {Promise}            
        */
-      login: function(user, callback) {
+      login: function (user, callback) {
         var cb = callback || angular.noop;
 
         return Session.save({
           email: user.email,
           password: user.password,
           _id: user._id
-        }, function(user) {
+        }, function (user) {
           $rootScope.currentUser = user;
           return cb();
-        }, function(err) {
+        }, function (err) {
           return cb(err);
         }).$promise;
       },
@@ -37,16 +37,16 @@ angular.module('audbApp')
        * @param  {Function} callback - optional
        * @return {Promise}           
        */
-      logout: function(callback) {
+      logout: function (callback) {
         var cb = callback || angular.noop;
 
-        return Session.delete(function() {
-            $rootScope.currentUser = null;
-            return cb();
-          },
-          function(err) {
-            return cb(err);
-          }).$promise;
+        return Session.delete(function () {
+          $rootScope.currentUser = null;
+          return cb();
+        },
+        function (err) {
+          return cb(err);
+        }).$promise;
       },
 
       /**
@@ -56,17 +56,16 @@ angular.module('audbApp')
        * @param  {Function} callback - optional
        * @return {Promise}            
        */
-      createUser: function(user, callback) {
+      createUser: function (user, callback) {
         var cb = callback || angular.noop;
 
-        return User.save(user,
-          function(user) {
-            $rootScope.currentUser = user;
-            return cb(user);
-          },
-          function(err) {
-            return cb(err);
-          }).$promise;
+        return User.save(user, function (user) {
+          $rootScope.currentUser = user;
+          return cb(user);
+        },
+        function (err) {
+          return cb(err);
+        }).$promise;
       },
 
       /**
@@ -77,15 +76,15 @@ angular.module('audbApp')
        * @param  {Function} callback    - optional
        * @return {Promise}              
        */
-      changePassword: function(oldPassword, newPassword, callback) {
+      changePassword: function (oldPassword, newPassword, callback) {
         var cb = callback || angular.noop;
 
         return User.update({
           oldPassword: oldPassword,
           newPassword: newPassword
-        }, function(user) {
+        }, function (user) {
           return cb(user);
-        }, function(err) {
+        }, function (err) {
           return cb(err);
         }).$promise;
       },
@@ -95,7 +94,7 @@ angular.module('audbApp')
        * 
        * @return {Object} user
        */
-      currentUser: function() {
+      currentUser: function () {
         return User.get();
       },
 
@@ -104,7 +103,7 @@ angular.module('audbApp')
        * 
        * @return {Boolean}
        */
-      isLoggedIn: function() {
+      isLoggedIn: function () {
         var user = $rootScope.currentUser;
         return !!user;
       },
@@ -114,7 +113,7 @@ angular.module('audbApp')
        * 
        * @return {Boolean}
        */
-      isAdmin: function() {
+      isAdmin: function () {
         var user = $rootScope.currentUser;
         if (user) {
           return (user.role === 'admin');

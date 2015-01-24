@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('audbApp').directive('pieChart', function() {
+angular.module('audbApp').directive('pieChart', function () {
   return {
     restrict: 'E',
     scope: {
@@ -8,8 +8,8 @@ angular.module('audbApp').directive('pieChart', function() {
       dimensionGroup: '=',
       chartHeight: '='
     },
-    link: function(scope, element) {
-      var drawChart = function() {
+    link: function (scope, element) {
+      var drawChart = function () {
         var pieChart = dc.pieChart(element[0]);
         var pieSize = (3/4) * scope.chartHeight;
 
@@ -32,7 +32,7 @@ angular.module('audbApp').directive('pieChart', function() {
         drawChart();
       }
 
-      scope.$watch('dimensionGroup', function() {
+      scope.$watch('dimensionGroup', function () {
         if (scope.dimensionGroup) {
           drawChart();
         }

@@ -10,7 +10,7 @@ angular.module('audbApp')
     $scope.scoreChartWidth = 1000;
 
     $scope.getUserGames = function () {
-      $http.get('/api/gamesByUser/' + $scope.user._id).success(function(data) {
+      $http.get('/api/gamesByUser/' + $scope.user._id).success(function (data) {
         if (!$scope.games || (angular.toJson($scope.games) !== angular.toJson(data))) {
           $scope.games = data;
           ls.add($scope.user._id + '_games', data);
@@ -60,7 +60,7 @@ angular.module('audbApp')
     };
 
     if (Auth.isLoggedIn()) {
-      Auth.currentUser().$promise.then(function(user){
+      Auth.currentUser().$promise.then(function (user){
         if (user._id) {
           $scope.user = user;
           $scope.record = {
@@ -115,7 +115,7 @@ angular.module('audbApp')
       angular.element('.loader').toggleClass('show');
     }
 
-    var calculateDimensions = function() {
+    var calculateDimensions = function () {
 
       var gameFilter = crossfilter($scope.games);
 
@@ -149,8 +149,8 @@ angular.module('audbApp')
           return d.Conference;
         }
       });
-      $scope.scoreDimension = gameFilter.dimension(function(d) { return d.auscore; });
-      $scope.opDimension = gameFilter.dimension(function(d) { return d.Opponent; });
+      $scope.scoreDimension = gameFilter.dimension(function (d) { return d.auscore; });
+      $scope.opDimension = gameFilter.dimension(function (d) { return d.Opponent; });
 
       $scope.winLossGroup = $scope.winLossDimension.group();
       $scope.homeAwayGroup = $scope.homeAwayDimension.group();

@@ -19,7 +19,7 @@ angular.module('audbApp')
       'link': '/recruits'
     }];
 
-    $scope.unbindAll = function() {
+    $scope.unbindAll = function () {
       keyboardManager.unbind('k');
       keyboardManager.unbind('g');
       keyboardManager.unbind('up');
@@ -29,7 +29,7 @@ angular.module('audbApp')
       keyboardManager.unbind('c');
     };
 
-    $scope.resetGoto = function() {
+    $scope.resetGoto = function () {
       keyboardManager.unbind('h');
       keyboardManager.unbind('s');
       keyboardManager.unbind('y');
@@ -63,7 +63,7 @@ angular.module('audbApp')
 
     var secretCount = getRandomInt(0,(tdpics.length - 1));
 
-    var leftHandler = function() {
+    var leftHandler = function () {
       if (code === 'uudd') {
         code = 'uuddl';
         angular.element('#theCode span').removeClass('active');
@@ -80,7 +80,7 @@ angular.module('audbApp')
       }
     };
 
-    var rightHandler = function() {
+    var rightHandler = function () {
       if (code === 'uuddl') {
         code = 'uuddlr';
         angular.element('#theCode span').removeClass('active');
@@ -97,7 +97,7 @@ angular.module('audbApp')
       }
     };
 
-    var downHandler = function() {
+    var downHandler = function () {
       if (code === 'uu') {
         code = 'uud';
         angular.element('#theCode span').removeClass('active');
@@ -114,7 +114,7 @@ angular.module('audbApp')
       }
     };
 
-    var aHandler = function() {
+    var aHandler = function () {
       if (code === 'uuddlrlrb') {
         touchdownAuburn();
       }
@@ -122,7 +122,7 @@ angular.module('audbApp')
       angular.element('#theCode span').removeClass('active');
     };
 
-    var bHandler = function() {
+    var bHandler = function () {
       if (code === 'uuddlrlr') {
         code = 'uuddlrlrb';
         angular.element('#theCode span').removeClass('active');
@@ -134,7 +134,7 @@ angular.module('audbApp')
       }
     };
 
-    var touchdownAuburn = function() {
+    var touchdownAuburn = function () {
       var num = secretCount % (tdpics.length);
       angular.element('.modal-td-pic').attr({'src':tdpics[num]});
       secretCount++;
@@ -161,46 +161,46 @@ angular.module('audbApp')
 
     $scope.unbindAll();
 
-    keyboardManager.bind('k', function() {
+    keyboardManager.bind('k', function () {
       $scope.keyboardModal();
     });
 
-    keyboardManager.bind('c', function() {
+    keyboardManager.bind('c', function () {
       $scope.checkIn();
     });
 
-    keyboardManager.bind('g', function() {
-      var resetTimer = $window.setTimeout( function() {
+    keyboardManager.bind('g', function () {
+      var resetTimer = $window.setTimeout(function () {
         $scope.resetGoto();
       }, 1000);
-      keyboardManager.bind('h', function() {
+      keyboardManager.bind('h', function () {
         $window.clearTimeout(resetTimer);
         $scope.resetGoto();
         $location.path('/');
       });
-      keyboardManager.bind('s', function() {
+      keyboardManager.bind('s', function () {
         $window.clearTimeout(resetTimer);
         $scope.resetGoto();
         $location.path('/stats');
       });
-      keyboardManager.bind('y', function() {
+      keyboardManager.bind('y', function () {
         $window.clearTimeout(resetTimer);
         $scope.resetGoto();
         $location.path('/yearly');
       });
-      keyboardManager.bind('d', function() {
+      keyboardManager.bind('d', function () {
         $window.clearTimeout(resetTimer);
         $scope.resetGoto();
         $location.path('/depth');
       });
-      keyboardManager.bind('r', function() {
+      keyboardManager.bind('r', function () {
         $window.clearTimeout(resetTimer);
         $scope.resetGoto();
         $location.path('/recruits');
       });
     });
 
-    keyboardManager.bind('up', function() {
+    keyboardManager.bind('up', function () {
       if (code === 'u') {
         code = 'uu';
         keyboardManager.unbind('left');
@@ -222,9 +222,9 @@ angular.module('audbApp')
     keyboardManager.bind('b', bHandler);
     keyboardManager.bind('a', aHandler);
 
-    $scope.logout = function() {
+    $scope.logout = function () {
       Auth.logout()
-      .then(function() {
+      .then(function () {
         $location.path('/login');
       });
     };
@@ -234,38 +234,38 @@ angular.module('audbApp')
       $scope.$apply();
     };
     
-    $scope.isActive = function(route) {
+    $scope.isActive = function (route) {
       return route === $location.path();
     };
 
-    $scope.changePwModal = function() {
+    $scope.changePwModal = function () {
       angular.element('#changePwModal').modal('show');
     };
 
-    $scope.keyboardModal = function() {
+    $scope.keyboardModal = function () {
       angular.element('#keyboardModal').modal('toggle');
     };
 
-    $scope.showLoader = function() {
+    $scope.showLoader = function () {
       var el = angular.element('.loading');
       if (el.length === 0) {
         angular.element('#map-canvas').before('<div class="loading"></div>');
       }
     };
 
-    $scope.hideLoader = function() {
+    $scope.hideLoader = function () {
       var el = angular.element('.loading');
       if (el.length > 0) {
         el.remove();
       }
     };
 
-    $scope.hideMenu = function() {
+    $scope.hideMenu = function () {
       angular.element('.navbar-toggle').click();
       angular.element('.loader').removeClass('hidden').addClass('show');
     };
 
-    $scope.checkIn = function() {
+    $scope.checkIn = function () {
       if (Auth.isLoggedIn()) {
         if (!$rootScope.isCheckedIn) {
           $scope.showLoader();
@@ -276,7 +276,7 @@ angular.module('audbApp')
             if ($rootScope.gameDay) {
               // There IS a game today
               $rootScope.todaysGame = data;
-              $scope.geo.getCurrentPosition(function(position) {
+              $scope.geo.getCurrentPosition(function (position) {
                 var lat = position.coords.latitude;
                 var lon = position.coords.longitude;
                 var mapOptions = {

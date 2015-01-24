@@ -4,10 +4,12 @@ angular.module('audbApp')
   .controller('LoginCtrl', function ($scope, Auth, $location) {
     $scope.user = {};
     $scope.errors = {};
+    
     if (angular.element('#nav-menu-collapse').hasClass('in')) {
       angular.element('.navbar-toggle').click();
     }
-    $scope.login = function(form) {
+    
+    $scope.login = function (form) {
       $scope.submitted = true;
       
       if(form.$valid) {
@@ -15,11 +17,11 @@ angular.module('audbApp')
           email: $scope.user.email,
           password: $scope.user.password
         })
-        .then( function() {
+        .then(function () {
           // Logged in, redirect to home
           $location.path('/');
         })
-        .catch( function(err) {
+        .catch(function (err) {
           err = err.data;
           $scope.errors.other = err.message;
         });
