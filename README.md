@@ -1,6 +1,8 @@
 # AUDB
 Auburn football stats and records web application built on the MEAN stack.
 
+http://audb.co
+
 ## Prerequisites
 - Node.js and NPM
 - Bower
