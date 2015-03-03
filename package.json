@@ -9,7 +9,7 @@
     "connect-mongo": "~0.4.0",
     "passport": "latest",
     "passport-local": "latest",
-    "bcrypt": "~0.7.7",
+    "bcrypt": "~0.8.0",
     "jade": "latest"
   },
   "devDependencies": {
