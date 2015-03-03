@@ -11,7 +11,7 @@ var express = require('express'),
  */
 
 // Default node environment to development
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+process.env.NODE_ENV = process.env.NODE_ENV || 'production';
 
 // Application Config
 var config = require('./lib/config/config');
@@ -24,7 +24,7 @@ var modelsPath = path.join(__dirname, 'lib/models');
 fs.readdirSync(modelsPath).forEach(function (file) {
   require(modelsPath + '/' + file);
 });
-  
+
 // Passport Configuration
 require('./lib/config/passport')();
 
