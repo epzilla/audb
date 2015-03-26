@@ -12,7 +12,7 @@ html.no-js
     title AUDB - The Auburn Football Database
     meta(name="description", content="Auburn football record lookup, attendance tracking, recruiting and depth chart information.")
     meta(name="keywords", content="auburn, auburn football, war eagle, audb, auburn database")
-    meta(name="viewport", content="user-scalable=no, initial-scale=1.0")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
     meta(name="apple-mobile-web-app-capable", content="yes")
     meta(name="apple-mobile-web-app-title", content="AUDB")
     meta(name="apple-mobile-web-app-status-bar-style", content="black")
@@ -61,7 +61,7 @@ html.no-js
             a(ng-click='changePwModal()') Change Password
           li(ng-cloak, ng-show='isSmallScreen && currentUser', ng-class="{active: isActive('/logout')}")
             a(ng-click='logout()') Logout {{currentUser.name}}
-              
+
         ul(ng-cloak, ng-hide='isSmallScreen').nav.navbar-nav.pull-right
           li(ng-cloak, ng-hide='currentUser')
             a(ng-click='keyboardModal()') Keyboard Shortcuts (k)
@@ -78,7 +78,7 @@ html.no-js
                 a(ng-click='changePwModal()', data-target='#checkinModal') Change Password
               li(ng-class="{active: isActive('/logout')}")
                 a(ng-click='logout()') Logout
-            
+
     div(ng-view).container.main-container
 
     div(ng-if='!isSmallScreen', ng-controller='NavbarCtrl')#theCode
@@ -92,14 +92,14 @@ html.no-js
       span.glyphicon.glyphicon-arrow-right#right2
       span#b-circle &#9399;
       span#a-circle &#9398;
-    
+
     div(ng-controller='NavbarCtrl', class='modal fade', id='checkinModal', tabindex='-1', role='dialog', aria-hidden='true')
       div(class='modal-dialog')
         div(class='modal-content').align-center
           div(class='modal-header')
             button(type='button' class='close' data-dismiss='modal' aria-hidden='true') &times;
             h3.modal-title Check In
-          
+
           div(class='modal-body')
             p(ng-show='gameDay && (legitCheckin !== 2) && (legitCheckin !== 3)') Looks like it's Auburn vs. {{todaysGame.Opponent}} today. Let's check you in...
             p(ng-hide='gameDay || (legitCheckin !== 1)') Sorry, but it doesn't look like Auburn is playing a game near you today. :(
@@ -116,7 +116,7 @@ html.no-js
           div(class='modal-header')
             button(type='button' class='close' data-dismiss='modal' aria-hidden='true') &times;
             h3.modal-title Change Password
-          
+
           div(class='modal-body')
             .col-sm-12
               form.form(name='form', ng-hide='pwChanged', ng-submit='changepw(form)', novalidate='novalidate')
@@ -148,14 +148,14 @@ html.no-js
           div(class='modal-header')
             button(type='button' class='close' data-dismiss='modal' aria-hidden='true') &times;
             h3.modal-title Keyboard Shortcuts
-          
+
           div(class='modal-body')
             .row
               .col-sm-6
                 table.table.table-condensed.table-responsive
                   thead.align-left
                     tr
-                      td(colspan='2') 
+                      td(colspan='2')
                         strong Global
                     tr
                       th.col-sm-4 Key
@@ -164,31 +164,31 @@ html.no-js
                     tr
                       td.col-sm-4
                         span.key.light G
-                        |  then 
+                        |  then
                         span.key.light H
                       td.col-sm-8 Go to Home page
                     tr
                       td.col-sm-4
                         span.key.light G
-                        |  then 
+                        |  then
                         span.key.light S
                       td.col-sm-8 Go to Stats Page
                     tr
                       td.col-sm-4
                         span.key.light G
-                        |  then 
+                        |  then
                         span.key.light Y
                       td.col-sm-8 Go to Yearly Results Page
                     tr
                       td.col-sm-4
                         span.key.light G
-                        |  then 
+                        |  then
                         span.key.light D
                       td.col-sm-8 Go to Depth Chart
                     tr
                       td.col-sm-4
                         span.key.light G
-                        |  then 
+                        |  then
                         span.key.light R
                       td.col-sm-8 Go to Recruiting Page
                     tr
@@ -202,7 +202,7 @@ html.no-js
                 table.table.table-condensed.table-responsive
                   thead.align-left
                     tr
-                      td(colspan='2') 
+                      td(colspan='2')
                         strong Stats Page
                     tr
                       th.col-sm-4 Key
@@ -215,7 +215,7 @@ html.no-js
                     tr
                       td.col-sm-4
                         span.key.light Shift
-                        |  + 
+                        |  +
                         span.key.light Enter
                       td.col-sm-8 Submit (works even if cursor is in team select field)
                     tr
@@ -224,15 +224,15 @@ html.no-js
                       td.col-sm-8 Reset form
                     tr
                       td.col-sm-4
-                        span.key.light Tab 
-                        |  then 
+                        span.key.light Tab
+                        |  then
                         span.key.light Space
                       td.col-sm-8 Tab through the games, and press [Space] to update attendance for the highlighted game
               .col-sm-6
                 table.table.table-condensed.table-responsive
                   thead.align-left
                     tr
-                      td(colspan='2') 
+                      td(colspan='2')
                         strong Yearly Results Page
                     tr
                       th.col-sm-4 Key
@@ -251,13 +251,13 @@ html.no-js
                     tr
                       td.col-sm-4
                         span.key.light Tab
-                        |  / 
+                        |  /
                         span.key.light Space
                       td.col-sm-8 Tab through the games, and press [Space] to update attendance for the highlighted game
                 table.table.table-condensed.table-responsive
                   thead.align-left
                     tr
-                      td(colspan='2') 
+                      td(colspan='2')
                         strong Recruiting Page
                     tr
                       th.col-sm-4 Key
@@ -288,7 +288,7 @@ html.no-js
                     tr
                       td.col-sm-4
                         span.key.light Shift
-                        |  + 
+                        |  +
                         span.key.light H
                       td.col-sm-8 Sort by High School
                     tr
@@ -302,13 +302,13 @@ html.no-js
                     tr
                       td.col-sm-4
                         span.key.light Shift
-                        |  + 
+                        |  +
                         span.key.light R
                       td.col-sm-8 Sort by Rivals Rank
                     tr
                       td.col-sm-4
                         span.key.light Shift
-                        |  + 
+                        |  +
                         span.key.light S
                       td.col-sm-8 Sort by Scout Rank
 
@@ -321,7 +321,7 @@ html.no-js
           div(class='modal-header')
             button(type='button' class='close' data-dismiss='modal' aria-hidden='true') &times;
             h3.modal-title TOUCHDOWN AUBURN!
-          
+
           div(class='modal-body')
             img(src='').modal-td-pic
 
@@ -404,4 +404,4 @@ html.no-js
     <script src="scripts/controllers/admin.js"></script>
     <script src="scripts/services/touchDetect.js"></script>
     <!-- endbuild -->
-    
+
