@@ -19,6 +19,13 @@ angular.module('audbApp')
       'link': '/recruits'
     }];
 
+    if (Auth.isAdmin()) {
+      $scope.menu.push({
+        'title': 'Admin',
+        'link': '/admin'
+      });
+    }
+
     $scope.unbindAll = function () {
       keyboardManager.unbind('k');
       keyboardManager.unbind('g');
@@ -146,7 +153,7 @@ angular.module('audbApp')
     if ('geolocation' in $window.navigator) {
       $scope.geo = $window.navigator.geolocation;
     }
-    
+
     angular.element($window).resize(function () {
       $scope.setSmallScreen();
     });
@@ -233,7 +240,7 @@ angular.module('audbApp')
       $scope.isSmallScreen = $window.innerWidth < breakpoint ? true : false;
       $scope.$apply();
     };
-    
+
     $scope.isActive = function (route) {
       return route === $location.path();
     };

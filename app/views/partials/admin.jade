@@ -4,4 +4,17 @@ div(ng-if='authorized').container
 
   .row.pad-mobile
     .col-sm-12
+      h2 Enroll Recruits:
       button.btn.btn-primary(ng-click='enrollRecruits()') Enroll Recruits
+
+  .row.pad-mobile
+    .col-sm-12
+      h2 Edit Depth Chart
+      table.table.table-bordered.table-responsive
+        tbody(ng-repeat='(position, playerGroup) in players')
+          th(colspan='2').tr-header {{position}}
+          tr(ng-repeat='player in playerGroup', draggon, data-player-info='{{player}}')
+            td {{player.num}} - {{player.forename}} {{player.surname}} - {{player.pos}}
+            td {{player.stringnum}}
+
+

@@ -491,7 +491,7 @@ ul.checklist {
     input[type=checkbox]:checked + label {
       background: lighten($orange, 10%);
     }
-    input[type=checkbox]:checked + label:before {  
+    input[type=checkbox]:checked + label:before {
       content: "\2713";
       position: absolute;
       text-shadow: 1px 1px 1px white;
@@ -504,7 +504,7 @@ ul.checklist {
       border-radius: 0.7em;
       background: #002649;
       text-align: center;
-      line-height: 15px; 
+      line-height: 15px;
     }
     input[type=checkbox] {
       visibility: hidden;
@@ -642,3 +642,12 @@ ul.checklist {
     fill: black;
   }
 }
+
+.tr-header {
+  background-color: $orange;
+}
+
+.dragover-highlight {
+  background-color: yellow;
+}
+
