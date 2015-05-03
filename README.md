@@ -4,9 +4,9 @@ Auburn football stats and records web application built on the MEAN stack.
 http://audb.co
 
 ## Prerequisites
-- Node.js and NPM
-- Bower
-- Grunt (but soon to be changed to Gulp)
+- [Node.js and NPM](https://nodejs.org/)
+- Bower `npm install -g bower`
+- Grunt (but soon to be changed to Gulp) `npm install -g grunt-cli`
 
 ## Installation
 1. `git clone https://github.com/epzilla/audb.git`
