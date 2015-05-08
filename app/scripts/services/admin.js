@@ -10,6 +10,15 @@ angular.module('audbApp')
           console.log(error);
           throw new Error(error);
         });
+      },
+
+      advancePlayers: function () {
+        $http.post('/api/advancePlayers').then(function (data) {
+          return data;
+        }).catch(function (error) {
+          console.log(error);
+          throw new Error(error);
+        });
       }
     };
   });
