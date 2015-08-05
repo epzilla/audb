@@ -6,12 +6,14 @@
     h2.upper Offense
 div(ng-cloak).row.depth
   .col-md-4.align-center
-    #fb
-      //- h4 FB
-      //- div(ng-repeat='player in players.FB', id='{{player._id}}')
-      //-   p(ng-if='player.retstart === 0') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
-      //-   p(ng-if='player.retstart === 1')
-      //-     strong {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+    #fb.player-group.player-group-o
+      h4 FB
+      div(ng-repeat='player in players.FB', id='{{player._id}}')
+        p(ng-if='player.retstart === 0')
+          a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
+        p(ng-if='player.retstart === 1')
+          strong
+            a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
   .col-md-4.align-center
     #qb.player-group.player-group-o
       h4 QB
@@ -239,7 +241,7 @@ div(class='modal fade', id='playerModal', tabindex='-1', role='dialog', aria-hid
         h3#myModalLabel.modal-title {{selectedPlayer.forename}} {{selectedPlayer.surname}}
 
       div(class='modal-body')
-        img(src='images/playerimages/{{selectedPlayer.forename}} {{selectedPlayer.surname}}.jpeg').img.img-responsive.center.img-rounded
+        img(src='{{selectedPlayer.img}}').img.img-responsive.center.img-rounded
         h4 {{selectedPlayer.pos}} - \#{{selectedPlayer.num}}
         h5 Height: {{selectedPlayer.height}}
         h5 Weight: {{selectedPlayer.weight}}
