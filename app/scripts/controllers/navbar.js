@@ -19,6 +19,8 @@ angular.module('audbApp')
       'link': '/recruits'
     }];
 
+    // var fadeOutMS = 5000;
+
     if (Auth.isAdmin()) {
       $scope.menu.push({
         'title': 'Admin',
@@ -75,15 +77,16 @@ angular.module('audbApp')
         code = 'uuddl';
         angular.element('#theCode span').removeClass('active');
         angular.element('#left1').addClass('active');
-        angular.element('#theCode').show().fadeOut(1000);
+        angular.element('#theCode').show();
       } else if (code === 'uuddlr') {
         code = 'uuddlrl';
         angular.element('#theCode span').removeClass('active');
         angular.element('#left2').addClass('active');
-        angular.element('#theCode').show().fadeOut(1000);
+        angular.element('#theCode').show();
       } else {
         code = '';
         angular.element('#theCode span').removeClass('active');
+        angular.element('#theCode').hide();
       }
     };
 
@@ -92,15 +95,16 @@ angular.module('audbApp')
         code = 'uuddlr';
         angular.element('#theCode span').removeClass('active');
         angular.element('#right1').addClass('active');
-        angular.element('#theCode').show().fadeOut(1000);
+        angular.element('#theCode').show();
       } else if (code === 'uuddlrl') {
         code = 'uuddlrlr';
         angular.element('#theCode span').removeClass('active');
         angular.element('#right2').addClass('active');
-        angular.element('#theCode').show().fadeOut(1000);
+        angular.element('#theCode').show();
       } else {
         code = '';
         angular.element('#theCode span').removeClass('active');
+        angular.element('#theCode').hide();
       }
     };
 
@@ -109,15 +113,16 @@ angular.module('audbApp')
         code = 'uud';
         angular.element('#theCode span').removeClass('active');
         angular.element('#down1').addClass('active');
-        angular.element('#theCode').show().fadeOut(1000);
+        angular.element('#theCode').show();
       } else if (code === 'uud') {
         code = 'uudd';
         angular.element('#theCode span').removeClass('active');
         angular.element('#down2').addClass('active');
-        angular.element('#theCode').show().fadeOut(1000);
+        angular.element('#theCode').show();
       } else {
         code = '';
         angular.element('#theCode span').removeClass('active');
+        angular.element('#theCode').hide();
       }
     };
 
@@ -127,6 +132,7 @@ angular.module('audbApp')
       }
       code = '';
       angular.element('#theCode span').removeClass('active');
+      angular.element('#theCode').hide();
     };
 
     var bHandler = function () {
@@ -134,10 +140,11 @@ angular.module('audbApp')
         code = 'uuddlrlrb';
         angular.element('#theCode span').removeClass('active');
         angular.element('#b-circle').addClass('active');
-        angular.element('#theCode').show().fadeOut(1000);
+        angular.element('#theCode').show();
       } else {
         code = '';
         angular.element('#theCode span').removeClass('active');
+        angular.element('#theCode').hide();
       }
     };
 
@@ -216,12 +223,12 @@ angular.module('audbApp')
         keyboardManager.bind('right', rightHandler);
         angular.element('#theCode span').removeClass('active');
         angular.element('#up2').addClass('active');
-        angular.element('#theCode').show().fadeOut(1000);
+        angular.element('#theCode').show();
       } else {
         code = 'u';
         angular.element('#theCode span').removeClass('active');
         angular.element('#up1').addClass('active');
-        angular.element('#theCode').show().fadeOut(1000);
+        angular.element('#theCode').show();
       }
     });
 
