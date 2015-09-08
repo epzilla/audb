@@ -12,16 +12,19 @@ angular.module('audbApp').directive('draggon', function ($rootScope) {
 
       element.on('drop', function (e) {
         var fromData = JSON.parse(event.dataTransfer.getData('text/plain'));
-        var dropTarget;
+        var dropTarget = e.target;
 
         if (element.hasClass('dragover-highlight')) {
           element.removeClass('dragover-highlight');
         }
 
-        if (e.target.nodeName === 'TD') {
+        if (dropTarget.nodeName === 'A') {
           dropTarget = e.target.parentElement;
-        } else if (dropTarget.nodeName === 'TR') {
-          dropTarget = e.target;
+          if (dropTarget.nodeName === 'STRONG') {
+            dropTarget = dropTarget.parentElement;
+          }
+        } else if (dropTarget.nodeName === 'DIV') {
+          dropTarget = e.target.children[0];
         }
 
         var toData = JSON.parse(dropTarget.dataset.playerInfo);
