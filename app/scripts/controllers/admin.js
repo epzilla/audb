@@ -11,8 +11,8 @@ angular.module('audbApp')
 
     $scope.loadData();
 
-    $scope.enrollRecruits = function () {
-      Admin.enrollRecruits().then(function (data) {
+    $scope.enrollRecruits = function (early) {
+      Admin.enrollRecruits(early).then(function (data) {
         console.log(data);
         $location.path('/depth');
       });

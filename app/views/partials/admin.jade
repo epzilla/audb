@@ -5,12 +5,17 @@ div(ng-if='authorized').container
   .row.pad-mobile
     .col-sm-12
       h2 Advance Players:
-      button.btn.btn-primary(ng-click='advancePlayers()') Advance
+      button.btn.btn-primary(ng-click='advancePlayers()' disabled="disabled") Advance
 
   .row.pad-mobile
     .col-sm-12
-      h2 Enroll Recruits:
-      button.btn.btn-primary(ng-click='enrollRecruits()') Enroll Recruits
+      h2 Enroll Early Recruits:
+      button.btn.btn-primary(ng-click='enrollRecruits(true)') Enroll
+
+  .row.pad-mobile
+    .col-sm-12
+      h2 Enroll All Recruits:
+      button.btn.btn-primary(ng-click='enrollRecruits()') Enroll
 
   .row.pad-mobile
     hr

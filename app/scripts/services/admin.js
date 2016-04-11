@@ -3,8 +3,13 @@
 angular.module('audbApp')
   .factory('Admin', function ($http) {
     return {
-      enrollRecruits: function () {
-        $http.post('/api/recruits/enroll').then(function (data) {
+      enrollRecruits: function (early) {
+        var url = '/api/recruits/enroll';
+        if (early) {
+          url += '?early=true';
+        }
+
+        return $http.post(url).then(function (data) {
           return data;
         }).catch(function (error) {
           console.log(error);
@@ -13,7 +18,7 @@ angular.module('audbApp')
       },
 
       advancePlayers: function () {
-        $http.post('/api/advancePlayers').then(function (data) {
+        return $http.post('/api/advancePlayers').then(function (data) {
           return data;
         }).catch(function (error) {
           console.log(error);
