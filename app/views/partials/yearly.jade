@@ -1,4 +1,4 @@
-div(ng-swipe-left='swipeNextYear()', ng-swipe-right='swipePrevYear()').container  
+div(ng-swipe-left='swipeNextYear()', ng-swipe-right='swipePrevYear()').container
   .page-header.align-center
     h1 {{year}} Auburn Football Results
 
@@ -14,7 +14,7 @@ div(ng-swipe-left='swipeNextYear()', ng-swipe-right='swipePrevYear()').container
       select(ng-model='year', data-placeholder='Select Year', ng-change='setYear(year)')#yearpicker-ss
         option(ng-cloak, ng-repeat='y in years' value='{{y}}') {{y}}
       p(ng-if='hasTouch') Swipe left/right to view next/previous year
-  
+
   div(ng-if='year == 1943').jumbotron
     h1 Allies 1 - Axis 0
     div(style='max-width: 500px;').center
@@ -32,7 +32,7 @@ div(ng-swipe-left='swipeNextYear()', ng-swipe-right='swipePrevYear()').container
         th.hidden-xs Attended?
         th.visible-xs Loc
     tbody(ng-cloak)
-      tr(ng-repeat='game in games | orderBy:\'Date\'', id='game-row-{{game._id}}', ng-class='didAttend(game._id) ? "attended" : ""', ng-click='smallScreenAttend(game._id)', tabindex='1')
+      tr(ng-repeat='game in games | orderBy:\'gameid\'', id='game-row-{{game._id}}', ng-class='didAttend(game._id) ? "attended" : ""', ng-click='smallScreenAttend(game._id)', tabindex='1')
 
         td(ng-if='game.Result === "W"').win {{game.Date.split('-')[1] + '/' + game.Date.split('-')[2]}}
         td(ng-if='game.Result === "W"').win {{game.Result}}
@@ -83,7 +83,7 @@ div(ng-swipe-left='swipeNextYear()', ng-swipe-right='swipePrevYear()').container
           button(ng-if='!currentUser', ng-click='toggleAttended("{{game._id}}")', id='{{game._id}}', tabindex='-1').btn.btn-default.btn-xs.disabled
             span.glyphicon.glyphicon-minus
         td(ng-if='game.Result === "T"').tie.visible-xs {{game.Location === 'Auburn, AL' ? 'H' : 'A'}}
-  
+
   h3(ng-cloak, ng-show='record.t > 0 && year !== thisYear && year !== 1943').align-center Record: {{record.w}}-{{record.l}}-{{record.t}} ({{record.secW}}-{{record.secL}}-{{record.secT}})
   //- h3(ng-cloak, ng-show='record.t === 0 && year != 1943').align-center Record: {{record.w}}-{{record.l}} ({{record.secW}}-{{record.secL}})
   h3(ng-cloak, ng-show='year === thisYear').align-center Record: {{record.w}}-{{record.l}} ({{record.secW}}-{{record.secL}})
