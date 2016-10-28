@@ -19,15 +19,6 @@ angular.module('audbApp')
       'link': '/recruits'
     }];
 
-    // var fadeOutMS = 5000;
-
-    if (Auth.isAdmin()) {
-      $scope.menu.push({
-        'title': 'Admin',
-        'link': '/admin'
-      });
-    }
-
     $scope.unbindAll = function () {
       keyboardManager.unbind('k');
       keyboardManager.unbind('g');
@@ -65,6 +56,27 @@ angular.module('audbApp')
       'images/tdpics/5.jpg',
       'images/tdpics/6.jpg',
     ];
+
+    var checkIfAdmin = function () {
+      if (Auth.isAdmin()) {
+        $scope.isAdmin = true;
+        $scope.menu.push({
+          'title': 'Admin',
+          'link': '/admin'
+        });
+        $scope.$apply();
+      } else {
+        $scope.isAdmin = false;
+        $scope.menu.forEach(function (el, i) {
+          if (el.title === 'Admin') {
+            $scope.menu.splice(i, 1);
+          }
+        });
+      }
+    };
+
+    Auth.registerLoginCallback(checkIfAdmin);
+    Auth.registerLogoutCallback(checkIfAdmin);
 
     var getRandomInt = function (min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
