@@ -252,3 +252,14 @@ div(ng-if='authorized').container
               strong
                 a(data-target='#playerModal', ng-click='showPlayerInfo(player)') {{player.num}} - {{player.forename}} {{player.surname}} - {{player.year}}
 
+  .row.pad-mobile
+    .col-sm-12
+      h2 Edit Schedule
+      .row
+        select(ng-model='scheduleYear', data-placeholder='Select Year', ui-select2, ng-change='setScheduleYear(scheduleYear)')#yearpicker
+            option(value="")
+            option(ng-cloak, ng-repeat='y in years' value='{{y}}') {{y}}
+      .row
+        div(ui-grid="gridOptions", ui-grid-edit, ui-grid-cellNav)
+      .row.pad-mobile
+        button.btn.btn-success(ng-click="addGame()") Add Game

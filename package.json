@@ -4,9 +4,9 @@
   "dependencies": {
     "express": "~3.4.3",
     "lodash": "~2.4.1",
-    "mongoose": "~3.5.5",
+    "mongoose": "~4.0",
     "mongoose-unique-validator": "~0.3.0",
-    "connect-mongo": "~0.4.0",
+    "connect-mongo": "~1.0",
     "passport": "latest",
     "passport-local": "latest",
     "bcrypt": "~0.8.0",

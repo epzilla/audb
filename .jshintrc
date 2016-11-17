@@ -22,6 +22,7 @@
     "angular": false,
     "crossfilter": false,
     "d3": false,
-    "dc": false
+    "dc": false,
+    "_": false
   }
 }

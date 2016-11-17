@@ -384,4 +384,6 @@ angular.module('audbApp')
         angular.element('#checkinModal').modal('show');
       }
     };
+
+    checkIfAdmin();
   });
