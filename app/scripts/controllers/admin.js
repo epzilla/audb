@@ -44,17 +44,17 @@ angular.module('audbApp')
 
       if (conf) {
         game.currentConf = game.Conference = conf.conference;
-        game.BCS = conf.bcs;
-        game.FBS = conf.fbs;
-        game.SEC = conf.conference === 'SEC East' || conf.conference === 'SEC West';
+        game.BCS = conf.bcs ? 'y' : 'n';
+        game.FBS = conf.fbs ? 'y' : 'n';
+        game.SEC = (conf.conference === 'SEC East' || conf.conference === 'SEC West') ? 'y' : 'n';
         if (game.SEC) {
           game.currentConf = game.Conference = conf.conference.split(' ').join('');
         }
       } else {
         game.currentConf = game.Conference = 'FCS';
-        game.BCS = false;
-        game.FBS = false;
-        game.SEC = false;
+        game.BCS = 'n';
+        game.FBS = 'n';
+        game.SEC = 'n';
       }
 
       if (!game.gameid) {
@@ -65,7 +65,7 @@ angular.module('audbApp')
         }
 
         if ($scope.maxGameNum) {
-          game.gameid = $scope.maxGameNum++;
+          game.gameid = ++$scope.maxGameNum;
         }
       }
 
@@ -134,7 +134,7 @@ angular.module('audbApp')
         }
 
         if ($scope.maxGameNum) {
-          newGame.gameid = $scope.maxGameNum++;
+          newGame.gameid = ++$scope.maxGameNum;
         }
       }
 
