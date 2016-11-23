@@ -3,7 +3,7 @@
 angular.module('audbApp')
   .controller('YearlyCtrl', function ($scope, $rootScope, $http, Auth,
                                       $window, localStorageService, keyboardManager, TouchDetect) {
-    var ls =localStorageService;
+    var ls = localStorageService;
     var breakpoint = 768;
 
     if (angular.element('#nav-menu-collapse').hasClass('in')) {
@@ -33,29 +33,10 @@ angular.module('audbApp')
     $scope.getGamesByYear = function (yr) {
       $http.get('/api/year/'+yr).success(function (data) {
         if (!$scope.games || (angular.toJson($scope.games) !== angular.toJson(data))) {
+          $scope.resetRecord();
           $scope.games = data;
           ls.add('yr-'+yr, data);
-          for (var i = 0; i < data.length; i++) {
-            switch(data[i].Result) {
-              case 'W':
-                $scope.record.w++;
-                if (data[i].SEC === 'y') {
-                  $scope.record.secW++;
-                }
-                break;
-              case 'L':
-                $scope.record.l++;
-                if (data[i].SEC === 'y') {
-                  $scope.record.secL++;
-                }
-                break;
-              default:
-                $scope.record.t++;
-                if (data[i].SEC === 'y') {
-                  $scope.record.secT++;
-                }
-            }
-          }
+          $scope.calculateRecord(data);
         }
         if (angular.element('.loader').hasClass('show')) {
           angular.element('.loader').toggleClass('show');
@@ -63,43 +44,52 @@ angular.module('audbApp')
       });
     };
 
+    $scope.resetRecord = function () {
+      $scope.record = {
+        w: 0,
+        l: 0,
+        t: 0,
+        secW: 0,
+        secL: 0,
+        secT: 0
+      };
+    };
+
+    $scope.calculateRecord = function (data) {
+      for (var i = 0; i < data.length; i++) {
+        switch (data[i].Result) {
+          case 'W':
+            $scope.record.w++;
+            if (data[i].SEC === 'y') {
+              $scope.record.secW++;
+            }
+            break;
+          case 'L':
+            $scope.record.l++;
+            if (data[i].SEC === 'y') {
+              $scope.record.secL++;
+            }
+            break;
+          default:
+            $scope.record.t++;
+            if (data[i].SEC === 'y') {
+              $scope.record.secT++;
+            }
+        }
+      }
+
+      if (angular.element('.loader').hasClass('show')) {
+        angular.element('.loader').toggleClass('show');
+      }
+    };
+
     $scope.setYear = function (yr) {
       if (yr <= $scope.thisYear && yr >= 1892) {
         $scope.year = parseInt(yr);
-        $scope.record = {
-            w: 0,
-            l: 0,
-            t: 0,
-            secW: 0,
-            secL: 0,
-            secT: 0
-          };
+        $scope.resetRecord();
         $scope.games = ls.get('yr-'+yr);
         if ($scope.games) {
-          for (var i = 0; i < $scope.games.length; i++) {
-            switch($scope.games[i].Result) {
-              case 'W':
-                $scope.record.w++;
-                if ($scope.games[i].SEC === 'y') {
-                  $scope.record.secW++;
-                }
-                break;
-              case 'L':
-                $scope.record.l++;
-                if ($scope.games[i].SEC === 'y') {
-                  $scope.record.secL++;
-                }
-                break;
-              default:
-                $scope.record.t++;
-                if ($scope.games[i].SEC === 'y') {
-                  $scope.record.secT++;
-                }
-            }
-            if (angular.element('.loader').hasClass('show')) {
-              angular.element('.loader').toggleClass('show');
-            }
-          }
+          $scope.calculateRecord($scope.games);
           if ($scope.year === $scope.thisYear) {
             $scope.getGamesByYear(yr);
           }
