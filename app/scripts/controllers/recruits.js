@@ -12,7 +12,10 @@ angular.module('audbApp')
     $scope.hasTouch = TouchDetect.hasTouch();
     $scope.thisYear = dateNow.getFullYear();
     $scope.currentClass = dateNow.getMonth() < 2 ? $scope.thisYear : ($scope.thisYear + 1);
-    $scope.recClasses = [2011, 2012, 2013, 2014, 2015, 2016];
+    $scope.recClasses = [];
+    for (var i = 2011; i <= $scope.thisYear + 1; i++) {
+      $scope.recClasses.push(i);
+    }
 
     $scope.unbindAll = function () {
       keyboardManager.unbind('left');

@@ -14,7 +14,9 @@
     "angular-touch": "latest",
     "angular-local-storage": "latest",
     "angular-ui-select2": "latest",
-    "fastclick": "latest"
+    "fastclick": "latest",
+    "angular-ui-grid": "^4.0.2",
+    "lodash": "^4.17.4"
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",

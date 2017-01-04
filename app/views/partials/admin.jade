@@ -258,8 +258,20 @@ div(ng-if='authorized').container
       .row
         select(ng-model='scheduleYear', data-placeholder='Select Year', ui-select2, ng-change='setScheduleYear(scheduleYear)')#yearpicker
             option(value="")
-            option(ng-cloak, ng-repeat='y in years' value='{{y}}') {{y}}
+            option(ng-cloak, ng-repeat='y in scheduleYears' value='{{y}}') {{y}}
       .row
-        div(ui-grid="gridOptions", ui-grid-edit, ui-grid-cellNav)
+        div(ui-grid="gameGridOptions", ui-grid-edit, ui-grid-cellNav)
       .row.pad-mobile
         button.btn.btn-success(ng-click="addGame()") Add Game
+
+  .row.pad-mobile
+    .col-sm-12
+      h2 Edit Recruits
+      .row
+        select(ng-model='recruitsYear', data-placeholder='Select Class', ui-select2, ng-change='setRecruitsYear(recruitsYear)')#rec-yearpicker
+            option(value="")
+            option(ng-cloak, ng-repeat='y in recruitsYears' value='{{y}}') {{y}}
+      .row
+        div(ui-grid="recruitsGridOptions", ui-grid-edit, ui-grid-cellNav)
+      .row.pad-mobile
+        button.btn.btn-success(ng-click="addRecruit()") Add Recruit

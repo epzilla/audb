@@ -9,7 +9,7 @@ angular.module('audbApp')
       });
     };
 
-    $scope.gridOptions = {
+    $scope.gameGridOptions = {
       columnDefs: [
         { name: 'Opponent', enableCellEdit: true },
         { name: 'Date', enableCellEdit: true },
@@ -19,11 +19,53 @@ angular.module('audbApp')
       ]
     };
 
-    $scope.gridOptions.onRegisterApi = function (gridApi) {
+    $scope.gameGridOptions.onRegisterApi = function (gridApi) {
       //set gridApi on scope
-      $scope.gridApi = gridApi;
+      $scope.gameGridApi = gridApi;
       gridApi.edit.on.afterCellEdit($scope, function (rowEntity) {
         $scope.saveGame(rowEntity);
+      });
+    };
+
+    var stateList = ['AK','AL','AR','AZ','CA','CO','CT','DC','DE','FL','GA','GU','HI','IA','ID', 'IL','IN','KS','KY','LA','MA','MD','ME','MH','MI','MN','MO','MS','MT','NC','ND','NE','NH','NJ','NM','NV','NY', 'OH','OK','OR','PA','PR','PW','RI','SC','SD','TN','TX','UT','VA','VI','VT','WA','WI','WV','WY'];
+    var stateDropdownOptions = stateList.map(function (st) {
+      return {
+        id: st,
+        value: st
+      };
+    });
+
+    var posList = ['QB', 'RB', 'FB', 'WR', 'TE', 'OL', 'DE', 'DT', 'LB', 'S', 'CB', 'K', 'P'];
+    var posDropdownOptions = posList.map(function (pos) {
+      return {
+        id: pos,
+        value: pos
+      };
+    });
+
+    $scope.recruitsGridOptions = {
+      columnDefs: [
+        { name: 'forename', displayName: 'First', enableCellEdit: true, enableCellEditOnFocus: true},
+        { name: 'surname', displayName: 'Last', enableCellEdit: true, enableCellEditOnFocus: true},
+        { name: 'city', enableCellEdit: true, enableCellEditOnFocus: true},
+        { name: 'state', enableCellEdit: true, enableCellEditOnFocus: true, editableCellTemplate: 'ui-grid/dropdownEditor', editDropdownOptionsArray: stateDropdownOptions},
+        { name: 'hs', displayName: 'HS', enableCellEdit: true, enableCellEditOnFocus: true},
+        { name: 'pos', enableCellEdit: true, enableCellEditOnFocus: true, editableCellTemplate: 'ui-grid/dropdownEditor', editDropdownOptionsArray: posDropdownOptions},
+        { name: 'rivalsrank', displayName: 'R Rank', enableCellEdit: true, enableCellEditOnFocus: true, type: 'number'},
+        { name: 'rivalsstars', displayName: 'R *', enableCellEdit: true, enableCellEditOnFocus: true, type: 'number'},
+        { name: 'scoutrank', displayName: 'S Rank', enableCellEdit: true, enableCellEditOnFocus: true, type: 'number'},
+        { name: 'scoutstars', displayName: 'S *', enableCellEdit: true, enableCellEditOnFocus: true, type: 'number'},
+        { name: 'earlyEnrollee', displayName: 'Early?', enableCellEdit: true, enableCellEditOnFocus: true, type: 'boolean'}
+      ]
+    };
+
+    $scope.recruitsGridOptions.onRegisterApi = function (gridApi) {
+      //set gridApi on scope
+      $scope.recruitsGridApi = gridApi;
+      gridApi.edit.on.afterCellEdit($scope, function (rowEntity, colDef, newValue, oldValue) {
+        if (newValue && !_.isEqual(newValue, oldValue)) {
+          $scope.saveRecruit(rowEntity);
+        }
       });
     };
 
@@ -74,27 +116,64 @@ angular.module('audbApp')
       });
     };
 
+    $scope.saveRecruit = function (rec) {
+      rec.avgstars = _.mean([rec.rivalsstars, rec.scoutstars]);
+      rec.avgrank = _.mean([rec.rivalsrank, rec.scoutrank]);
+      console.info(rec);
+      $http.post('/api/recruits', rec).success(function (res) {
+        var gridData = _.cloneDeep($scope.recruitsGridOptions.data);
+        $scope.recruitsGridOptions.data = _.map(gridData, function (r) {
+          return r._id ? r : res;
+        });
+      });
+    };
+
     $scope.scheduleYear = new Date().getFullYear();
-    $scope.years = [$scope.scheduleYear];
+    $scope.recruitsYear = $scope.scheduleYear + 1;
+
+    $scope.scheduleYears = [$scope.scheduleYear];
     for (var i = 1; i < 5; i++) {
-      $scope.years.push($scope.scheduleYear + i);
+      $scope.scheduleYears.push($scope.scheduleYear + i);
     }
 
-    var proms = $scope.years.map(function (yr) {
+    $scope.recruitsYears = $scope.scheduleYears;
+    for (var j = 3; j > 0; j--) {
+      $scope.recruitsYears.push($scope.scheduleYear - j);
+    }
+    $scope.recruitsYears.sort();
+
+    var gameProms = $scope.scheduleYears.map(function (yr) {
       return $http.get('/api/year/' + yr);
     });
 
-    $q.all(proms).then(function (res) {
+    $q.all(gameProms).then(function (res) {
       $scope.gamesByYear = res.map(function (results, i) {
         var games = results.data || [];
         games.sort(function (a, b) { return new Date(a.Date).getTime() - new Date(b.Date).getTime(); });
         return {
-          year: $scope.years[i],
+          year: $scope.scheduleYears[i],
           games: games
         };
       });
       console.info($scope.gamesByYear);
-      $scope.gridOptions.data = _.find($scope.gamesByYear, { year: $scope.scheduleYear }).games;
+      $scope.gameGridOptions.data = _.find($scope.gamesByYear, { year: $scope.scheduleYear }).games;
+    });
+
+    var recProms = $scope.recruitsYears.map(function (yr) {
+      return $http.get('/api/recruits/' + yr);
+    });
+
+    $q.all(recProms).then(function (res) {
+      $scope.recruitsByYear = res.map(function (results, i) {
+        var recruits = results.data || [];
+        _.sortBy(recruits, ['surname', 'forename']);
+        return {
+          class: $scope.scheduleYears[i],
+          recruits: recruits
+        };
+      });
+      console.info($scope.recruitsByYear);
+      $scope.recruitsGridOptions.data = _.find($scope.recruitsByYear, { class: $scope.recruitsYear }).recruits;
     });
 
     $http.get('/api/conferences').success(function (data) {
@@ -103,11 +182,16 @@ angular.module('audbApp')
 
     $scope.setScheduleYear = function (yr) {
       $scope.scheduleYear = parseInt(yr);
-      $scope.gridOptions.data = _.find($scope.gamesByYear, { year: $scope.scheduleYear }).games;
+      $scope.gameGridOptions.data = _.find($scope.gamesByYear, { year: $scope.scheduleYear }).games;
+    };
+
+    $scope.setRecruitsYear = function (yr) {
+      $scope.recruitsYear = parseInt(yr);
+      $scope.recruitsGridOptions.data = _.find($scope.recruitsByYear, { class: $scope.recruitsYear }).recruits;
     };
 
     $scope.addGame = function () {
-      var lastGame = _.last($scope.gridOptions.data);
+      var lastGame = _.last($scope.gameGridOptions.data);
       var newGame = {
         Opponent: 'Opp',
         auscore: 0,
@@ -118,7 +202,7 @@ angular.module('audbApp')
         Conference: 'SECWest',
         BCS: 'y',
         SEC: 'y',
-        Game: $scope.gridOptions.data.length + 1,
+        Game: $scope.gameGridOptions.data.length + 1,
         Result: 'T',
         currentConf: 'SECWest'
       };
@@ -149,7 +233,30 @@ angular.module('audbApp')
         newGame.Date = lastDate.getFullYear() + '-' + mo + '-' + d;
       }
       console.info(newGame.gameid);
-      $scope.gridOptions.data.push(newGame);
+      $scope.gameGridOptions.data.push(newGame);
+    };
+
+    $scope.addRecruit = function () {
+      var newRecruit = {
+        avgrank: 50,
+        avgstars: 4,
+        city: 'Auburn',
+        class: $scope.recruitsYear,
+        earlyEnrollee: false,
+        forename: 'John',
+        hs: 'Auburn',
+        lat: 0,
+        long: 0,
+        pos: 'QB',
+        rivalsrank: 50,
+        rivalsstars: 4,
+        scoutrank: 50,
+        scoutstars: 4,
+        state: 'AL',
+        surname: 'Doe'
+      };
+
+      $scope.recruitsGridOptions.data.push(newRecruit);
     };
 
     $scope.loadData();
