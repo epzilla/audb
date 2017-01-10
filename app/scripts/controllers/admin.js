@@ -4,8 +4,10 @@ angular.module('audbApp')
   .controller('AdminCtrl', function ($q, $scope, $location, $http, Auth, Admin) {
 
     $scope.loadData = function() {
-      $http.get('/api/playersByPos').success(function (data) {
+      $http.get('/api/players').success(function (data) {
         $scope.players = data;
+        $scope.playersByPos = _.groupBy(_.sortBy(data, 'stringnum'), 'trupos');
+        $scope.rosterGridOptions.data = data;
       });
     };
 
@@ -27,21 +29,24 @@ angular.module('audbApp')
       });
     };
 
-    var stateList = ['AK','AL','AR','AZ','CA','CO','CT','DC','DE','FL','GA','GU','HI','IA','ID', 'IL','IN','KS','KY','LA','MA','MD','ME','MH','MI','MN','MO','MS','MT','NC','ND','NE','NH','NJ','NM','NV','NY', 'OH','OK','OR','PA','PR','PW','RI','SC','SD','TN','TX','UT','VA','VI','VT','WA','WI','WV','WY'];
-    var stateDropdownOptions = stateList.map(function (st) {
+    var mapIdsAndVals = function (thing) {
       return {
-        id: st,
-        value: st
+        id: thing,
+        value: thing
       };
-    });
+    };
+
+    var stateList = ['AK','AL','AR','AZ','CA','CO','CT','DC','DE','FL','GA','GU','HI','IA','ID', 'IL','IN','KS','KY','LA','MA','MD','ME','MH','MI','MN','MO','MS','MT','NC','ND','NE','NH','NJ','NM','NV','NY', 'OH','OK','OR','PA','PR','PW','RI','SC','SD','TN','TX','UT','VA','VI','VT','WA','WI','WV','WY'];
+    var stateDropdownOptions = stateList.map(mapIdsAndVals);
 
     var posList = ['QB', 'RB', 'FB', 'WR', 'TE', 'OL', 'DE', 'DT', 'LB', 'S', 'CB', 'K', 'P'];
-    var posDropdownOptions = posList.map(function (pos) {
-      return {
-        id: pos,
-        value: pos
-      };
-    });
+    var posDropdownOptions = posList.map(mapIdsAndVals);
+
+    var truposList = ['QB', 'RB', 'FB', 'WR2', 'WR9', 'Slot', 'TE', 'LT', 'LG', 'C', 'RG', 'RT', 'WDE', 'DT', 'NG', 'SDE', 'WLB', 'MLB', 'SLB', 'SS', 'FS', 'LCB', 'RCB', 'K', 'P'];
+    var truposDropdownOptions = truposList.map(mapIdsAndVals);
+
+    var yearsList = ['FR', 'RFR', 'SO', 'JR', 'SR'];
+    var yearDropdownOptions = yearsList.map(mapIdsAndVals);
 
     $scope.recruitsGridOptions = {
       columnDefs: [
@@ -65,6 +70,36 @@ angular.module('audbApp')
       gridApi.edit.on.afterCellEdit($scope, function (rowEntity, colDef, newValue, oldValue) {
         if (newValue && !_.isEqual(newValue, oldValue)) {
           $scope.saveRecruit(rowEntity);
+        }
+      });
+    };
+
+    $scope.rosterGridOptions = {
+      columnDefs: [
+        { name: 'num', enableCellEdit: true, enableCellEditOnFocus: true, type: 'number'},
+        { name: 'forename', displayName: 'First', enableCellEdit: true, enableCellEditOnFocus: true},
+        { name: 'surname', displayName: 'Last', enableCellEdit: true, enableCellEditOnFocus: true},
+        { name: 'pos', enableCellEdit: true, enableCellEditOnFocus: true, editableCellTemplate: 'ui-grid/dropdownEditor', editDropdownOptionsArray: posDropdownOptions},
+        { name: 'trupos', enableCellEdit: true, enableCellEditOnFocus: true, editableCellTemplate: 'ui-grid/dropdownEditor', editDropdownOptionsArray: truposDropdownOptions},
+        { name: 'height', enableCellEdit: true, enableCellEditOnFocus: true},
+        { name: 'weight', enableCellEdit: true, enableCellEditOnFocus: true, type: 'number'},
+        { name: 'year', enableCellEdit: true, enableCellEditOnFocus: true, editableCellTemplate: 'ui-grid/dropdownEditor', editDropdownOptionsArray: yearDropdownOptions},
+        { name: 'city', enableCellEdit: true, enableCellEditOnFocus: true},
+        { name: 'state', enableCellEdit: true, enableCellEditOnFocus: true, editableCellTemplate: 'ui-grid/dropdownEditor', editDropdownOptionsArray: stateDropdownOptions},
+        { name: 'hs', displayName: 'HS', enableCellEdit: true, enableCellEditOnFocus: true},
+        { name: 'retstart', displayName: 'Ret. Start.?', enableCellEdit: true, enableCellEditOnFocus: true, type: 'boolean'},
+        { name: 'stringnum', displayName: 'String', enableCellEdit: true, enableCellEditOnFocus: true, type: 'number'},
+        { name: 'img', enableCellEdit: true, enableCellEditOnFocus: true},
+        { name: 'active', enableCellEdit: true, enableCellEditOnFocus: true, type: 'boolean'}
+      ]
+    };
+
+    $scope.rosterGridOptions.onRegisterApi = function (gridApi) {
+      //set gridApi on scope
+      $scope.rosterGridApi = gridApi;
+      gridApi.edit.on.afterCellEdit($scope, function (rowEntity, colDef, newValue, oldValue) {
+        if (newValue && !_.isEqual(newValue, oldValue)) {
+          $scope.savePlayer(rowEntity);
         }
       });
     };
@@ -125,6 +160,21 @@ angular.module('audbApp')
         $scope.recruitsGridOptions.data = _.map(gridData, function (r) {
           return r._id ? r : res;
         });
+      });
+    };
+
+    $scope.savePlayer = function (pl) {
+      var player = _.cloneDeep(pl);
+      delete player.$$hashKey;
+      $http.post('/api/player/' + pl._id, player).success(function () {
+        var savedPlayer = _.find($scope.players, {_id: player._id});
+        if (savedPlayer) {
+          savedPlayer = player;
+          if (!savedPlayer.active) {
+            _.remove($scope.players, {_id: savedPlayer._id});
+          }
+          $scope.playersByPos = _.groupBy(_.sortBy($scope.players, 'stringnum'), 'trupos');
+        }
       });
     };
 
