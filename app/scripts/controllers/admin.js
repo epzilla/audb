@@ -105,6 +105,9 @@ angular.module('audbApp')
     };
 
     $scope.saveGame = function (game) {
+      game.auscore = parseInt(game.auscore);
+      game.opscore = parseInt(game.opscore);
+
       if (game.auscore > game.opscore) {
         game.Result = 'W';
       } else if (game.auscore < game.opscore) {
