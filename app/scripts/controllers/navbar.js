@@ -64,7 +64,9 @@ angular.module('audbApp')
           'title': 'Admin',
           'link': '/admin'
         });
-        $scope.$apply();
+        if(!$scope.$$phase) {
+          $scope.$apply();
+        }
       } else {
         $scope.isAdmin = false;
         $scope.menu.forEach(function (el, i) {
@@ -257,7 +259,9 @@ angular.module('audbApp')
 
     $scope.setSmallScreen = function () {
       $scope.isSmallScreen = $window.innerWidth < breakpoint ? true : false;
-      $scope.$apply();
+      if(!$scope.$$phase) {
+        $scope.$apply();
+      }
     };
 
     $scope.isActive = function (route) {

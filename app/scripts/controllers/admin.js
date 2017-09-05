@@ -149,9 +149,7 @@ angular.module('audbApp')
         }
       }
 
-      $http.post('/api/games', game).success(function (res) {
-        console.info(res);
-      });
+      $http.post('/api/games', game);
     };
 
     $scope.saveRecruit = function (rec) {
@@ -208,7 +206,6 @@ angular.module('audbApp')
           games: games
         };
       });
-      console.info($scope.gamesByYear);
       $scope.gameGridOptions.data = _.find($scope.gamesByYear, { year: $scope.scheduleYear }).games;
     });
 
@@ -225,7 +222,6 @@ angular.module('audbApp')
           recruits: recruits
         };
       });
-      console.info($scope.recruitsByYear);
       $scope.recruitsGridOptions.data = _.find($scope.recruitsByYear, { class: $scope.recruitsYear }).recruits;
     });
 
@@ -285,7 +281,6 @@ angular.module('audbApp')
         d = d.toString().length > 1 ? d : '0' + d;
         newGame.Date = lastDate.getFullYear() + '-' + mo + '-' + d;
       }
-      console.info(newGame.gameid);
       $scope.gameGridOptions.data.push(newGame);
     };
 
@@ -316,14 +311,12 @@ angular.module('audbApp')
 
     $scope.enrollRecruits = function (early) {
       Admin.enrollRecruits(early).then(function (data) {
-        console.log(data);
         $location.path('/depth');
       });
     };
 
     $scope.advancePlayers = function () {
       Admin.advancePlayers().then(function (data) {
-        console.log(data);
         $location.path('/depth');
       });
     };
