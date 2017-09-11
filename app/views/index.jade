@@ -51,7 +51,7 @@ html.no-js
       div.collapse.navbar-collapse#nav-menu-collapse
         ul.nav.navbar-nav
           li(ng-cloak, ng-show='isSmallScreen', ng-repeat='item in menu', ng-class='{active: isActive(item.link)}')
-            a(ng-href='{{item.link}}', ng-click='hideMenu()') {{item.title}}
+            a(ng-href='{{item.link}}') {{item.title}}
           li(ng-cloak, ng-hide='isSmallScreen', ng-repeat='item in menu', ng-class='{active: isActive(item.link)}')
             a(ng-href='{{item.link}}') {{item.title}}
           li(ng-cloak, ng-show='isSmallScreen && !currentUser', ng-class="{active: isActive('/login')}") Login
