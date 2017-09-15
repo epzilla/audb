@@ -13,8 +13,11 @@ $orange: #F46507;
   @if $point == grande {
     @media (max-width: 1600px) { @content; }
   }
+  @else if $point == mediogrande  {
+    @media (max-width: 1050px) { @content; }
+  }
   @else if $point == medio {
-    @media (max-width: 1250px) { @content; }
+    @media (max-width: 900px) { @content; }
   }
   @else if $point == pequeno {
     @media (max-width: 650px)  { @content; }

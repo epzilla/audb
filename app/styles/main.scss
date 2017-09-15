@@ -1,6 +1,8 @@
 @import 'mixins';
 @import 'teams';
 @import 'keys';
+@import 'depth';
+@import 'helpers';
 
 .browsehappy {
   margin: 0.2em 0;
@@ -218,42 +220,6 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-.player-group {
-  max-width: 15em;
-  min-height: 8em;
-  background-color: #F0F0F0;
-  margin: 0 auto 1em auto;
-  padding: 0.25em 0;
-  border-radius: 0.5em;
-  h4 {
-    border-bottom: 1px solid #CCC;
-    width: auto;
-    max-width: 2em;
-    margin: 0 auto 0.4em auto;
-    padding-bottom: 0.25em;
-    padding-top: 0.25em;
-  }
-  p {
-    margin-bottom: 0.15em;
-  }
-  a {
-    color: $navy;
-    cursor: pointer;
-  }
-  &.player-group-d {
-    h4 {
-      color: $navy;
-    }
-    p, a {
-      color: $orange;
-    }
-  }
-  @include breakpoint(pequeno) {
-    max-width: none;
-    background: none;
-  }
-}
-
 #recruit-table {
   thead {
     tr {
@@ -363,10 +329,6 @@ h1 {
     font-size: 0.5em;
     margin: 0.2em;
   }
-}
-
-.row.depth {
-  // .col-
 }
 
 .win {
@@ -579,75 +541,3 @@ ul.checklist {
     color: $orange;
   }
 }
-
-// HELPER CLASSES
-.font-small {
-  font-size: 0.5em;
-}
-
-.bold {
-  font-weight: bolder;
-}
-
-.align-center {
-  text-align: center;
-}
-
-.align-left {
-  text-align: left;
-}
-
-.align-right {
-  text-align: right;
-}
-
-.center {
-  margin: 0 auto;
-}
-
-.no-float {
-  float: none;
-}
-
-.pad-bottom-1em {
-  padding-bottom: 1em;
-}
-
-.pad-mobile {
-  @include breakpoint(pequeno) {
-    padding: 1em;
-  }
-}
-
-.pad-top-mobile {
-  @include breakpoint(pequeno) {
-    padding-top: 1em;
-  }
-}
-
-.top-3px {
-  top: 3px;
-}
-
-.top-2px {
-  top: 2px;
-}
-
-.upper {
-  text-transform: uppercase;
-}
-
-.dc-chart {
-  .pie-slice {
-    fill: black;
-  }
-}
-
-.tr-header {
-  background-color: $orange;
-}
-
-.dragover-highlight {
-  background-color: yellow;
-}
-
