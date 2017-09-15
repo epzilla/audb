@@ -5,7 +5,7 @@ angular.module('audbApp')
     if (angular.element('#nav-menu-collapse').hasClass('in')) {
       angular.element('.navbar-toggle').click();
     }
-    
+
     $scope.years = [];
     $rootScope.selectedTeams = [];
     $scope.endYear = new Date().getFullYear();
@@ -138,10 +138,12 @@ angular.module('audbApp')
                 $scope.record.secL++;
               }
               break;
-            default:
-              $scope.record.t++;
-              if (data[i].SEC === 'y') {
-                $scope.record.secT++;
+            case 'T':
+              if (data[i].Season <= 1995) {
+                $scope.record.t++;
+                if (data[i].SEC === 'y') {
+                  $scope.record.secT++;
+                }
               }
           }
         }

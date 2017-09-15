@@ -85,7 +85,7 @@ div(ng-swipe-left='swipeNextYear()', ng-swipe-right='swipePrevYear()').container
         td(ng-if='game.Result === "T"').tie.visible-xs {{game.Location === 'Auburn, AL' ? 'H' : 'A'}}
 
   h3(ng-cloak, ng-show='record.t > 0 && year !== thisYear && year !== 1943').align-center Record: {{record.w}}-{{record.l}}-{{record.t}} ({{record.secW}}-{{record.secL}}-{{record.secT}})
-  //- h3(ng-cloak, ng-show='record.t === 0 && year != 1943').align-center Record: {{record.w}}-{{record.l}} ({{record.secW}}-{{record.secL}})
+  h3(ng-cloak, ng-show='record.t === 0 && year != 1943').align-center Record: {{record.w}}-{{record.l}} ({{record.secW}}-{{record.secL}})
   h3(ng-cloak, ng-show='year === thisYear').align-center Record: {{record.w}}-{{record.l}} ({{record.secW}}-{{record.secL}})
   h2(ng-show='year == 1997 || year == 2000').align-center SEC West Champions
   h2(ng-show='year == 2013 || year == 2010 || year == 2004 || year == 1989 || year == 1988 || year == 1987 || year == 1983 || year == 1957').align-center SEC Champions

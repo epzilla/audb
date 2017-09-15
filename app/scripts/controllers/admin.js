@@ -310,13 +310,13 @@ angular.module('audbApp')
     $scope.loadData();
 
     $scope.enrollRecruits = function (early) {
-      Admin.enrollRecruits(early).then(function (data) {
+      Admin.enrollRecruits(early).then(function () {
         $location.path('/depth');
       });
     };
 
     $scope.advancePlayers = function () {
-      Admin.advancePlayers().then(function (data) {
+      Admin.advancePlayers().then(function () {
         $location.path('/depth');
       });
     };
