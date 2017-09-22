@@ -60,19 +60,19 @@ angular.module('audbApp')
         switch (data[i].Result) {
           case 'W':
             $scope.record.w++;
-            if (data[i].SEC === 'y') {
+            if (data[i].SEC) {
               $scope.record.secW++;
             }
             break;
           case 'L':
             $scope.record.l++;
-            if (data[i].SEC === 'y') {
+            if (data[i].SEC) {
               $scope.record.secL++;
             }
             break;
           default:
             $scope.record.t++;
-            if (data[i].SEC === 'y') {
+            if (data[i].SEC) {
               $scope.record.secT++;
             }
         }
