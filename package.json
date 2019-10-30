@@ -6,7 +6,7 @@
     "connect-mongo": "~1.0",
     "express": "~3.11.0",
     "jade": "latest",
-    "lodash": "~2.4.1",
+    "lodash": "~4.17.13",
     "mongoose": "~4.0",
     "mongoose-unique-validator": "~0.3.0",
     "passport": "latest",
